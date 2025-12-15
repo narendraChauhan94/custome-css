@@ -1,510 +1,624 @@
-<style type="text/css">
+<style>
 /* =========================================================
-   ROOT VARIABLES & PAGE LAYOUT
+   ROOT VARIABLES
    ========================================================= */
-:root {
-    --gradient-primary: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%);
-    --color-primary: #7c3aed;
-    --color-primary-dark: #5b4bdf;
-    --color-accent: #ec4899;
-    --border-radius-sm: 8px;
-    --border-radius-md: 12px;
-    --border-radius-lg: 20px;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 4px 12px rgba(124, 58, 237, 0.12);
-}
 
 #facilityListPage {
-    display: flex !important;
-    gap: 24px !important;
-    padding: 0 !important;
-    background: #f5f5f7 !important;
     width: 100%;
 }
 
-#facilityListPage > .filter-panel-background {
-    display: none !important;
+/* Confirm Button */
+#facilityListPage .pm-confirm-button,
+#facilityListPage button.pm-confirm-button {
+    background: var(--g1, #007bff) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 12px 20px !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+#facilityListPage .facility-list .results-header {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+
+    background: linear-gradient(
+        90deg,
+        #5b4bdf 0%,
+        #9c4dcc 50%,
+        #e04b9a 100%
+    ) !important;
+
+    color: #ffffff !important;
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.4px !important;
+
+    padding: 18px 24px !important;
+    margin: 16px 0 28px 0 !important;
+    border-radius: 14px !important;
+
+    word-wrap: break-word !important;
+}
+
+#facilityListPage a.back-url {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+
+    background: linear-gradient(
+        90deg,
+        #5b4bdf 0%,
+        #9c4dcc 50%,
+        #e04b9a 100%
+    ) !important;
+
+    color: #ffffff !important;
+    border: none !important;
+    cursor: pointer !important;
+
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Hover & Active states */
+#facilityListPage a.back-url:hover {
+    opacity: 0.9 !important;
+}
+
+#facilityListPage a.back-url:active {
+    transform: scale(0.97) !important;
+}
+
+
+/* Hover & Active States */
+#facilityListPage .pm-confirm-button:hover,
+#facilityListPage button.pm-confirm-button:hover {
+    opacity: 0.9 !important;
+}
+
+#facilityListPage .pm-confirm-button:active,
+#facilityListPage button.pm-confirm-button:active {
+    transform: scale(0.98) !important;
+}
+
+#facilityListPage .availability-search .search-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px !important;
+    font-weight: 600 !important;
+
+    height: 44px !important;
+    width: 94% !important;
+    max-width: 94% !important;
+
+    margin: 24px 15px 30px 0 !important;
+    padding: 0 20px !important;
+
+    border-radius: 10px !important;
+    border: none !important;
+
+    background: linear-gradient(
+        90deg,
+        #5b4bdf 0%,
+        #9c4dcc 50%,
+        #e04b9a 100%
+    ) !important;
+
+    color: #ffffff !important;
+    cursor: pointer !important;
+
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Hover & Active states */
+#facilityListPage .availability-search .search-btn:hover {
+    opacity: 0.9 !important;
+}
+
+#facilityListPage .availability-search .search-btn:active {
+    transform: scale(0.97) !important;
+}
+/* =========================================================
+   SEARCH BOX WRAPPER
+   ========================================================= */
+#facilityListPage .search-box-wrapper {
+    height: auto !important;
+    padding: 20px 20px 24px 20px !important;
+
+    background: #ffffff !important;
+    border-right: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+
+    position: relative !important;
+    box-sizing: border-box;
 }
 
 /* =========================================================
-   SIDEBAR - FILTER PANEL
+   SEARCH INPUT
    ========================================================= */
-form.filter-panel-wrapper,
-#filterPanelForm {
-    width: 300px !important;
-    flex-shrink: 0 !important;
-    background: #ffffff !important;
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 32px 28px !important;
-    height: 100vh !important;
-    position: sticky !important;
-    top: 0 !important;
-    display: block !important;
-    overflow-y: auto !important;
-}
-
-/* Search Box */
-#search-box-wrapper {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin-bottom: 24px !important;
-    position: relative !important;
-}
-
-#search-box-wrapper .search-box {
+#facilityListPage .search-box-wrapper .search-box {
     width: 100% !important;
-    padding: 14px 44px 14px 16px !important;
-    border-radius: 10px !important;
-    border: 1px solid #e5e7eb !important;
+    height: 44px !important;
+
+    padding: 10px 44px 10px 14px !important;
     font-size: 15px !important;
-    background: #fafafa !important;
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif !important;
+
+    border-radius: 10px !important;
+    border: 1px solid #d1d5db !important;
+
+    background-color: #ffffff !important;
+    color: #111827 !important;
+
     box-sizing: border-box !important;
-    transition: all 0.2s ease !important;
-    color: #374151 !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-#search-box-wrapper .search-box:focus {
+#facilityListPage .filter-panel {
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+  padding-left: 23px;
+  padding-right: 25px;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+}
+/* Focus state */
+#facilityListPage .search-box-wrapper .search-box:focus {
     outline: none !important;
-    border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
+    border-color: #9c4dcc !important;
+    box-shadow: 0 0 0 3px rgba(156, 77, 204, 0.15) !important;
 }
 
-#search-box-wrapper .fa-search {
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+#facilityListPage .search-box-wrapper .search-box::placeholder {
+    font-size: 14px !important;
+    color: #6b7280 !important;
+    opacity: 1 !important;
+}
+
+/* =========================================================
+   SEARCH ICON
+   ========================================================= */
+#facilityListPage .search-box-wrapper .fa-search {
     position: absolute !important;
-    right: 14px !important;
+    right: 34px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    color: var(--color-primary) !important;
-    cursor: pointer !important;
+
     font-size: 16px !important;
+    color: #9c4dcc !important;
+    pointer-events: none;
 }
-
-/* Date Picker */
-.availability-search {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
+/* =========================================================
+   DATEPICKER WRAPPER
+   ========================================================= */
+#facilityListPage .availability-search .k-datepicker {
+    width: 94% !important;
+    height: 44px !important;
 }
-
-.availability-search .base-block {
+/* =========================================================
+   FACILITY ITEM – FLEX CARD
+   ========================================================= */
+#facilityListPage .facility-list .facility-item {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-}
+    align-items: center !important;
+    justify-content: space-between !important;
 
-.availability-search .k-datepicker {
-    width: 100% !important;
-}
+    padding: 20px 24px !important;
+    border-radius: 16px !important;
+    background: #ffffff !important;
 
-.availability-search .k-picker-wrap {
-    border-radius: 10px !important;
-    border: 1px solid #e5e7eb !important;
-    background: #fafafa !important;
-    padding: 6px !important;
-    transition: all 0.2s ease !important;
-    height: 48px !important;
-}
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.06),
+        0 24px 40px rgba(0, 0, 0, 0.08) !important;
 
-.availability-search .k-datepicker.k-state-focused .k-picker-wrap {
-    border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
-}
-
-.availability-search .k-picker-wrap .k-input {
-    padding: 8px !important;
     border: none !important;
-    font-size: 14px !important;
 }
 
-.availability-search .k-icon.k-i-calendar {
-    color: var(--color-primary) !important;
-    font-size: 16px !important;
+/* =========================================================
+   LEFT CONTENT (IMAGE + DETAILS)
+   ========================================================= */
+#facilityListPage .facility-list .facility-image {
+    position: static !important;
+    width: 260px !important;
+    height: 180px !important;
+    border-radius: 12px !important;
+    object-fit: cover !important;
+    margin-right: 24px !important;
 }
 
-/* Check Availability Button */
-.availability-search .search-btn,
-#filterPanelForm .pm-confirm-button {
-    background: var(--gradient-primary) !important;
-    border: 0 !important;
-    border-radius: 10px !important;
-    color: #ffffff !important;
+#facilityListPage .facility-list .facility-details {
+    margin: 0 !important;
+    width: auto !important;
+    flex: 1 !important;
+}
+
+/* =========================================================
+   RIGHT ACTION COLUMN
+   ========================================================= */
+#facilityListPage .facility-list .desktop-details-wrapper {
+    position: absolute !important;
+    right: 24px !important;
+    bottom: 110px !important; /* sits above School Room */
+    
+    float: none !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#facilityListPage .facility-list .facility-item .facility-detail-pills {
+    position: absolute !important;
+    right: 24px !important;
+    bottom: 20px !important;
+
+    margin: 0 !important;
+}
+
+
+/* =========================================================
+   CHOOSE BUTTON – PRIMARY ACTION
+   ========================================================= */
+#facilityListPage .facility-list .desktop-details-wrapper .desktop-details {
+    width: 140px !important;
+    padding: 12px 0 !important;
+
+    font-size: 15px !important;
     font-weight: 600 !important;
-    padding: 14px 20px !important;
-    width: 100% !important;
-    margin-top: 20px !important;
+
+    border-radius: 12px !important;
+    border: none !important;
+
+    background: linear-gradient(
+        90deg,
+        #5b4bdf 0%,
+        #9c4dcc 50%,
+        #e04b9a 100%
+    ) !important;
+
+    color: #ffffff !important;
+    text-align: center !important;
+
     cursor: pointer !important;
-    font-size: 16px !important;
-    transition: all 0.2s ease !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-.availability-search .search-btn:hover,
-#filterPanelForm .pm-confirm-button:hover {
-    opacity: 0.9 !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3) !important;
+#facilityListPage .facility-list .desktop-details-wrapper .desktop-details:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
 }
 
-/* Filter Sections */
-.filter-panel {
-    border-top: 1px solid #e5e7eb !important;
-    padding-top: 24px !important;
-    margin-top: 28px !important;
+/* =========================================================
+   ROOM TYPE TAG (SECONDARY)
+   ========================================================= */
+#facilityListPage .facility-list .facility-detail-pills {
+    position: static !important;
+    margin: 0 !important;
 }
 
-.filter-panel fieldset {
-    border: 0 !important;
-    padding: 0 0 16px !important;
-    margin: 0 0 16px 0 !important;
-    border-bottom: 1px solid #f3f4f6 !important;
+#facilityListPage .facility-list .facility-detail-pills .detail-pill {
+    background-color: #f1f5f9 !important;
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+    border-radius: 999px !important;
 }
 
-.filter-panel fieldset:last-child {
+
+/* =========================================================
+   PICKER WRAP
+   ========================================================= */
+#facilityListPage .availability-search .k-datepicker .k-picker-wrap {
+    height: 44px !important;
+    border-radius: 10px !important;
+    border: 1px solid #d1d5db !important;
+    background-color: #ffffff !important;
+
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Focus state */
+#facilityListPage .availability-search .k-datepicker.k-state-focused .k-picker-wrap {
+    border-color: #9c4dcc !important;
+    box-shadow: 0 0 0 3px rgba(156, 77, 204, 0.15) !important;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+#facilityListPage .availability-search .k-datepicker input.k-input {
+    height: 42px !important;
+    padding: 10px 12px !important;
+
+    font-size: 14px !important;
+    font-family: "Open Sans", system-ui, -apple-system, sans-serif !important;
+
+    border: none !important;
+    background: transparent !important;
+    color: #111827 !important;
+}
+
+/* =========================================================
+   CALENDAR ICON (RESTORED & MODERN)
+   ========================================================= */
+#facilityListPage .availability-search .k-datepicker .k-select {
+    width: 42px !important;
+    height: 42px !important;
+
+    border-left: 1px solid #e5e7eb !important;
+    background: transparent !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Restore Kendo icon */
+#facilityListPage .availability-search .k-icon.k-i-calendar {
+    font-size: 18px !important;
+    color: #9c4dcc !important;
+}
+
+/* =========================================================
+   FILTER PANEL – ANIMATED WRAPPER
+   ========================================================= */
+#facilityListPage .filter-panel-wrapper {
+    width: 20% !important;
+    padding: 14px !important;
+    box-sizing: border-box;
+}
+
+#facilityListPage .filter-panel {
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
+    border-radius: 18px !important;
+
+    padding: 22px 22px 26px 22px !important;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.04),
+        0 18px 36px rgba(0, 0, 0, 0.10) !important;
+
+    position: relative;
+    box-sizing: border-box !important;
+
+    /* Entrance animation */
+    animation: filterFadeUp 0.5s ease-out both;
+}
+
+/* =========================================================
+   PANEL HOVER – DEPTH MOTION
+   ========================================================= */
+#facilityListPage .filter-panel:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.06),
+        0 28px 50px rgba(0, 0, 0, 0.12) !important;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* =========================================================
+   FILTER SECTION HEADINGS – ANIMATED
+   ========================================================= */
+#facilityListPage .filter-panel h2,
+#facilityListPage .filter-panel legend {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #111827 !important;
+
+    padding: 10px 14px !important;
+    margin: 22px -14px 16px -14px !important;
+
+    background: linear-gradient(
+        90deg,
+        rgba(156, 77, 204, 0.12),
+        rgba(91, 75, 223, 0.12)
+    ) !important;
+
+    border-left: 4px solid #9c4dcc !important;
+    border-radius: 10px !important;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle shimmer effect on headings */
+#facilityListPage .filter-panel h2::after,
+#facilityListPage .filter-panel legend::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: headingShimmer 3s infinite;
+}
+
+/* =========================================================
+   FILTER ITEMS – SOFT ENTRANCE
+   ========================================================= */
+#facilityListPage .filter-panel li {
+    font-size: 13px !important;
+    color: #374151 !important;
+    margin-bottom: 10px !important;
+    line-height: 1.4;
+
+    animation: fadeInItem 0.4s ease both;
+}
+
+/* =========================================================
+   CHECKBOX INTERACTION – MICRO ANIMATION
+   ========================================================= */
+#facilityListPage .filter-panel .pm-checkbox-blue + label {
+    padding-left: 34px !important;
+    line-height: 22px !important;
+    cursor: pointer;
+    display: inline-block;
+
+    transition: color 0.2s ease;
+}
+
+#facilityListPage .filter-panel .pm-checkbox-blue + label:hover {
+    color: #7c3aed !important;
+}
+
+#facilityListPage .filter-panel .pm-checkbox-blue + label:before {
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 6px !important;
+
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+#facilityListPage .filter-panel .pm-checkbox-blue:checked + label:before {
+    background-color: #9c4dcc !important;
+    border-color: #9c4dcc !important;
+    transform: scale(1.05);
+}
+
+/* =========================================================
+   FILTER GROUP SEPARATORS
+   ========================================================= */
+#facilityListPage .filter-panel fieldset {
+    padding-bottom: 18px !important;
+    margin-bottom: 20px !important;
+    border-bottom: 1px dashed #e5e7eb !important;
+}
+
+#facilityListPage .filter-panel fieldset:last-child {
     border-bottom: none !important;
     margin-bottom: 0 !important;
 }
 
-.filter-panel legend {
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    color: #111827 !important;
-    margin-bottom: 16px !important;
-    text-transform: none !important;
-    letter-spacing: 0 !important;
-    position: relative !important;
-    padding-left: 12px !important;
-    background: transparent !important;
-}
-
-.filter-panel legend::before {
-    content: '' !important;
-    position: absolute !important;
-    left: -28px !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 4px !important;
-    background: var(--gradient-primary) !important;
-    border-radius: 0 2px 2px 0 !important;
-}
-
-.filter-panel .filter ul {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.filter-panel .filter ul li {
-    margin: 10px 0 !important;
-}
-
-.filter-panel .filter ul li label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    cursor: pointer !important;
-    font-size: 14px !important;
-    color: #374151 !important;
-    padding: 6px 0 !important;
-    transition: color 0.2s ease !important;
-}
-
-.filter-panel .filter ul li label:hover {
-    color: var(--color-primary) !important;
-}
-
-.filter-panel input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    accent-color: var(--color-primary) !important;
-    cursor: pointer !important;
-    border-radius: 4px !important;
-}
-
 /* =========================================================
-   MAIN CONTENT - FACILITY LIST
+   ACTION LINKS – MOTION
    ========================================================= */
-#facilityListPage .facility-list {
-    flex: 1 !important;
-    min-width: 0 !important;
-    padding: 24px 32px !important;
-    background: #f5f5f7 !important;
-}
-
-#facilityListPage .facility-items-header {
-    display: flex !important;
-    flex-direction: column !important;
-    margin-bottom: 24px !important;
-}
-
-/* Header Title */
-#facilityListPage .results-header {
-    font-size: 36px !important;
-    font-weight: 500 !important;
-    color: #ffffff !important;
-    background: var(--gradient-primary) !important;
-    padding: 28px 40px !important;
-    margin: 0 0 24px 0 !important;
-    border-radius: 20px !important;
-    text-align: center !important;
-    letter-spacing: 0.3px !important;
-}
-
-/* Back Button */
-#facilityListPage .back-action {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    margin: 0 0 20px 0 !important;
-    padding: 12px 20px !important;
-    background: var(--gradient-primary) !important;
-    border-radius: 10px !important;
-    border: none !important;
-    cursor: pointer !important;
-    width: fit-content !important;
-    transition: all 0.2s ease !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
-}
-
-#facilityListPage .back-action:hover {
-    opacity: 0.9 !important;
-    transform: translateX(-2px) !important;
-}
-
-#facilityListPage .back-action .back-img {
-    width: 16px !important;
-    height: 16px !important;
-    filter: brightness(0) invert(1) !important;
-}
-
-#facilityListPage .back-action .back-url {
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    text-decoration: none !important;
-}
-
-/* Results Count */
-#facilityListPage .results-count {
-    color: var(--color-primary) !important;
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    margin: 0 0 24px 0 !important;
-}
-
-/* =========================================================
-   FACILITY CARDS - LIST VIEW
-   ========================================================= */
-#listView {
-    background: transparent !important;
-    border: 0 !important;
-    padding: 0 !important;
-}
-
-#listView .k-listview-content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    padding: 0 !important;
-}
-
-#listView .facility-item {
-    display: grid !important;
-    grid-template-columns: 180px 1fr auto !important;
-    grid-template-rows: auto auto !important;
-    grid-template-areas: 
-        "image title button"
-        "image tag button" !important;
-    align-items: start !important;
-    background: #ffffff !important;
-    border-radius: 16px !important;
-    border: 1px solid #e8e8ea !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-    overflow: hidden !important;
-    transition: all 0.3s ease !important;
-    padding: 24px !important;
-    gap: 20px 24px !important;
-    position: relative !important;
-}
-
-#listView .facility-item:hover {
-    box-shadow: var(--shadow-lg) !important;
-    border-color: var(--color-primary) !important;
-    transform: translateY(-2px) !important;
-}
-
-/* Facility Image */
-#listView .facility-item .facility-image {
-    grid-area: image !important;
-    width: 180px !important;
-    height: 140px !important;
-    object-fit: cover !important;
-    border-radius: 8px !important;
-    border: 4px solid var(--color-primary) !important;
-}
-
-/* Facility Details */
-#listView .facility-item .facility-details {
-    grid-area: title !important;
-    padding: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    align-self: center !important;
-}
-
-#listView .facility-item .facility-details h2 {
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    color: #111827 !important;
-    margin: 0 !important;
-    line-height: 1.4 !important;
-}
-
-/* Room Type Tag */
-#listView .facility-item .facility-detail-pills {
-    grid-area: tag !important;
-    margin: 0 !important;
-    align-self: start !important;
-}
-
-#listView .facility-item .facility-detail-pills .detail-pill {
-    display: inline-block !important;
-    background: #f0f0f2 !important;
-    color: #6b7280 !important;
+#facilityListPage .filter-panel a.clear-filter-link,
+#facilityListPage .filter-panel a.show-more-toggle {
     font-size: 13px !important;
     font-weight: 500 !important;
-    padding: 6px 16px !important;
-    border-radius: 6px !important;
+    color: #7c3aed !important;
+
+    text-decoration: none !important;
+    border-bottom: 1px dotted rgba(124, 58, 237, 0.6) !important;
+
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Choose Button */
-#listView .facility-item .desktop-details-wrapper {
-    grid-area: button !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    grid-row: 1 / -1 !important;
-}
-
-#listView .facility-item .desktop-details-wrapper .pm-confirm-button,
-#listView .facility-item .desktop-details-wrapper .desktop-details {
-    background: var(--gradient-primary) !important;
-    border: 0 !important;
-    border-radius: 10px !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    padding: 12px 36px !important;
-    font-size: 15px !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    white-space: nowrap !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
-}
-
-#listView .facility-item .desktop-details-wrapper .pm-confirm-button:hover,
-#listView .facility-item .desktop-details-wrapper .desktop-details:hover {
-    opacity: 0.9 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.25) !important;
-}
-
-/* Hide unwanted elements */
-#listView .facility-item .facility-location,
-#listView .facility-item .tablet-details-wrapper {
-    display: none !important;
+#facilityListPage .filter-panel a.clear-filter-link:hover,
+#facilityListPage .filter-panel a.show-more-toggle:hover {
+    color: #5b4bdf !important;
+    border-color: #5b4bdf !important;
 }
 
 /* =========================================================
-   PAGINATION
+   ANIMATIONS
    ========================================================= */
-#facilityListPage .k-pager-wrap {
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    padding: 20px 0 !important;
-    margin-top: 32px !important;
-    box-shadow: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
+@keyframes filterFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-#facilityListPage .k-pager-wrap .k-state-selected {
-    background: var(--gradient-primary) !important;
-    border-color: transparent !important;
-    color: #ffffff !important;
-    border-radius: 50% !important;
-    width: 40px !important;
-    height: 40px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-#facilityListPage .k-pager-wrap .k-link {
-    border-radius: 50% !important;
-    width: 40px !important;
-    height: 40px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid #e5e7eb !important;
-    background: #ffffff !important;
+@keyframes headingShimmer {
+    0% { left: -100%; }
+    50% { left: 120%; }
+    100% { left: 120%; }
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN
+   MOBILE – SIMPLIFIED MOTION
    ========================================================= */
 @media (max-width: 1024px) {
-    #facilityListPage {
-        flex-direction: column !important;
-        gap: 20px !important;
+    #facilityListPage .filter-panel {
+        animation: none;
+        box-shadow:
+            0 2px 6px rgba(0, 0, 0, 0.06) !important;
     }
 
-    form.filter-panel-wrapper,
-    #filterPanelForm {
-        width: 100% !important;
-        position: relative !important;
-        top: 0 !important;
-    }
-
-    #listView .facility-item {
-        flex-direction: column !important;
-        align-items: stretch !important;
-    }
-
-    #listView .facility-item .facility-image {
-        width: 100% !important;
-        height: 200px !important;
-    }
-
-    #listView .facility-item .desktop-details-wrapper {
-        margin-left: 0 !important;
-        margin-top: 16px !important;
-    }
-
-    #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
-    #listView .facility-item .desktop-details-wrapper .desktop-details {
-        width: 100% !important;
+    #facilityListPage .filter-panel h2::after,
+    #facilityListPage .filter-panel legend::after {
+        animation: none;
     }
 }
 
-@media (max-width: 768px) {
-    #facilityListPage {
-        padding: 16px !important;
-    }
+/* Search Box Wrapper */
+#facilityListPage .search-box-wrapper {
+    padding: 20px !important;
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    position: relative !important;
+}
 
-    #facilityListPage .results-header {
-        font-size: 24px !important;
-        padding: 20px !important;
-    }
+/* Optional: Define CSS variable if not already defined */
+:root {
+    --g1: #0066ff;
+}
+.facility-items-header {
+    display: flex !important;
+    flex-wrap: wrap !important;      /* allow next line */
+}
 
-    form.filter-panel-wrapper,
-    #filterPanelForm {
-        padding: 20px !important;
-    }
+.facility-items-header h1 {
+    width: 100% !important;          /* first row */
+}
+
+.facility-items-header .back-action {
+    width: 100% !important;          /* second row */
+    display: flex !important;
+    align-items: center !important;
+    margin-top: 8px !important;      /* spacing between title & back */
 }
 </style>
