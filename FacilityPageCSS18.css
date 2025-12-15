@@ -1,648 +1,455 @@
+<!-- CUSTOM FACILITY PAGE UI - LOADED LAST TO OVERRIDE ALL EXTERNAL CSS -->
 <style type="text/css">
 /* =========================================================
-   NUCLEAR OVERRIDE - MAXIMUM SPECIFICITY
+   ULTRA-PRIORITY CUSTOM STYLES - PURPLE GRADIENT THEME
+   This CSS is loaded AFTER all external stylesheets
    ========================================================= */
 
-/* CSS Variables */
 :root {
-    --primary-gradient: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%);
-    --primary-purple: #7c3aed;
-    --primary-pink: #ec4899;
-    --text-dark: #111827;
-    --text-gray: #6b7280;
-    --border-color: #e5e7eb;
-    --bg-light: #f5f5f7;
-    --bg-white: #ffffff;
+    --custom-gradient: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%);
+    --custom-purple: #7c3aed;
+    --custom-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
 }
 
-/* Force Override Any Existing Styles */
-html body * {
-    box-sizing: border-box !important;
+/* ========== PAGE LAYOUT ========== */
+html body div#facilityListPage.content-wrapper,
+html body #facilityListPage.content-wrapper,
+body div#facilityListPage.content-wrapper,
+div#facilityListPage.content-wrapper,
+#facilityListPage.content-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    background: #f5f5f7 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
 }
 
-/* NUCLEAR OVERRIDE - Make header visible */
+/* ========== SIDEBAR FILTERS ========== */
+html body div#facilityListPage form.filter-panel-wrapper,
+html body #facilityListPage form#filterPanelForm,
+body #facilityListPage form#filterPanelForm,
+div#facilityListPage form#filterPanelForm,
+#facilityListPage form#filterPanelForm,
+form#filterPanelForm {
+    width: 320px !important;
+    min-width: 320px !important;
+    flex-shrink: 0 !important;
+    background: white !important;
+    border-right: 1px solid #e5e7eb !important;
+    padding: 32px 28px !important;
+    height: 100vh !important;
+    position: sticky !important;
+    top: 0 !important;
+    overflow-y: auto !important;
+}
+
+html body #facilityListPage #search-box-wrapper,
+#facilityListPage #search-box-wrapper,
+#search-box-wrapper {
+    position: relative !important;
+    margin-bottom: 24px !important;
+}
+
+html body #facilityListPage .search-box,
+#facilityListPage .search-box,
+input.search-box {
+    width: 100% !important;
+    padding: 13px 40px 13px 14px !important;
+    border-radius: 8px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #fafafa !important;
+}
+
+html body #facilityListPage .search-box:focus,
+#facilityListPage .search-box:focus {
+    border-color: var(--custom-purple) !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
+}
+
+html body #facilityListPage .pm-confirm-button.search-btn,
+#facilityListPage button.search-btn,
+button.pm-confirm-button.search-btn {
+    background: var(--custom-gradient) !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    padding: 13px 20px !important;
+    width: 100% !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    box-shadow: var(--custom-shadow) !important;
+}
+
+html body #facilityListPage .filter-panel legend,
+#facilityListPage .filter-panel legend,
+.filter-panel legend {
+    color: var(--custom-purple) !important;
+    background: #faf5ff !important;
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+    border-left: 4px solid var(--custom-purple) !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+}
+
+/* ========== MAIN CONTENT ========== */
+html body div#facilityListPage .facility-list,
+html body #facilityListPage .facility-list,
+body #facilityListPage .facility-list,
+div#facilityListPage .facility-list,
+#facilityListPage .facility-list,
+.facility-list {
+    flex: 1 !important;
+    padding: 32px 40px !important;
+    background: #f5f5f7 !important;
+}
+
+/* ========== HEADER ========== */
 html body div#facilityListPage .facility-items-header,
 html body #facilityListPage .facility-items-header,
-html body .facility-items-header,
+body #facilityListPage .facility-items-header,
+div#facilityListPage .facility-items-header,
 #facilityListPage .facility-items-header,
 .facility-items-header {
     display: flex !important;
-    flex-direction: column !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     margin-bottom: 28px !important;
+    width: 100% !important;
 }
 
 html body div#facilityListPage .results-header,
-html body #facilityListPage .results-header,
-html body .results-header,
-#facilityListPage .results-header,
-.results-header,
-h1.results-header {
+html body #facilityListPage h1.results-header,
+body #facilityListPage h1.results-header,
+div#facilityListPage h1.results-header,
+#facilityListPage h1.results-header,
+h1.results-header,
+.results-header {
     display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
     font-size: 34px !important;
-    font-weight: 500 !important;
-    color: #ffffff !important;
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
+    font-weight: 600 !important;
+    color: white !important;
+    background: var(--custom-gradient) !important;
     padding: 26px 36px !important;
-    margin: 0 0 20px 0 !important;
+    margin: 0 20px 0 0 !important;
     border-radius: 16px !important;
     text-align: center !important;
-    width: 100% !important;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2) !important;
+    box-shadow: var(--custom-shadow) !important;
+    flex: 1 !important;
 }
 
 html body div#facilityListPage .back-action,
 html body #facilityListPage .back-action,
-html body .back-action,
+body #facilityListPage .back-action,
+div#facilityListPage .back-action,
 #facilityListPage .back-action,
+div.back-action,
 .back-action {
     display: inline-flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
     align-items: center !important;
     gap: 10px !important;
-    margin: 0 0 20px 0 !important;
     padding: 12px 24px !important;
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
+    background: var(--custom-gradient) !important;
     border-radius: 10px !important;
-    width: fit-content !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25) !important;
-    transition: all 0.2s ease !important;
+    box-shadow: var(--custom-shadow) !important;
+    transition: transform 0.2s ease !important;
 }
 
-html body div#facilityListPage .back-action:hover,
-html body #facilityListPage .back-action:hover,
 html body .back-action:hover,
-#facilityListPage .back-action:hover,
 .back-action:hover {
     transform: translateX(-3px) !important;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35) !important;
 }
 
-html body div#facilityListPage .back-action .back-img,
-html body #facilityListPage .back-action .back-img,
 html body .back-action .back-img,
-#facilityListPage .back-action .back-img,
-.back-action .back-img {
+.back-action img.back-img,
+img.back-img {
     filter: brightness(0) invert(1) !important;
     width: 18px !important;
     height: 18px !important;
 }
 
-html body div#facilityListPage .back-action .back-url,
-html body #facilityListPage .back-action .back-url,
 html body .back-action .back-url,
-#facilityListPage .back-action .back-url,
-.back-action .back-url {
-    color: #ffffff !important;
+.back-action a.back-url,
+a.back-url {
+    color: white !important;
     font-weight: 600 !important;
-    font-size: 15px !important;
     text-decoration: none !important;
 }
 
-html body div#facilityListPage .results-count,
+/* ========== RESULTS COUNT ========== */
 html body #facilityListPage .results-count,
-html body .results-count,
-#facilityListPage .results-count,
+#facilityListPage #results-count,
+#results-count,
 .results-count {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: #7c3aed !important;
+    color: var(--custom-purple) !important;
     font-size: 17px !important;
     font-weight: 600 !important;
+    margin-bottom: 20px !important;
 }
 
-/* =========================================================
-   PAGE LAYOUT - NUCLEAR OVERRIDE
-   ========================================================= */
-html body div#facilityListPage,
-html body #facilityListPage,
-body #facilityListPage,
-div#facilityListPage {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: #f5f5f7 !important;
-    width: 100% !important;
-    min-height: 100vh !important;
-}
-
-html body div#facilityListPage > .filter-panel-background,
-#facilityListPage > .filter-panel-background {
-    display: none !important;
-}
-
-/* =========================================================
-   SIDEBAR - NUCLEAR OVERRIDE
-   ========================================================= */
-html body div#facilityListPage form.filter-panel-wrapper,
-html body #facilityListPage #filterPanelForm,
-html body #filterPanelForm,
-body #filterPanelForm,
-#facilityListPage form.filter-panel-wrapper,
-#facilityListPage #filterPanelForm {
-    width: 320px !important;
-    min-width: 320px !important;
-    max-width: 320px !important;
-    flex-shrink: 0 !important;
-    background: #ffffff !important;
-    border-right: 1px solid #e5e7eb !important;
-    padding: 32px 28px 40px 28px !important;
-    height: 100vh !important;
-    position: sticky !important;
-    top: 0 !important;
-    display: block !important;
-}
-
-/* Search Box Wrapper */
-html body #facilityListPage #search-box-wrapper,
-html body #search-box-wrapper,
-body #search-box-wrapper,
-#facilityListPage #search-box-wrapper,
-#filterPanelForm #search-box-wrapper {
-    display: block !important;
-    visibility: visible !important;
-    margin-bottom: 24px !important;
-}
-
-/* Search Input */
-html body #facilityListPage #search-box-wrapper .search-box,
-html body #search-box-wrapper .search-box,
-#facilityListPage .search-box-wrapper .search-box {
-    width: 100% !important;
-    padding: 13px 40px 13px 14px !important;
-    border-radius: 8px !important;
-    border: 1px solid #e5e7eb !important;
-    font-size: 14px !important;
-    background: #fafafa !important;
-}
-
-#facilityListPage #search-box-wrapper .search-box:focus,
-body #search-box-wrapper .search-box:focus {
-    border-color: #7c3aed !important;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
-    background: #ffffff !important;
-}
-
-#facilityListPage #search-box-wrapper .fa-search,
-body #search-box-wrapper .fa-search {
-    position: absolute !important;
-    right: 14px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    color: #7c3aed !important;
-}
-
-/* Date Picker */
-#facilityListPage .availability-search,
-body .availability-search {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-#facilityListPage .availability-search .k-datepicker,
-body .availability-search .k-datepicker {
-    width: 100% !important;
-}
-
-#facilityListPage .availability-search .k-picker-wrap,
-body .availability-search .k-picker-wrap {
-    border-radius: 8px !important;
-    border: 1px solid #e5e7eb !important;
-    background: #fafafa !important;
-    height: 46px !important;
-}
-
-/* Check Availability Button */
-html body #facilityListPage .availability-search .search-btn,
-html body #facilityListPage #filterPanelForm .pm-confirm-button,
-html body .availability-search .search-btn,
-#facilityListPage .availability-search .search-btn,
-#facilityListPage #filterPanelForm .pm-confirm-button,
-body .availability-search .search-btn,
-body #filterPanelForm .pm-confirm-button {
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
-    border: 0 !important;
-    border-radius: 8px !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    padding: 13px 20px !important;
-    width: 100% !important;
-    margin-top: 20px !important;
-    cursor: pointer !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
-    text-align: center !important;
-}
-
-#facilityListPage .availability-search .search-btn:hover,
-#facilityListPage #filterPanelForm .pm-confirm-button:hover,
-body .availability-search .search-btn:hover {
-    opacity: 0.92 !important;
-    transform: translateY(-1px) !important;
-}
-
-/* Filter Panel Section */
-#facilityListPage .filter-panel,
-body .filter-panel {
-    border-top: 1px solid #e5e7eb !important;
-    padding-top: 24px !important;
-    margin-top: 28px !important;
-}
-
-#facilityListPage .filter-panel fieldset,
-body .filter-panel fieldset {
-    border: 0 !important;
-    padding: 0 0 20px !important;
-    margin: 0 0 20px 0 !important;
-    border-bottom: 1px solid #f3f4f6 !important;
-}
-
-html body #facilityListPage .filter-panel legend,
-html body .filter-panel legend,
-#facilityListPage .filter-panel legend,
-body .filter-panel legend,
-.filter-panel legend,
-legend {
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    color: #7c3aed !important;
-    margin-bottom: 14px !important;
-    padding-left: 0 !important;
-    position: relative !important;
-    background: #faf5ff !important;
-    padding: 10px 14px !important;
-    border-radius: 8px !important;
-    border-left: 4px solid #7c3aed !important;
-}
-
-html body #facilityListPage .filter-panel legend::before,
-html body .filter-panel legend::before,
-#facilityListPage .filter-panel legend::before,
-body .filter-panel legend::before,
-.filter-panel legend::before {
-    display: none !important;
-}
-
-html body #facilityListPage .filter-panel .filter ul,
-html body .filter-panel .filter ul,
-#facilityListPage .filter-panel .filter ul,
-body .filter-panel .filter ul {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-html body #facilityListPage .filter-panel .filter ul li,
-html body .filter-panel .filter ul li,
-#facilityListPage .filter-panel .filter ul li,
-body .filter-panel .filter ul li {
-    margin: 10px 0 !important;
-    padding: 0 !important;
-}
-
-html body #facilityListPage .filter-panel .filter ul li label,
-html body .filter-panel .filter ul li label,
-#facilityListPage .filter-panel .filter ul li label,
-body .filter-panel .filter ul li label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    cursor: pointer !important;
-    font-size: 14px !important;
-    color: #374151 !important;
-    padding: 6px 0 !important;
-    transition: color 0.2s ease !important;
-}
-
-html body #facilityListPage .filter-panel .filter ul li label:hover,
-html body .filter-panel .filter ul li label:hover,
-#facilityListPage .filter-panel .filter ul li label:hover,
-body .filter-panel .filter ul li label:hover {
-    color: #7c3aed !important;
-}
-
-html body #facilityListPage .filter-panel input[type="checkbox"],
-html body .filter-panel input[type="checkbox"],
-#facilityListPage .filter-panel input[type="checkbox"],
-body .filter-panel input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    accent-color: #7c3aed !important;
-    cursor: pointer !important;
-    flex-shrink: 0 !important;
-}
-
-/* =========================================================
-   MAIN CONTENT - NUCLEAR OVERRIDE
-   ========================================================= */
-html body div#facilityListPage .facility-list,
-html body #facilityListPage .facility-list,
-body #facilityListPage .facility-list,
-#facilityListPage .facility-list,
-div#facilityListPage > .facility-list {
-    flex: 1 !important;
-    min-width: 0 !important;
-    padding: 32px 40px 40px 40px !important;
-    background: #f5f5f7 !important;
-}
-
-/* =========================================================
-   FACILITY CARDS - NUCLEAR OVERRIDE
-   ========================================================= */
+/* ========== FACILITY CARDS ========== */
 html body div#facilityListPage #listView,
 html body #facilityListPage #listView,
 body #facilityListPage #listView,
+div#facilityListPage #listView,
 #facilityListPage #listView,
 div#listView,
 #listView {
-    background: transparent !important;
-    border: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
     display: block !important;
-    visibility: visible !important;
-}
-
-html body div#facilityListPage #listView .k-listview-content,
-html body #listView .k-listview-content,
-body #listView .k-listview-content,
-#facilityListPage #listView .k-listview-content,
-.k-listview-content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 18px !important;
-    padding: 0 !important;
-    visibility: visible !important;
     width: 100% !important;
 }
 
-/* FACILITY CARD - MAXIMUM OVERRIDE */
 html body div#facilityListPage #listView .facility-item,
-html body #listView .facility-item,
-body #listView .facility-item,
-#facilityListPage #listView .facility-item,
-div#listView .facility-item,
+html body #facilityListPage .facility-item,
+body #facilityListPage .facility-item,
+div#facilityListPage .facility-item,
+#facilityListPage .facility-item,
+#listView .facility-item,
+div.facility-item,
 .facility-item[data-facilityid],
 .facility-item {
     display: grid !important;
     grid-template-columns: 230px 1fr 170px !important;
-    grid-template-rows: auto auto !important;
     grid-template-areas: 
-        "image title button"
-        "image tag button" !important;
-    align-items: start !important;
-    background: #ffffff !important;
+        "image details button"
+        "image details button" !important;
+    gap: 28px !important;
+    background: white !important;
     border-radius: 16px !important;
     border: 1px solid #e5e7eb !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
     padding: 28px !important;
-    column-gap: 28px !important;
-    row-gap: 16px !important;
-    min-height: 200px !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    position: relative !important;
-    overflow: hidden !important;
+    margin-bottom: 18px !important;
+    transition: all 0.3s ease !important;
 }
 
-html body div#facilityListPage #listView .facility-item:hover,
-html body #listView .facility-item:hover,
-body #listView .facility-item:hover,
-#facilityListPage #listView .facility-item:hover,
-div#listView .facility-item:hover,
-.facility-item[data-facilityid]:hover,
+html body .facility-item:hover,
 .facility-item:hover {
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.16), 0 4px 8px rgba(124, 58, 237, 0.08) !important;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2) !important;
     border-color: #c4b5fd !important;
     transform: translateY(-3px) !important;
 }
 
-/* FACILITY IMAGE - PURPLE BORDER */
-html body div#listView .facility-item .facility-image,
-html body #listView .facility-item .facility-image,
-body #listView .facility-item .facility-image,
-#facilityListPage #listView .facility-item .facility-image,
-div.facility-item .facility-image,
-.facility-item[data-facilityid] .facility-image,
+/* FACILITY IMAGE */
+html body div#facilityListPage .facility-item img.facility-image,
+html body #facilityListPage .facility-item .facility-image,
+body #facilityListPage .facility-item .facility-image,
+div#facilityListPage .facility-item .facility-image,
+#facilityListPage .facility-item .facility-image,
+#listView .facility-item img.facility-image,
+div.facility-item img.facility-image,
 .facility-item img.facility-image,
-.facility-image {
+img.facility-image {
     grid-area: image !important;
-    width: 100% !important;
-    max-width: 230px !important;
-    height: 160px !important;
+    width: 230px !important;
+    height: 180px !important;
     object-fit: cover !important;
     border-radius: 12px !important;
-    border: 5px solid #7c3aed !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    border: 5px solid var(--custom-purple) !important;
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15) !important;
+    display: block !important;
 }
 
-/* FACILITY TITLE */
-html body div.facility-item .facility-details h2,
+/* FACILITY DETAILS */
+html body .facility-item .facility-details,
+.facility-item .facility-details,
+div.facility-details {
+    grid-area: details !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
 html body .facility-item .facility-details h2,
-#facilityListPage #listView .facility-item .facility-details h2,
-body #listView .facility-item .facility-details h2,
-div.facility-item .facility-details h2,
-.facility-item[data-facilityid] .facility-details h2,
+.facility-item .facility-details h2,
 .facility-details h2 {
     font-size: 22px !important;
     font-weight: 700 !important;
     color: #111827 !important;
-    margin: 0 0 8px 0 !important;
-    padding: 0 !important;
+    margin: 0 !important;
     line-height: 1.4 !important;
-    display: block !important;
 }
 
-/* SCHOOL ROOM TAG */
-html body div.facility-item .facility-detail-pills .detail-pill,
-html body .facility-item .facility-detail-pills .detail-pill,
-#facilityListPage #listView .facility-item .facility-detail-pills .detail-pill,
-body #listView .facility-item .facility-detail-pills .detail-pill,
-div.facility-item .facility-detail-pills .detail-pill,
-.facility-item[data-facilityid] .facility-detail-pills .detail-pill,
+html body .facility-item .facility-description,
+.facility-item .facility-description,
+.facility-description {
+    color: #6b7280 !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
+html body .facility-item .read-more-toggle,
+.facility-item .read-more-toggle,
+.read-more-toggle {
+    color: var(--custom-purple) !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+}
+
+html body .facility-item .detail-pill,
+.facility-item .detail-pill,
 .detail-pill {
-    display: inline-block !important;
     background: #f3f4f6 !important;
     color: #4b5563 !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
     padding: 8px 20px !important;
     border-radius: 8px !important;
-    margin: 0 8px 0 0 !important;
-    border: 1px solid #e5e7eb !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
 }
 
-/* CHOOSE BUTTON WRAPPER - NUCLEAR OVERRIDE */
-html body div.facility-item .desktop-details-wrapper,
-html body .facility-item .desktop-details-wrapper,
-#facilityListPage #listView .facility-item .desktop-details-wrapper,
-body #listView .facility-item .desktop-details-wrapper,
+/* ========== CHOOSE BUTTON - CRITICAL ========== */
+html body div#facilityListPage .facility-item .desktop-details-wrapper,
+html body #facilityListPage .facility-item .desktop-details-wrapper,
+body #facilityListPage .facility-item .desktop-details-wrapper,
+div#facilityListPage .facility-item .desktop-details-wrapper,
+#facilityListPage .facility-item .desktop-details-wrapper,
+#listView .facility-item .desktop-details-wrapper,
 div.facility-item .desktop-details-wrapper,
-.facility-item[data-facilityid] .desktop-details-wrapper,
+.facility-item .desktop-details-wrapper,
 .desktop-details-wrapper {
     grid-area: button !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    grid-row: 1 / span 2 !important;
-    align-self: center !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    max-width: 170px !important;
+    grid-row: 1 / -1 !important;
 }
 
-/* CHOOSE BUTTON - MAXIMUM OVERRIDE */
-html body div.facility-item .desktop-details-wrapper .pm-confirm-button,
-html body div.facility-item .desktop-details-wrapper .desktop-details,
-html body .facility-item .desktop-details-wrapper .pm-confirm-button,
-html body .facility-item .desktop-details-wrapper .desktop-details,
-html body .facility-item .desktop-details-wrapper a,
-#facilityListPage #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
-#facilityListPage #listView .facility-item .desktop-details-wrapper .desktop-details,
-#facilityListPage #listView .facility-item .desktop-details-wrapper a,
-body #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
-body #listView .facility-item .desktop-details-wrapper .desktop-details,
-body #listView .facility-item .desktop-details-wrapper a,
+html body div#facilityListPage .facility-item .desktop-details-wrapper .pm-confirm-button,
+html body div#facilityListPage .facility-item .desktop-details-wrapper .desktop-details,
+html body div#facilityListPage .facility-item .desktop-details-wrapper a,
+html body #facilityListPage .facility-item .desktop-details-wrapper .pm-confirm-button,
+html body #facilityListPage .facility-item .desktop-details-wrapper .desktop-details,
+html body #facilityListPage .facility-item .desktop-details-wrapper a,
+body #facilityListPage .facility-item .desktop-details-wrapper .pm-confirm-button,
+body #facilityListPage .facility-item .desktop-details-wrapper .desktop-details,
+body #facilityListPage .facility-item .desktop-details-wrapper a,
+div#facilityListPage .facility-item .desktop-details-wrapper .pm-confirm-button,
+div#facilityListPage .facility-item .desktop-details-wrapper .desktop-details,
+div#facilityListPage .facility-item .desktop-details-wrapper a,
+#facilityListPage .facility-item .desktop-details-wrapper .pm-confirm-button,
+#facilityListPage .facility-item .desktop-details-wrapper .desktop-details,
+#facilityListPage .facility-item .desktop-details-wrapper a,
+#listView .facility-item .desktop-details-wrapper .pm-confirm-button,
+#listView .facility-item .desktop-details-wrapper .desktop-details,
+#listView .facility-item .desktop-details-wrapper a,
 div.facility-item .desktop-details-wrapper .pm-confirm-button,
 div.facility-item .desktop-details-wrapper .desktop-details,
 div.facility-item .desktop-details-wrapper a,
-.facility-item[data-facilityid] .desktop-details-wrapper .pm-confirm-button,
-.facility-item[data-facilityid] .desktop-details-wrapper .desktop-details,
-.facility-item[data-facilityid] .desktop-details-wrapper a,
+.facility-item .desktop-details-wrapper .pm-confirm-button,
+.facility-item .desktop-details-wrapper .desktop-details,
 .facility-item .desktop-details-wrapper a,
-.desktop-details-wrapper .desktop-details,
 .desktop-details-wrapper .pm-confirm-button,
+.desktop-details-wrapper .desktop-details,
 .desktop-details-wrapper a,
-a.desktop-details,
-a.pm-confirm-button {
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
+a.pm-confirm-button.desktop-details,
+a.desktop-details {
+    background: var(--custom-gradient) !important;
+    color: white !important;
     border: 0 !important;
     border-radius: 12px !important;
-    color: #ffffff !important;
+    padding: 14px 32px !important;
     font-weight: 700 !important;
     font-size: 16px !important;
-    padding: 14px 32px !important;
     cursor: pointer !important;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3) !important;
+    box-shadow: var(--custom-shadow) !important;
     text-decoration: none !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-width: 130px !important;
     width: 100% !important;
     max-width: 170px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    min-width: 130px !important;
     transition: all 0.2s ease !important;
-    white-space: nowrap !important;
     text-align: center !important;
 }
 
-html body div.facility-item .desktop-details-wrapper .pm-confirm-button:hover,
-html body div.facility-item .desktop-details-wrapper .desktop-details:hover,
-html body .facility-item .desktop-details-wrapper .pm-confirm-button:hover,
-html body .facility-item .desktop-details-wrapper .desktop-details:hover,
 html body .facility-item .desktop-details-wrapper a:hover,
-#facilityListPage #listView .facility-item .desktop-details-wrapper .pm-confirm-button:hover,
-#facilityListPage #listView .facility-item .desktop-details-wrapper .desktop-details:hover,
-#facilityListPage #listView .facility-item .desktop-details-wrapper a:hover,
-.desktop-details-wrapper .pm-confirm-button:hover,
-.desktop-details-wrapper .desktop-details:hover,
+.facility-item .desktop-details-wrapper .pm-confirm-button:hover,
+.facility-item .desktop-details-wrapper .desktop-details:hover,
+.facility-item .desktop-details-wrapper a:hover,
 .desktop-details-wrapper a:hover {
     transform: translateY(-2px) scale(1.02) !important;
     box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
-    opacity: 0.95 !important;
 }
 
-/* Hide unwanted */
-html body .facility-item .facility-location,
+/* HIDE TABLET/MOBILE BUTTONS */
 html body .facility-item .tablet-details-wrapper,
-#facilityListPage #listView .facility-item .facility-location,
-#facilityListPage #listView .facility-item .tablet-details-wrapper,
-body #listView .facility-item .facility-location,
-body #listView .facility-item .tablet-details-wrapper,
 .facility-item .tablet-details-wrapper,
-.facility-item .facility-location {
+.tablet-details-wrapper {
     display: none !important;
 }
 
-/* =========================================================
-   PAGINATION
-   ========================================================= */
+/* HIDE LOCATION */
+html body .facility-item .facility-location,
+.facility-item .facility-location,
+.facility-location {
+    display: none !important;
+}
+
+/* ========== PAGINATION ========== */
+html body #facilityListPage .k-pager-wrap,
 #facilityListPage .k-pager-wrap,
-body #facilityListPage .k-pager-wrap {
+.k-pager-wrap {
     background: transparent !important;
     border: 0 !important;
     padding: 24px 0 0 0 !important;
     margin-top: 32px !important;
     display: flex !important;
-    align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
 }
 
-#facilityListPage .k-pager-wrap .k-state-selected,
-body #facilityListPage .k-pager-wrap .k-state-selected {
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
-    color: #ffffff !important;
+html body #facilityListPage .k-pager-wrap .k-state-selected,
+#facilityListPage .k-pager-wrap .k-state-selected {
+    background: var(--custom-gradient) !important;
+    color: white !important;
     border-radius: 50% !important;
     width: 38px !important;
     height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
 }
 
-#facilityListPage .k-pager-wrap .k-link,
-body #facilityListPage .k-pager-wrap .k-link {
-    border-radius: 50% !important;
-    width: 38px !important;
-    height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid #e5e7eb !important;
-    background: #ffffff !important;
-}
-
+/* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
-    html body #facilityListPage,
-    body #facilityListPage,
-    div#facilityListPage {
+    #facilityListPage.content-wrapper {
         flex-direction: column !important;
     }
-
-    html body #filterPanelForm,
-    #facilityListPage form.filter-panel-wrapper,
-    #facilityListPage #filterPanelForm,
-    body #filterPanelForm {
+    
+    form#filterPanelForm {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
         position: relative !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e5e7eb !important;
     }
-
-    html body #listView .facility-item,
-    #facilityListPage #listView .facility-item,
-    body #listView .facility-item {
+    
+    .facility-items-header {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    .results-header {
+        margin-right: 0 !important;
+    }
+    
+    .facility-item {
         grid-template-columns: 1fr !important;
         grid-template-areas: 
             "image"
-            "title"
-            "tag"
+            "details"
             "button" !important;
-        gap: 16px !important;
+    }
+    
+    .facility-item .facility-image {
+        width: 100% !important;
+        height: 250px !important;
+    }
+    
+    .facility-item .desktop-details-wrapper a,
+    .facility-item .desktop-details-wrapper .pm-confirm-button {
+        max-width: 100% !important;
     }
 }
 </style>
