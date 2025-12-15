@@ -1,116 +1,34 @@
 /* =========================================================
-   FACILITY CARD – EXACT MATCH TO ORIGINAL UI
+   FIX: CHOOSE BUTTON POSITION (MATCH FIRST UI)
    ========================================================= */
 
-#facilityListPage #listView .k-listview-content {
+/* Make card the positioning reference */
+#facilityListPage .facility-list .facility-item {
+    position: relative !important;
+}
+
+/* Right action column – stable & visible */
+#facilityListPage .facility-list .desktop-details-wrapper {
+    position: absolute !important;
+    right: 24px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
     display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-}
-
-/* Main card */
-#facilityListPage #listView .facility-item {
-    display: grid !important;
-    grid-template-columns: 220px 1fr 180px;
-    align-items: center !important;
-
-    padding: 24px !important;
-    background: #ffffff !important;
-    border-radius: 16px !important;
-
-    border: 1px solid #e5e7eb !important;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
-}
-
-/* IMAGE */
-#facilityListPage #listView .facility-image {
-    width: 200px !important;
-    height: 140px !important;
-    object-fit: cover !important;
-    border-radius: 12px !important;
-}
-
-/* DETAILS */
-#facilityListPage #listView .facility-details {
-    padding-right: 24px !important;
-}
-
-#facilityListPage #listView .facility-details h2 {
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    color: #111827 !important;
-    margin-bottom: 8px !important;
-}
-
-/* CTA COLUMN */
-#facilityListPage #listView .desktop-details-wrapper {
-    display: flex !important;
-    justify-content: center !important;
     align-items: center !important;
 }
 
-/* CHOOSE BUTTON (FORCED VISIBLE) */
-#facilityListPage #listView .desktop-details-wrapper .pm-confirm-button {
-    display: inline-flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+/* School Room pill BELOW the button */
+#facilityListPage .facility-list .facility-item .facility-detail-pills {
+    position: absolute !important;
+    right: 24px !important;
+    top: calc(50% + 36px) !important;
 
+    margin: 0 !important;
+}
+
+/* Ensure button never collapses */
+#facilityListPage .facility-list .desktop-details-wrapper .desktop-details {
     width: 140px !important;
-    height: 44px !important;
-
-    font-size: 15px !important;
-    font-weight: 600 !important;
-
-    border-radius: 12px !important;
-
-    background: linear-gradient(
-        90deg,
-        #5b4bdf 0%,
-        #9c4dcc 50%,
-        #e04b9a 100%
-    ) !important;
-
-    color: #ffffff !important;
-}
-
-/* PILL BELOW BUTTON */
-#facilityListPage #listView .facility-detail-pills {
-    grid-column: 3 !important;
-    margin-top: 10px !important;
-
-    display: flex !important;
-    justify-content: center !important;
-}
-
-/* PILL STYLE */
-#facilityListPage #listView .detail-pill {
-    background: #f1f5f9 !important;
-    color: #374151 !important;
-    font-size: 13px !important;
-
-    padding: 6px 14px !important;
-    border-radius: 999px !important;
-}
-
-/* =========================================================
-   MOBILE (STACKED BUT CTA STILL VISIBLE)
-   ========================================================= */
-@media (max-width: 1024px) {
-    #facilityListPage #listView .facility-item {
-        grid-template-columns: 1fr !important;
-        text-align: center !important;
-    }
-
-    #facilityListPage #listView .facility-image {
-        width: 100% !important;
-        height: 180px !important;
-    }
-
-    #facilityListPage #listView .desktop-details-wrapper {
-        margin-top: 14px !important;
-    }
-
-    #facilityListPage #listView .facility-detail-pills {
-        margin-top: 8px !important;
-    }
+    white-space: nowrap !important;
 }
