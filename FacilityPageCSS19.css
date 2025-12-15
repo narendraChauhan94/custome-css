@@ -1,499 +1,556 @@
-<style type="text/css">
-/* =========================================================
-   PREMIUM FACILITY BOOKING UI - PURPLE GRADIENT THEME
-   ========================================================= */
+<!--Borrowed from Membership's Social Site to not to take the whole SocialSite infrastructure and scripts-->
+    <style type="text/css">
+        #main-wrapper { height: 100% !important; min-width: initial!important; }
 
-:root {
-    --primary-gradient: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%);
-    --primary-purple: #7c3aed;
-    --primary-pink: #ec4899;
-    --text-dark: #111827;
-    --text-gray: #6b7280;
-    --border-color: #e5e7eb;
-    --bg-light: #f5f5f7;
-    --bg-white: #ffffff;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.15);
-    --shadow-lg: 0 8px 24px rgba(124, 58, 237, 0.2);
-}
+        #main-content { height: 100% !important; }
 
-* {
-    box-sizing: border-box !important;
-}
+        #content-wrapper { height: 100% !important; background-color: #ffffff !important; }
+        
+        #header-wrapper { border-width: 3px;position: relative !important; box-sizing: content-box !important; min-width: initial!important; }
+         
+    </style>
+    
+    <style type="text/css">
+        .Company-logo {
+            table-layout: fixed; 
+            min-width: 220px; 
+            max-height: 140px; 
+            padding-right: 0; 
+            margin-left: 0; 
+            max-width: 300px;
+        }
+        #headerTopRow {
+            width: 100%; 
+            padding-top: 0; 
+            vertical-align: top; 
+            white-space: nowrap;
+        }
+        #Td2 {
+            min-width:750px; 
+            width:100%; 
+            padding-top: 0; 
+            vertical-align: top; 
+            white-space: nowrap;
+            background: black;
+        }
+        #Td6 {
+            padding-bottom: 0.5em; 
+            vertical-align: bottom;
+        }
+        #appSuiteCell {
+            min-width:520px; 
+            vertical-align:bottom; 
+            padding-bottom: 0; 
+        }
+        .k-link:link, .k-link:visited, .k-nav-current.k-hover .k-link {
+            color: #333 !important;
+        }
+       
+    </style>
+    
+    <style type="text/css">
 
-/* =========================================================
-   PAGE CONTAINER
-   ========================================================= */
-#facilityListPage {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: var(--bg-light) !important;
-    width: 100% !important;
-    min-height: 100vh !important;
-}
+        /* App Suite Layout CSS */
+        #appNav li:not(.k-item) {
+            border-color: black;
+            border-left-width: 0;
+            border-right: 1px solid black;
+            display: block;
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: relative;
+            max-width: 100px;
+            white-space: nowrap;
+            text-overflow: ellipsis;   
+        }
 
-#facilityListPage > .filter-panel-background {
-    display: none !important;
-}
+        #appNav li {
+            position: relative;
+        }
 
-/* =========================================================
-   FILTER SIDEBAR
-   ========================================================= */
-#facilityListPage form.filter-panel-wrapper,
-#facilityListPage #filterPanelForm {
-    width: 320px !important;
-    min-width: 320px !important;
-    max-width: 320px !important;
-    flex-shrink: 0 !important;
-    background: var(--bg-white) !important;
-    border-right: 1px solid var(--border-color) !important;
-    padding: 32px 28px 40px 28px !important;
-    height: 100vh !important;
-    position: sticky !important;
-    top: 0 !important;
-    display: block !important;
-    overflow-y: auto !important;
-}
+        #appNav li a, #appNav li:not(.k-item) a
+        {
+            /* padding: 0 0 0 0; */
+            min-width: 225px;
+            max-width: 225px;    
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background-color: transparent;    
+        }
 
-/* Search Box */
-#facilityListPage #search-box-wrapper {
-    display: block !important;
-    margin-bottom: 24px !important;
-    position: relative !important;
-}
 
-#facilityListPage #search-box-wrapper .search-box {
-    width: 100% !important;
-    padding: 13px 40px 13px 14px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--border-color) !important;
-    font-size: 14px !important;
-    background: #fafafa !important;
-    transition: all 0.2s ease !important;
-}
+        #appNavLdiv #appNav li a.tab, #appNavLdiv #appNav li a.tab-active {
+            display: inline-block;
+            max-width: 100px;
+            min-width: 0;
+            padding: 0;
+        }
 
-#facilityListPage #search-box-wrapper .search-box:focus {
-    border-color: var(--primary-purple) !important;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
-    background: var(--bg-white) !important;
-    outline: none !important;
-}
+        #appNav #TopRightMenu {
+            padding-left: 0;
+            padding-right: 0;
+            width: 66px;
+        }
 
-#facilityListPage #search-box-wrapper .fa-search {
-    position: absolute !important;
-    right: 14px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    color: var(--primary-purple) !important;
-    cursor: pointer !important;
-}
+        #appNav #appSelector {
+            display: inline;
+            font-size: 100%;
+        }
 
-/* Date Picker & Nights */
-#facilityListPage .availability-search .base-block {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-}
+        #appNav .k-animation-container {
+            margin-top: 0;
+        }
 
-#facilityListPage .availability-search input.datepicker-input,
-#facilityListPage .availability-search input[name="facilityFilter.NightsCount"] {
-    width: 100% !important;
-    padding: 12px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--border-color) !important;
-    background: #fafafa !important;
-    font-size: 14px !important;
-}
+        #appNav .k-animation-container .k-group {
+            /*width: 225px;*/
+            left: 11px;
+        }
 
-/* Check Availability Button */
-#facilityListPage .availability-search .pm-confirm-button.search-btn {
-    background: var(--primary-gradient) !important;
-    border: 0 !important;
-    border-radius: 8px !important;
-    color: var(--bg-white) !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    padding: 13px 20px !important;
-    width: 100% !important;
-    margin-top: 8px !important;
-    cursor: pointer !important;
-    box-shadow: var(--shadow-sm) !important;
-    transition: all 0.2s ease !important;
-}
+        #appNav .k-link {
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 0;
+        }
 
-#facilityListPage .availability-search .pm-confirm-button.search-btn:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: var(--shadow-md) !important;
-}
+        #appNav #appSelector .k-group .k-link, #appNav #appSelector .k-group .k-link:hover
+        {
+            color: #656565;
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0px 20px 10px 10px !important;
+            width: 190px;
+            height: 20px;
+        }
 
-/* Filter Sections */
-#facilityListPage .filter-panel {
-    border-top: 1px solid var(--border-color) !important;
-    padding-top: 24px !important;
-    margin-top: 28px !important;
-}
+        #appNav #appSelector .k-group .k-link:hover
+        {
+            color: #3f8ac4;
+            background-color:#EAEAEA; /*#f0f0f0;*/    
+        }
 
-#facilityListPage .filter-panel fieldset {
-    border: 0 !important;
-    padding: 0 0 20px !important;
-    margin: 0 0 20px 0 !important;
-    border-bottom: 1px solid #f3f4f6 !important;
-}
+        #appNav, #appNav .tab
+        { 
+            background-color: transparent;
+            color:#8c8c8c;                                                  /*@headerTopBar-textColor*/ 
+        }
 
-#facilityListPage .filter-panel legend {
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    color: var(--primary-purple) !important;
-    margin-bottom: 14px !important;
-    background: #faf5ff !important;
-    padding: 10px 14px !important;
-    border-radius: 8px !important;
-    border-left: 4px solid var(--primary-purple) !important;
-    width: 100% !important;
-    display: block !important;
-}
+        #appNav .tab-active, #appNav .tab:hover
+        { 
+            background-color: transparent;
+            color:#ffffff;                                                  /*@headerTopBar-active-textColor*/
+            font-weight: normal;
+        }
 
-#facilityListPage .filter-panel .filter ul {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
+        #header-wrapper #appNav .tab-active + .arrow.bottom, #header-wrapper #appNav .tab:hover + .arrow.bottom
+        {
+            display: none;
+        }
 
-#facilityListPage .filter-panel .filter ul li {
-    margin: 10px 0 !important;
-}
+        #header-wrapper #appNav .arrow.bottom, #header-wrapper li.expanded > .arrow 
+        {
+            border-top-color: black;            /*@headerTopBar-bgColor*/
+            margin-top: 7px;
+            top: 26px;    
+        }
 
-#facilityListPage .filter-panel .filter ul li label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    cursor: pointer !important;
-    font-size: 14px !important;
-    color: #374151 !important;
-    padding: 6px 0 !important;
-    transition: color 0.2s ease !important;
-}
+        /* Top Right Menu Layout CSS */
+        #topNav, #topNav .tab
+        {
+            border-style:none;
+            background-color: transparent;      /*@topMenu-bgColor: transparent*/
+            color:#8c8c8c;                      /*@main-textColor: #ffffff*/
+        }
 
-#facilityListPage .filter-panel .filter ul li label:hover {
-    color: var(--primary-purple) !important;
-}
+        #topNav .k-menu .k-item {
+            display: block !important;
+        }
 
-#facilityListPage .filter-panel input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    accent-color: var(--primary-purple) !important;
-    cursor: pointer !important;
-}
+        #OrgMenu 
+        {
+            margin: 0 5px; 
+        }
 
-/* =========================================================
-   MAIN CONTENT AREA
-   ========================================================= */
-#facilityListPage .facility-list {
-    flex: 1 !important;
-    min-width: 0 !important;
-    padding: 32px 40px 40px 40px !important;
-    background: var(--bg-light) !important;
-}
+        #OrgMenu .k-menu .k-arrow-down {
+            margin-right: 0;
+        }
 
-/* Header Section */
-.facility-items-header {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: 28px !important;
-    width: 100% !important;
-}
+        #topNav .tab-active, #topNav .tab:hover:not(ul)
+        {
+            border-style:none;
+            background-color: transparent;      /*@topMenu-bgColor: transparent*/
+            color: #d1dce5;
+        } 
 
-.results-header,
-h1.results-header {
-    display: block !important;
-    font-size: 34px !important;
-    font-weight: 600 !important;
-    color: var(--bg-white) !important;
-    background: var(--primary-gradient) !important;
-    padding: 26px 36px !important;
-    margin: 0 !important;
-    border-radius: 16px !important;
-    text-align: center !important;
-    box-shadow: var(--shadow-md) !important;
-    flex: 1 !important;
-    margin-right: 20px !important;
-}
+        #topNav ul.tab:hover {
+            background:none;
+        }
 
-.back-action {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    padding: 12px 24px !important;
-    background: var(--primary-gradient) !important;
-    border-radius: 10px !important;
-    box-shadow: var(--shadow-sm) !important;
-    transition: all 0.2s ease !important;
-    text-decoration: none !important;
-    cursor: pointer !important;
-}
+        #topNav #OrganizationSelector span, #topNav #OptionsSelector span {
+            color: #CCCCCC/*#b3b3b3*/;
+            font-size: 13px;
+        }
 
-.back-action:hover {
-    transform: translateX(-3px) !important;
-    box-shadow: var(--shadow-md) !important;
-}
+        #topNav #OrganizationSelector span.k-hover, #topNav #OptionsSelector span.k-hover {
+            background-color: transparent;
+            color: #ffffff;
+        }
 
-.back-action .back-img {
-    filter: brightness(0) invert(1) !important;
-    width: 18px !important;
-    height: 18px !important;
-    display: block !important;
-}
+        #topNav #OrganizationSelector a.k-hover, #topNav #OptionsSelector a.k-hover {
+            background-color: #EAEAEA;
+            color: #3f8ac4;
+        }
 
-.back-action .back-url {
-    color: var(--bg-white) !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    text-decoration: none !important;
-}
+        #topNav #OrganizationSelector a, #topNav #OptionsSelector a {
+            background-color: transparent;
+            color: #656565; /*#8c8c8c;*/
+            font-size: 13px;
+        }
 
-/* Results Count */
-.results-count,
-#results-count {
-    display: block !important;
-    color: var(--primary-purple) !important;
-    font-size: 17px !important;
-    font-weight: 600 !important;
-    margin-bottom: 20px !important;
-}
+        #topNav #OptionsSelector a 
+        {
+            font-size: 11.7px;
+        }
 
-/* =========================================================
-   FACILITY CARDS
-   ========================================================= */
-#facilityListPage #listView {
-    display: block !important;
-    width: 100% !important;
-}
 
-/* Individual Card */
-.facility-item {
-    display: grid !important;
-    grid-template-columns: 230px 1fr 170px !important;
-    grid-template-rows: auto auto !important;
-    grid-template-areas: 
-        "image details button"
-        "image details button" !important;
-    gap: 28px !important;
-    background: var(--bg-white) !important;
-    border-radius: 16px !important;
-    border: 1px solid var(--border-color) !important;
-    box-shadow: var(--shadow-sm) !important;
-    padding: 28px !important;
-    margin-bottom: 18px !important;
-    transition: all 0.3s ease !important;
-}
+        #topNav #OrganizationSelector span, #topNav #LanguageOptionsSelector span {
+            color: #CCCCCC/*#b3b3b3*/;
+            font-size: 13px;
+        }
 
-.facility-item:hover {
-    box-shadow: var(--shadow-lg) !important;
-    border-color: #c4b5fd !important;
-    transform: translateY(-3px) !important;
-}
+        #topNav #OrganizationSelector span.k-hover, #topNav #LanguageOptionsSelector span.k-hover {
+            background-color: #EAEAEA;
+            color: #ffffff;
+        }
 
-/* Facility Image with Purple Border */
-.facility-item .facility-image {
-    grid-area: image !important;
-    width: 230px !important;
-    height: 180px !important;
-    object-fit: cover !important;
-    border-radius: 12px !important;
-    border: 5px solid var(--primary-purple) !important;
-    box-shadow: var(--shadow-md) !important;
-    display: block !important;
-}
+        #topNav #OrganizationSelector a.k-hover, #topNav #LanguageOptionsSelector a.k-hover {
+            background-color: #EAEAEA;
+            color: #3f8ac4;
+        }
 
-/* Facility Details */
-.facility-item .facility-details {
-    grid-area: details !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-}
+        #topNav #OrganizationSelector a, #topNav #LanguageOptionsSelector a {
+            background-color: transparent;
+            color: #656565; /*#8c8c8c;*/
+            font-size: 13px;
+        }
 
-.facility-item .facility-details h2 {
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    color: var(--text-dark) !important;
-    margin: 0 !important;
-    line-height: 1.4 !important;
-}
+        #topNav #LanguageOptionsSelector a 
+        {
+            font-size: 11.7px;
+        }
 
-.facility-item .facility-description {
-    color: var(--text-gray) !important;
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    margin: 8px 0 !important;
-}
+        /* App Suite Objects Layout CSS */
+        #appsuite-nav .tab, #appNav .tab
+        {
+            background-color: transparent;      /*@mainTabs-bgColor: #242c32 (black)*/
+            color: #8c8c8c;                     /*@mainTabs-textColor: #dbdbdb (lightgrey)*/
+        }
 
-.facility-item .read-more-toggle {
-    color: var(--primary-purple) !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    cursor: pointer !important;
-    text-decoration: none !important;
-}
+        #headerTopRow #appsuite-nav .tab, #appNav .tab
+        {
+            background-color: transparent;      /*@mainTabs-bgColor: #242c32 (black)*/
+            color: #CCCCCC;                     /*@mainTabs-textColor: #dbdbdb (lightgrey)*/
+        }
 
-.facility-item .facility-amenities {
-    color: var(--text-gray) !important;
-    font-size: 14px !important;
-}
+        #appsuite-nav .tab-active, #appsuite-nav .tab:hover
+        {    
+            background-color: transparent;      /*@main-color: #3678af (blue)*/    
+            color:#1d1d1d;                      /*@main-textColor: #ffffff*/
+            font-weight: normal; 
+        }
 
-/* Facility Type Pills */
-.facility-item .facility-detail-pills {
-    display: flex !important;
-    gap: 8px !important;
-    flex-wrap: wrap !important;
-    margin-top: 8px !important;
-}
 
-.facility-item .detail-pill {
-    display: inline-block !important;
-    background: #f3f4f6 !important;
-    color: #4b5563 !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    padding: 8px 20px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--border-color) !important;
-}
+        #header-wrapper #appsuite-nav .arrow.bottom
+        {    
+            bottom: 0px;
+            display: none;
+            position: absolute;    
+            left: 50%;
+            margin-left: -5px;
+        }
 
-/* =========================================================
-   CHOOSE BUTTON - CRITICAL
-   ========================================================= */
-.facility-item .desktop-details-wrapper {
-    grid-area: button !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    grid-row: 1 / -1 !important;
-}
+        #header-wrapper #appsuite-nav .arrow.bottom, #header-wrapper li.expanded > .arrow {
+            border-top-color: transparent;
+        }
 
-.facility-item .desktop-details-wrapper .pm-confirm-button,
-.facility-item .desktop-details-wrapper .desktop-details,
-.facility-item .desktop-details-wrapper a {
-    background: var(--primary-gradient) !important;
-    border: 0 !important;
-    border-radius: 12px !important;
-    color: var(--bg-white) !important;
-    font-weight: 700 !important;
-    font-size: 16px !important;
-    padding: 14px 32px !important;
-    cursor: pointer !important;
-    box-shadow: var(--shadow-md) !important;
-    text-decoration: none !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-width: 130px !important;
-    width: 100% !important;
-    max-width: 170px !important;
-    transition: all 0.2s ease !important;
-    text-align: center !important;
-}
+        #header-wrapper #appsuite-nav .tab-active > .arrow.bottom, #header-wrapper #appsuite-nav .tab:hover > .arrow.bottom {
+            display: block;
+        }
 
-.facility-item .desktop-details-wrapper .pm-confirm-button:hover,
-.facility-item .desktop-details-wrapper .desktop-details:hover,
-.facility-item .desktop-details-wrapper a:hover {
-    transform: translateY(-2px) scale(1.02) !important;
-    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
-}
+        #appsuite-nav li {
+            position: relative;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
 
-/* Hide tablet/mobile buttons on desktop */
-.facility-item .tablet-details-wrapper {
-    display: none !important;
-}
+        #header-wrapper #appsuite-nav .arrow.bottom {
+            border-bottom-color: #8c8c8c; /*@headerTopBar-textColor:grey*/
+        }
 
-/* Hide location text */
-.facility-item .facility-location {
-    display: none !important;
-}
+        #appsuite-nav #ObjectSelector > li > .k-hover {
+            color: #1d1d1d; /*@headerTopBar-bgColor: black*/
+        }
 
-/* =========================================================
-   PAGINATION
-   ========================================================= */
-#facilityListPage .k-pager-wrap {
-    background: transparent !important;
-    border: 0 !important;
-    padding: 24px 0 0 0 !important;
-    margin-top: 32px !important;
-    display: flex !important;
-    justify-content: center !important;
-    gap: 8px !important;
-}
+        #appsuite-nav #ObjectSelector .k-group .k-link, #appsuite-nav #ObjectSelector .k-group .k-link:hover {
+            color: #656565;
+            background-color: #ffffff;
+            min-width: 130px;
+            max-width: 130px;
+            width: 120px !important; /*width: 100px;*/
+            border-color: #d3d3d3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-left: -10px;
+            padding-right: 15px;
+        }
 
-#facilityListPage .k-pager-wrap .k-state-selected {
-    background: var(--primary-gradient) !important;
-    color: var(--bg-white) !important;
-    border-radius: 50% !important;
-    width: 38px !important;
-    height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
+        #appsuite-nav #ObjectSelector .k-group .k-link:hover
+        {
+            color: #3f8ac4;
+            background-color: #EAEAEA;
+        }
 
-#facilityListPage .k-pager-wrap .k-link {
-    border-radius: 50% !important;
-    width: 38px !important;
-    height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid var(--border-color) !important;
-    background: var(--bg-white) !important;
-}
+        #appsuite-nav #ObjectSelector .k-group /*, #appsuite-nav #ObjectSelector .t-group:hover*/ {
+            display: none;
+            width: 130px!important;
+            top: 6px;
+            left: 18px;
+            padding-right: 16px;
+        }
 
-/* =========================================================
-   RESPONSIVE DESIGN
-   ========================================================= */
-@media (max-width: 1024px) {
-    #facilityListPage {
-        flex-direction: column !important;
-    }
+        /* Header Layout */
+        #headerTopRow{/*background:url(//apps.perfectmind.com/content/images/Site/header-topnav-bg-rpt.jpg)  top left repeat-x !important;
+                      border-bottom:3px solid #9a9c9e; height:32px !important;*/ font-size:13px;font-weight:bold;background-color: black;}
+        /*#appsuite-nav .arrow.bottom{bottom:-15px !important;}*/
+        /*#appSuiteCell{width:995px !important;}*/
+        /*#header-table #appSuiteContainer{width: 995px !important;}*/
+        .Company-logo{padding:10px 0px;}
+        #header-wrapper, #headerTopRow{border-bottom:1px solid #b9b9b9;}
+        #appNav li{height:30px !important;line-height:30px !important;}
+        #headerTopRow #appNav #appSelector .k-link { font-size: 100% !important;}
+        #headerTopRow #appNav .k-link { font-weight:bold; color:#CCCCCC;}
+        #appNav .k-link { font-weight:bold; color: #8c8c8c;}
+        #appNav .tab-active, #appNav .tab:hover, #appNav .k-link:hover{font-weight:bold;color: #ffffff;}
 
-    #facilityListPage form.filter-panel-wrapper,
-    #facilityListPage #filterPanelForm {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-        border-right: none !important;
-        border-bottom: 1px solid var(--border-color) !important;
-    }
+        /* Left Side Panel Layout CSS */
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects{}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem{font-size:12px;font-weight:bold;margin-right:10px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a{ background-color: #ebebeb;color:#8c8c8c;padding-right:12px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a:hover{background-color:#edf4fa/*#4e92c8*/;color:#333/*#fff*/;padding-right:12px;}
 
-    .facility-items-header {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 16px !important;
-    }
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem img{display:none;}
 
-    .results-header {
-        margin-right: 0 !important;
-    }
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a div{display:block !important;float:left;width:120px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a span{display:block;float:right;width:40px;text-align:right;font-weight:bold;font-size:15px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a:hover span{color:#333/*#fff*/ !important;}
 
-    .facility-item {
-        grid-template-columns: 1fr !important;
-        grid-template-areas: 
-            "image"
-            "details"
-            "button" !important;
-    }
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected{font-size:12px;font-weight:bold;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a{background-color:#edf4fa/*#4e92c8*/; color:#333/*#fff*/; background-image:url(//apps.perfectmind.com/content/images/Site/sidebar-arrow.gif); background-repeat:no-repeat; background-position:top right;padding-right:22px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a:hover{background-color: #edf4fa/*#4e92c8*/;color:#333/*#fff*/; background-image:url(//apps.perfectmind.com/content/images/Site/sidebar-arrow.gif); background-repeat:no-repeat; background-position:top right;padding-right:22px;}
 
-    .facility-item .facility-image {
-        width: 100% !important;
-        height: 250px !important;
-    }
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected img{display:none;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a div{display:block !important;float:left;width:120px;padding-left: 8px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a span{padding-right: 4px; color:#333/*#fff*/ !important;display:block;float:right;width:40px;text-align:right;font-weight:bold;font-size:15px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a:hover span{color:#333/*#fff*/ !important;}
 
-    .facility-item .desktop-details-wrapper .pm-confirm-button,
-    .facility-item .desktop-details-wrapper a {
-        max-width: 100% !important;
-    }
-}
-</style>
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a, #relatedObjects .relatedObjectListItemSelected a {border-radius: 3px 3px 3px 3px;}
+        .layout-leftpanel-main .left-panel table tbody #primaryObjectItem .box-tab-caption-active, #primaryObjectItem .box-tab-caption {border-radius: 3px 0 0 3px;}
+
+        .layout-leftpanel-main #currentViewPopup tr td div.tab-active { background-color: #edf4fa; color: #333;}
+        .layout-leftpanel-main #currentViewPopup tr td div.tab { background-color: #ebebeb; color: #8c8c8c;}
+
+        /* Layout changes */
+        .viewDropdownItem{padding-left:0px !important;}
+        #currentViewPopup .tab{padding-left:11px !important;border-radius:0px;}
+        #currentViewPopup .tab-active{padding-left:11px !important;border-radius:0px;}
+        .Company-logo{margin-left: 34px !important;}
+        #header-table td{padding:0px !important;}
+        #globalSearchCell{padding-right:0px !important;}
+        #globalSearchCell img{margin-right:26px;margin-bottom:10px;}
+        #headerTopRow > div{margin-left:34px !important;margin-right:24px !important;}
+        #system-buttons-container button, #system-buttons-container .pm-button{border:none !important;	background-color:#fff !important; }
+        #topNav {padding:0px !important;}
+        #topNav #Options-Setup{padding-right:0px !important;}
+
+        #appNav .first{padding-left:0px !important;}
+        #appNav .first a{padding-left:0px !important;}
+        #newObject.button, #multipleDeleteButton.button{border: none !important;width: 75px;}
+
+        #header-table #appSuiteContainer {
+            bottom: 0;
+            left: 0;
+            width: 605px;
+        }
+        /*#header-wrapper, #headerTopRow {border-bottom: 1px solid #8c8c8c !important;}*/
+        #appsuite-nav #object-tab-more{padding:0px !important;}
+        /*#headerTopRow {background-color: #000 !important;} makes the line under the header */
+        #headerTopRow {border:none;}
+        #appsuite-nav li{padding-bottom:5px;}
+        #button-view-find-container{margin-right:2px !important;position: relative;}
+        #appsuite-nav #ObjectSelector .k-group .k-link, #appsuite-nav #ObjectSelector .k-group .k-link:hover {min-width:128px !important;}
+        .hideShowGlobalSearchTable {right: 20px !important;}
+        .contact-subsection-header h3.box-splitter{background-color:#f5f5f5 !important;color:#050505;}
+
+        /* Left Panel changes */
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a {
+            background-color: none !important;
+            background-image: none !important;
+            background-position: none !important;
+            background-repeat: no-repeat !important;
+            color: none !important;
+            /* padding-right: 22px !important; */
+        }
+
+        .clearme{height:0px !important;clear:both;font-size:0px;display:block;} 
+
+        /* -----  remove the gray from teh menu ----------  */
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a {
+            background-color: #FFFFFF;
+        }
+
+        /* -----  Menu left hand side office profile ------  */
+        .box-tab-caption-active{
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        .box-tab-caption{
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        #DetailPage_leftside_table li{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+        }
+        #DetailPage_leftside_table a{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        #DetailPage_leftside_table a span{
+            padding-right:10px !important;
+        }
+        #relatedObjects li{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+        }
+        #relatedObjects a{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        #relatedObjects .tab-active a{
+            padding-left:0px !important;
+        }
+        #relatedObjects .tab-active  div{
+            padding-left:0px !important;
+        }
+        #relatedObjects a span{
+            padding-right:10px !important;
+        }
+
+        /* ----- drop down menu fix ------  */
+        #tblCurrentViewPopup  .viewDropdownItemEdit {
+            width: 1px !important;
+        }
+        #tblCurrentViewPopup div{
+            padding-left:10px !important;  
+        }
+        #currentViewPopup table {
+            min-width:156px !important;
+            overflow:hidden;
+        }
+        .t-widget.t-grid .t-header{
+            border-bottom:1px solid #cccccc !important;
+            border-top:1px solid #cccccc !important;
+        }
+        .t-widget.t-grid .t-header:first-child {
+            border-radius: 0px 0px 0px 0px !important;
+        }
+
+        /* ---------------------------------------------Other css*/
+
+        .objectPageLayoutSection {
+            margin-top: 20px;
+        }
+        .box-tab-caption{background-color:#95b3cc;color:#242c32} 
+        .box-tab-caption-active{background-color:#3678af}
+        #primaryObjectItem .box-tab-caption-active {
+            background-color: #edf4fa;
+        }
+
+        /* View Left side and drop Down */
+        .viewDropdownItem .tab-active table  tbody tr td:first-child {
+            color: black;
+        }
+
+        /* Settings */
+        .tab-active a, .tab a{
+            color: black;
+        }
+        .tab a {
+            color: black /*!important*/;
+        }
+
+        /*Views Left Panel*/
+        .layout-leftpanel-main #currentViewPopup tr td div.tab {
+            background-color: #FFFFFF !important;
+        }
+        #frmCurrentRecord2  #currentViewPopup tr td div.tab {
+            background-color: #FFFFFF !important;
+        }	
+        .no-right-border-radius, .layout-leftpanel-main .tab-active, .left-panel .box-tab-caption, .left-panel .box-tab-caption-active, .left-side-label {
+            border-radius: 0px 0px 0px 0px;
+        }
+        .medium-border-radius, .tab, .tab-active, #topNav, #viewId, .search-box, .t-widget.t-grid .t-grid-header, .t-widget.t-grid .t-grid-footer, .t-widget.t-grid .t-grid-header th:first-child, .t-widget.t-grid .t-grid-bottom {
+            border-radius: 0px 0px 0px 0px;
+        }
+        .box-tab-caption:hover a {
+            color: black;
+        }
+        .box-tab-caption {
+            background-color: transparent;
+        }
+        .t-widget.t-grid th.t-header {
+            /*height: 25px;*/
+        }
+        .t-widget.t-grid .t-header span, .t-widget.t-grid .t-header a {
+            color: black;
+        }
+
+        /*Views Left Panel*/
+        #frmCurrentRecord2 #currentViewPopup {
+            font-size: 0.8em;
+        }
+
+        #setupView #setup-object .box-splitter { display: none; height: 25px;}
+        #setupView #setup-object .subsection-content {padding-top: 0px; margin-top: 10px;}
+
+        #divDocumentFolders .tab-active, .left-panel .tab-active, .left-panel .tab-active a {
+            color: #333333;
+            background-color: #EDF4FA; 
+        }
+
+        #divDocumentFolders .tab, .left-panel .tab, .left-panel .tab a {
+            color: #8C8C8C;
+            background-color: transparent;
+        }
+
+        #divDocumentFolders .tab:hover, .left-panel .tab:hover, .left-panel .tab a:hover {
+            opacity: 1.0 !important;
+        }
+
+        #header-wrapper {  width:100%; }
+        #footer-wrapper {  min-width:970px; position: relative; bottom: 0px;}
+
+        .header-for-member #topNav #Options-Setup {
+            margin-top: 0;
+        }
+        .header-top-row .header-for-member #topNav #Options-Setup {
+            margin-top: -10px;
+        }
+
+        .body:not(.newKendoMenu) #topNav {
+            min-height: 55px;
+        }
+
+    </style>
