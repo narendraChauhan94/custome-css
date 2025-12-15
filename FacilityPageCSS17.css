@@ -606,5 +606,7 @@
 :root {
     --g1: #0066ff;
 }
-
+.facility-items-header{
+   width: 95% !important;
+}
 </style>
