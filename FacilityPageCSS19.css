@@ -15,6 +15,21 @@
     --bg-white: #ffffff;
 }
 
+/* Force Override Any Existing Styles */
+* {
+    box-sizing: border-box !important;
+}
+
+/* Force visibility for header elements */
+#facilityListPage .facility-items-header,
+#facilityListPage .results-header,
+#facilityListPage .back-action,
+#facilityListPage .results-count {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 /* =========================================================
    PAGE LAYOUT - OVERRIDE ALL
    ========================================================= */
@@ -284,16 +299,21 @@ div#facilityListPage > .facility-list {
 }
 
 #facilityListPage .facility-items-header,
-body #facilityListPage .facility-items-header {
+body #facilityListPage .facility-items-header,
+.facility-items-header {
     display: flex !important;
     flex-direction: column !important;
     margin-bottom: 28px !important;
+    width: 100% !important;
+    visibility: visible !important;
 }
 
 /* Page Header Title */
 #facilityListPage .results-header,
 #facilityListPage .facility-list .results-header,
-body #facilityListPage .results-header {
+body #facilityListPage .results-header,
+.facility-items-header .results-header,
+h1.results-header {
     font-size: 34px !important;
     font-weight: 500 !important;
     color: var(--bg-white) !important;
@@ -304,12 +324,17 @@ body #facilityListPage .results-header {
     text-align: center !important;
     letter-spacing: 0.3px !important;
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2) !important;
+    display: block !important;
+    width: 100% !important;
+    visibility: visible !important;
 }
 
 /* Back Button */
 #facilityListPage .back-action,
 #facilityListPage .facility-list .back-action,
-body #facilityListPage .back-action {
+body #facilityListPage .back-action,
+.facility-items-header .back-action,
+.back-action {
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
@@ -322,6 +347,8 @@ body #facilityListPage .back-action {
     width: fit-content !important;
     transition: all 0.2s ease !important;
     box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 #facilityListPage .back-action:hover,
@@ -349,11 +376,14 @@ body #facilityListPage .back-action .back-url {
 /* Results Count */
 #facilityListPage .results-count,
 #facilityListPage .facility-list .results-count,
-body #facilityListPage .results-count {
+body #facilityListPage .results-count,
+.results-count {
     color: var(--primary-purple) !important;
     font-size: 17px !important;
     font-weight: 600 !important;
     margin: 0 0 24px 0 !important;
+    display: block !important;
+    visibility: visible !important;
 }
 
 /* =========================================================
@@ -361,41 +391,50 @@ body #facilityListPage .results-count {
    ========================================================= */
 #facilityListPage #listView,
 body #facilityListPage #listView,
-div#listView {
+div#listView,
+#listView {
     background: transparent !important;
     border: 0 !important;
     padding: 0 !important;
     width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
 }
 
 #facilityListPage #listView .k-listview-content,
-body #listView .k-listview-content {
+body #listView .k-listview-content,
+.k-listview-content {
     display: flex !important;
     flex-direction: column !important;
     gap: 18px !important;
     padding: 0 !important;
+    visibility: visible !important;
+    width: 100% !important;
 }
 
 /* Facility Card with Grid Layout */
 #facilityListPage #listView .facility-item,
 body #listView .facility-item,
-div#listView .facility-item {
+div#listView .facility-item,
+.facility-item[data-facilityid] {
     display: grid !important;
-    grid-template-columns: 200px 1fr auto !important;
-    grid-template-rows: auto auto !important;
+    grid-template-columns: 210px 1fr 150px !important;
+    grid-template-rows: auto 1fr !important;
     grid-template-areas: 
         "image title button"
         "image tag button" !important;
-    align-items: start !important;
+    align-items: center !important;
     background: var(--bg-white) !important;
     border-radius: 14px !important;
     border: 1px solid #e8e8ea !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     transition: all 0.3s ease !important;
-    padding: 22px 26px !important;
-    gap: 16px 24px !important;
+    padding: 20px 24px !important;
+    gap: 0 24px !important;
+    row-gap: 12px !important;
     position: relative !important;
+    min-height: 160px !important;
 }
 
 #facilityListPage #listView .facility-item:hover,
@@ -408,14 +447,19 @@ body #listView .facility-item:hover {
 /* Facility Image with Purple Border */
 #facilityListPage #listView .facility-item .facility-image,
 body #listView .facility-item .facility-image,
-div.facility-item .facility-image {
+div.facility-item .facility-image,
+.facility-item[data-facilityid] .facility-image,
+.facility-item img.facility-image {
     grid-area: image !important;
-    width: 200px !important;
-    height: 150px !important;
+    width: 100% !important;
+    max-width: 210px !important;
+    height: 140px !important;
     object-fit: cover !important;
-    border-radius: 10px !important;
-    border: 4px solid var(--primary-purple) !important;
+    border-radius: 8px !important;
+    border: 5px solid var(--primary-purple) !important;
     display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Facility Details - Title Area */
@@ -431,13 +475,15 @@ div.facility-item .facility-details {
 
 #facilityListPage #listView .facility-item .facility-details h2,
 body #listView .facility-item .facility-details h2,
-div.facility-item .facility-details h2 {
-    font-size: 19px !important;
+div.facility-item .facility-details h2,
+.facility-item[data-facilityid] .facility-details h2 {
+    font-size: 20px !important;
     font-weight: 600 !important;
     color: var(--text-dark) !important;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.4 !important;
+    line-height: 1.3 !important;
+    display: block !important;
 }
 
 /* Room Type Tag */
@@ -452,27 +498,33 @@ div.facility-item .facility-detail-pills {
 
 #facilityListPage #listView .facility-item .facility-detail-pills .detail-pill,
 body #listView .facility-item .facility-detail-pills .detail-pill,
-div.facility-item .facility-detail-pills .detail-pill {
+div.facility-item .facility-detail-pills .detail-pill,
+.facility-item[data-facilityid] .facility-detail-pills .detail-pill,
+.detail-pill {
     display: inline-block !important;
     background: #f0f0f2 !important;
     color: var(--text-gray) !important;
     font-size: 13px !important;
     font-weight: 500 !important;
-    padding: 6px 16px !important;
+    padding: 7px 18px !important;
     border-radius: 6px !important;
+    margin: 0 !important;
 }
 
 /* Choose Button - Right Aligned */
 #facilityListPage #listView .facility-item .desktop-details-wrapper,
 body #listView .facility-item .desktop-details-wrapper,
-div.facility-item .desktop-details-wrapper {
+div.facility-item .desktop-details-wrapper,
+.facility-item[data-facilityid] .desktop-details-wrapper {
     grid-area: button !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    grid-row: 1 / -1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: center !important;
     padding: 0 !important;
     margin: 0 !important;
+    min-width: 120px !important;
 }
 
 #facilityListPage #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
@@ -480,20 +532,29 @@ div.facility-item .desktop-details-wrapper {
 body #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
 body #listView .facility-item .desktop-details-wrapper .desktop-details,
 div.facility-item .desktop-details-wrapper .pm-confirm-button,
-div.facility-item .desktop-details-wrapper .desktop-details {
+div.facility-item .desktop-details-wrapper .desktop-details,
+.facility-item[data-facilityid] .desktop-details-wrapper .pm-confirm-button,
+.facility-item[data-facilityid] .desktop-details-wrapper .desktop-details,
+.facility-item .desktop-details-wrapper a,
+.desktop-details-wrapper .desktop-details {
     background: var(--primary-gradient) !important;
     border: 0 !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     color: var(--bg-white) !important;
     font-weight: 600 !important;
     font-size: 15px !important;
-    padding: 12px 32px !important;
+    padding: 13px 28px !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
     white-space: nowrap !important;
     box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
     text-decoration: none !important;
-    display: inline-block !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 100px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 #facilityListPage #listView .facility-item .desktop-details-wrapper .pm-confirm-button:hover,
@@ -509,8 +570,24 @@ body #listView .facility-item .desktop-details-wrapper .desktop-details:hover {
 #facilityListPage #listView .facility-item .facility-location,
 #facilityListPage #listView .facility-item .tablet-details-wrapper,
 body #listView .facility-item .facility-location,
-body #listView .facility-item .tablet-details-wrapper {
+body #listView .facility-item .tablet-details-wrapper,
+.facility-item .tablet-details-wrapper,
+.facility-item .facility-location {
     display: none !important;
+}
+
+/* Ensure desktop details wrapper is always visible */
+#facilityListPage .facility-item .desktop-details-wrapper,
+.facility-item .desktop-details-wrapper {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Force show desktop details on all screen sizes for this view */
+.facility-item .desktop-details,
+.facility-item .pm-confirm-button {
+    display: inline-flex !important;
 }
 
 /* =========================================================
