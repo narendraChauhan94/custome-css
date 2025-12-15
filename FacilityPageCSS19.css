@@ -606,35 +606,20 @@
 :root {
     --g1: #0066ff;
 }
-/* =========================================================
-   FACILITY HEADER – TITLE + BACK (NEXT LINE)
-   ========================================================= */
-
-#facilityListPage .facility-items-header {
+.facility-items-header {
     display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
+    flex-wrap: wrap !important;    /* allow next line */
 }
 
-/* Title stays full width */
-#facilityListPage .facility-items-header .results-header {
-    width: 100% !important;
+.facility-items-header h1 {
+    width: 100% !important;          /* first row */
 }
 
-/* Back row */
-#facilityListPage .facility-items-header .back-action {
-    width: 100% !important;
+.facility-items-header .back-action {
+    width: 100% !important;         /* second row */
     display: flex !important;
-    justify-content: center !important;   /* center under header */
     align-items: center !important;
-    margin-top: -12px !important;         /* pulls it closer to header */
-}
-
-/* Back icon spacing */
-#facilityListPage .facility-items-header .back-img {
-    width: 14px;
-    height: auto;
-    margin-right: 6px;
+    margin-top: 8px !important;     /* spacing between title & back */
 }
 
 </style>
