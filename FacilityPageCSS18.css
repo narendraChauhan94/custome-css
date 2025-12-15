@@ -1,13 +1,131 @@
 /* =========================================================
-   FIX: CHOOSE BUTTON POSITION (MATCH FIRST UI)
+   ROOT
    ========================================================= */
-
-/* Make card the positioning reference */
-#facilityListPage .facility-list .facility-item {
-    position: relative !important;
+#facilityListPage {
+    width: 100%;
+    position: relative;
 }
 
-/* Right action column – stable & visible */
+/* =========================================================
+   CONFIRM / CHOOSE BUTTON
+   ========================================================= */
+#facilityListPage .pm-confirm-button,
+#facilityListPage button.pm-confirm-button {
+    background: linear-gradient(90deg,#5b4bdf,#9c4dcc,#e04b9a) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    padding: 12px 20px !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    text-align: center !important;
+    transition: opacity .2s, transform .2s !important;
+}
+
+#facilityListPage .pm-confirm-button:hover {
+    opacity: .9 !important;
+}
+
+#facilityListPage .pm-confirm-button:active {
+    transform: scale(.98) !important;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+#facilityListPage .facility-list .results-header {
+    text-align: center !important;
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    padding: 18px 24px !important;
+    margin: 16px 0 28px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(90deg,#5b4bdf,#9c4dcc,#e04b9a) !important;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+#facilityListPage a.back-url {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px;
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+    background: linear-gradient(90deg,#5b4bdf,#9c4dcc,#e04b9a) !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* =========================================================
+   SEARCH & FILTER PANEL (UNCHANGED)
+   ========================================================= */
+#facilityListPage .search-box-wrapper {
+    padding: 20px !important;
+    background: #fff !important;
+    border-radius: 14px !important;
+}
+
+#facilityListPage .filter-panel-wrapper {
+    width: 20% !important;
+    padding: 14px !important;
+}
+
+#facilityListPage .filter-panel {
+    background: #fff !important;
+    border-radius: 18px !important;
+    padding: 22px !important;
+    box-shadow: 0 18px 36px rgba(0,0,0,.1) !important;
+}
+
+/* =========================================================
+   FACILITY CARD (KEEP ORIGINAL FLEX)
+   ========================================================= */
+#facilityListPage .facility-list .facility-item {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    padding: 20px 24px !important;
+    border-radius: 16px !important;
+    background: #fff !important;
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,.06),
+        0 24px 40px rgba(0,0,0,.08) !important;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+#facilityListPage .facility-list .facility-image {
+    width: 260px !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    margin-right: 24px !important;
+}
+
+/* =========================================================
+   DETAILS
+   ========================================================= */
+#facilityListPage .facility-list .facility-details {
+    flex: 1 !important;
+}
+
+#facilityListPage .facility-list .facility-details h2 {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin-bottom: 6px !important;
+}
+
+/* =========================================================
+   ✅ FIXED: CHOOSE BUTTON (MATCH EXPECTED UI)
+   ========================================================= */
 #facilityListPage .facility-list .desktop-details-wrapper {
     position: absolute !important;
     right: 24px !important;
@@ -18,17 +136,40 @@
     align-items: center !important;
 }
 
-/* School Room pill BELOW the button */
-#facilityListPage .facility-list .facility-item .facility-detail-pills {
-    position: absolute !important;
-    right: 24px !important;
-    top: calc(50% + 36px) !important;
-
-    margin: 0 !important;
-}
-
-/* Ensure button never collapses */
 #facilityListPage .facility-list .desktop-details-wrapper .desktop-details {
     width: 140px !important;
     white-space: nowrap !important;
+}
+
+/* =========================================================
+   SCHOOL ROOM TAG (BELOW BUTTON)
+   ========================================================= */
+#facilityListPage .facility-list .facility-detail-pills {
+    position: absolute !important;
+    right: 24px !important;
+    top: calc(50% + 42px) !important;
+}
+
+#facilityListPage .facility-list .detail-pill {
+    background: #f1f5f9 !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    border-radius: 999px !important;
+}
+
+/* =========================================================
+   MOBILE (NO BREAKAGE)
+   ========================================================= */
+@media (max-width: 1024px) {
+    #facilityListPage .facility-list .facility-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    #facilityListPage .facility-list .desktop-details-wrapper,
+    #facilityListPage .facility-list .facility-detail-pills {
+        position: static !important;
+        transform: none !important;
+        margin-top: 12px !important;
+    }
 }
