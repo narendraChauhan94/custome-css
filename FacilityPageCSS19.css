@@ -1,216 +1,497 @@
+<style type="text/css">
 /* =========================================================
-   ROOT & BRAND
+   ROOT VARIABLES & PAGE LAYOUT
    ========================================================= */
 :root {
-    --brand-gradient: linear-gradient(
-        90deg,
-        #5b4bdf 0%,
-        #9c4dcc 50%,
-        #e04b9a 100%
-    );
+    --gradient-primary: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%);
+    --color-primary: #7c3aed;
+    --color-primary-dark: #5b4bdf;
+    --color-accent: #ec4899;
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 4px 12px rgba(124, 58, 237, 0.12);
 }
 
 #facilityListPage {
+    display: flex !important;
+    gap: 24px !important;
+    padding: 0 !important;
+    background: #f5f5f7 !important;
     width: 100%;
-    position: relative;
-    box-sizing: border-box;
+}
+
+#facilityListPage > .filter-panel-background {
+    display: none !important;
 }
 
 /* =========================================================
-   HEADER – MULTI PURPOSE ROOM
+   SIDEBAR - FILTER PANEL
    ========================================================= */
-#facilityListPage .facility-list .results-header {
+form.filter-panel-wrapper,
+#filterPanelForm {
+    width: 385px !important;
+    flex-shrink: 0 !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    padding: 32px 24px !important;
+    height: fit-content !important;
+    position: sticky !important;
+    top: 0 !important;
+    display: block !important;
+    min-height: 100vh !important;
+}
+
+/* Search Box */
+#search-box-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-bottom: 24px !important;
+    position: relative !important;
+}
+
+#search-box-wrapper .search-box {
     width: 100% !important;
-    text-align: center !important;
-    font-size: 28px !important;
-    font-weight: 700 !important;
-    color: #fff !important;
+    padding: 14px 44px 14px 16px !important;
+    border-radius: 10px !important;
+    border: 1px solid #e5e7eb !important;
+    font-size: 15px !important;
+    background: #fafafa !important;
+    box-sizing: border-box !important;
+    transition: all 0.2s ease !important;
+    color: #374151 !important;
+}
 
-    padding: 18px 24px !important;
-    margin: 16px 0 28px !important;
+#search-box-wrapper .search-box:focus {
+    outline: none !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
+}
 
-    border-radius: 18px !important;
-    background: var(--brand-gradient) !important;
+#search-box-wrapper .fa-search {
+    position: absolute !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: var(--color-primary) !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+}
+
+/* Date Picker */
+.availability-search {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+}
+
+.availability-search .base-block {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+.availability-search .k-datepicker {
+    width: 100% !important;
+}
+
+.availability-search .k-picker-wrap {
+    border-radius: 10px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #fafafa !important;
+    padding: 6px !important;
+    transition: all 0.2s ease !important;
+    height: 48px !important;
+}
+
+.availability-search .k-datepicker.k-state-focused .k-picker-wrap {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
+}
+
+.availability-search .k-picker-wrap .k-input {
+    padding: 8px !important;
+    border: none !important;
+    font-size: 14px !important;
+}
+
+.availability-search .k-icon.k-i-calendar {
+    color: var(--color-primary) !important;
+    font-size: 16px !important;
+}
+
+/* Check Availability Button */
+.availability-search .search-btn,
+#filterPanelForm .pm-confirm-button {
+    background: var(--gradient-primary) !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 14px 20px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
+}
+
+.availability-search .search-btn:hover,
+#filterPanelForm .pm-confirm-button:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3) !important;
+}
+
+/* Filter Sections */
+.filter-panel {
+    border-top: 1px solid #e5e7eb !important;
+    padding-top: 24px !important;
+    margin-top: 28px !important;
+}
+
+.filter-panel fieldset {
+    border: 0 !important;
+    padding: 0 0 16px !important;
+    margin: 0 0 16px 0 !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.filter-panel fieldset:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+}
+
+.filter-panel legend {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #111827 !important;
+    margin-bottom: 16px !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    position: relative !important;
+    padding-left: 12px !important;
+}
+
+.filter-panel legend::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 4px !important;
+    height: 20px !important;
+    background: var(--gradient-primary) !important;
+    border-radius: 2px !important;
+}
+
+.filter-panel .filter ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.filter-panel .filter ul li {
+    margin: 10px 0 !important;
+}
+
+.filter-panel .filter ul li label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    color: #374151 !important;
+    padding: 6px 0 !important;
+    transition: color 0.2s ease !important;
+}
+
+.filter-panel .filter ul li label:hover {
+    color: var(--color-primary) !important;
+}
+
+.filter-panel input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    accent-color: var(--color-primary) !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
 }
 
 /* =========================================================
-   BACK BUTTON
+   MAIN CONTENT - FACILITY LIST
    ========================================================= */
-#facilityListPage .back-action {
-    margin: 12px 0 10px !important;
+#facilityListPage .facility-list {
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding: 0 24px 24px 0 !important;
 }
 
-#facilityListPage a.back-url {
+#facilityListPage .facility-items-header {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 24px !important;
+}
+
+/* Header Title */
+#facilityListPage .results-header {
+    font-size: 36px !important;
+    font-weight: 500 !important;
+    color: #ffffff !important;
+    background: var(--gradient-primary) !important;
+    padding: 28px 40px !important;
+    margin: 0 0 24px 0 !important;
+    border-radius: 20px !important;
+    text-align: center !important;
+    letter-spacing: 0.3px !important;
+}
+
+/* Back Button */
+#facilityListPage .back-action {
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
+    margin: 0 0 20px 0 !important;
+    padding: 12px 20px !important;
+    background: var(--gradient-primary) !important;
+    border-radius: 10px !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: fit-content !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
+}
 
-    padding: 10px 18px !important;
-    border-radius: 12px !important;
+#facilityListPage .back-action:hover {
+    opacity: 0.9 !important;
+    transform: translateX(-2px) !important;
+}
 
-    background: var(--brand-gradient) !important;
-    color: #fff !important;
+#facilityListPage .back-action .back-img {
+    width: 16px !important;
+    height: 16px !important;
+    filter: brightness(0) invert(1) !important;
+}
 
-    font-size: 14px !important;
+#facilityListPage .back-action .back-url {
+    color: #ffffff !important;
     font-weight: 600 !important;
+    font-size: 15px !important;
     text-decoration: none !important;
 }
 
-/* =========================================================
-   SEARCH / FILTER PANEL (SAFE – NO LAYOUT CHANGE)
-   ========================================================= */
-#facilityListPage .search-box-wrapper {
-    padding: 20px !important;
-    background: #fff !important;
-    border-radius: 16px !important;
-}
-
-#facilityListPage .filter-panel-wrapper {
-    width: 20% !important;
-    padding: 14px !important;
-}
-
-#facilityListPage .filter-panel {
-    background: #fff !important;
-    border-radius: 18px !important;
-    padding: 22px !important;
-    box-shadow: 0 18px 36px rgba(0,0,0,.1) !important;
-}
-
-/* =========================================================
-   CHECK AVAILABILITY BUTTON
-   ========================================================= */
-#facilityListPage .availability-search .search-btn {
-    background: var(--brand-gradient) !important;
-    color: #fff !important;
-    border-radius: 14px !important;
-    font-weight: 600 !important;
-    height: 46px !important;
-}
-
-/* =========================================================
-   FACILITY CARD
-   ========================================================= */
-#facilityListPage .facility-list .facility-item {
-    position: relative !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-
-    padding: 20px 24px !important;
-    margin-bottom: 16px !important;
-
-    border-radius: 16px !important;
-    background: #fff !important;
-
-    box-shadow:
-        0 6px 16px rgba(0,0,0,.06),
-        0 24px 40px rgba(0,0,0,.08) !important;
-}
-
-/* =========================================================
-   IMAGE
-   ========================================================= */
-#facilityListPage .facility-list .facility-image {
-    width: 260px !important;
-    height: 180px !important;
-    object-fit: cover !important;
-    border-radius: 12px !important;
-    margin-right: 24px !important;
-}
-
-/* =========================================================
-   DETAILS
-   ========================================================= */
-#facilityListPage .facility-details {
-    flex: 1 !important;
-}
-
-#facilityListPage .facility-details h2 {
+/* Results Count */
+#facilityListPage .results-count {
+    color: var(--color-primary) !important;
     font-size: 18px !important;
     font-weight: 600 !important;
-    margin-bottom: 8px !important;
+    margin: 0 0 24px 0 !important;
 }
 
 /* =========================================================
-   ✅ CHOOSE BUTTON – HARD FORCE (NO MORE BLUE)
+   FACILITY CARDS - LIST VIEW
    ========================================================= */
-#facilityListPage .pm-confirm-button,
-#facilityListPage .pm-confirm-button.desktop-details,
-#facilityListPage .tablet-details {
-    background: var(--brand-gradient) !important;
-    color: #fff !important;
-    border-radius: 14px !important;
+#listView {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
 
-    min-width: 120px !important;
-    padding: 12px 20px !important;
+#listView .k-listview-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 0 !important;
+}
 
+#listView .facility-item {
+    display: flex !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: 1px solid #e8e8ea !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    overflow: visible !important;
+    transition: all 0.3s ease !important;
+    padding: 24px !important;
+    gap: 24px !important;
+    position: relative !important;
+}
+
+#listView .facility-item:hover {
+    box-shadow: var(--shadow-lg) !important;
+    border-color: var(--color-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Facility Image */
+#listView .facility-item .facility-image {
+    width: 180px !important;
+    height: 140px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Facility Details */
+#listView .facility-item .facility-details {
+    flex: 1 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+}
+
+#listView .facility-item .facility-details h2 {
+    font-size: 18px !important;
     font-weight: 600 !important;
-    box-shadow: 0 8px 18px rgba(0,0,0,.18) !important;
+    color: #111827 !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.4 !important;
 }
 
-#facilityListPage .pm-confirm-button:hover {
-    opacity: .9 !important;
-    transform: translateY(-1px) !important;
+/* Room Type Tag */
+#listView .facility-item .facility-detail-pills {
+    margin-top: 12px !important;
 }
 
-/* Position Choose button */
-#facilityListPage .desktop-details-wrapper {
-    position: absolute !important;
-    right: 24px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-}
-
-/* =========================================================
-   SCHOOL ROOM TAG
-   ========================================================= */
-#facilityListPage .facility-detail-pills {
-    position: absolute !important;
-    right: 24px !important;
-    top: calc(50% + 42px) !important;
-}
-
-#facilityListPage .detail-pill {
-    background: #f1f5f9 !important;
-    color: #475569 !important;
+#listView .facility-item .facility-detail-pills .detail-pill {
+    display: inline-block !important;
+    background: #f0f0f2 !important;
+    color: #6b7280 !important;
     font-size: 13px !important;
-    padding: 6px 12px !important;
-    border-radius: 999px !important;
+    font-weight: 500 !important;
+    padding: 6px 16px !important;
+    border-radius: 6px !important;
+}
+
+/* Choose Button */
+#listView .facility-item .desktop-details-wrapper {
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+}
+
+#listView .facility-item .desktop-details-wrapper .pm-confirm-button,
+#listView .facility-item .desktop-details-wrapper .desktop-details {
+    background: var(--gradient-primary) !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 12px 36px !important;
+    font-size: 15px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
+}
+
+#listView .facility-item .desktop-details-wrapper .pm-confirm-button:hover,
+#listView .facility-item .desktop-details-wrapper .desktop-details:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.25) !important;
+}
+
+/* Hide unwanted elements */
+#listView .facility-item .facility-location,
+#listView .facility-item .tablet-details-wrapper {
+    display: none !important;
 }
 
 /* =========================================================
    PAGINATION
    ========================================================= */
-#facilityListPage .k-pager-wrap .k-link.k-selected {
-    background: var(--brand-gradient) !important;
-    color: #fff !important;
-    border-radius: 999px !important;
+#facilityListPage .k-pager-wrap {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 20px 0 !important;
+    margin-top: 32px !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+#facilityListPage .k-pager-wrap .k-state-selected {
+    background: var(--gradient-primary) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#facilityListPage .k-pager-wrap .k-link {
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #e5e7eb !important;
+    background: #ffffff !important;
 }
 
 /* =========================================================
-   KILL PERFECTMIND DEFAULT BLUE
-   ========================================================= */
-#facilityListPage .k-button,
-#facilityListPage .pm-confirm-button {
-    background-color: transparent !important;
-    background-image: none !important;
-}
-
-/* =========================================================
-   MOBILE SAFE
+   RESPONSIVE DESIGN
    ========================================================= */
 @media (max-width: 1024px) {
-    #facilityListPage .facility-list .facility-item {
+    #facilityListPage {
         flex-direction: column !important;
-        align-items: flex-start !important;
+        gap: 20px !important;
     }
 
-    #facilityListPage .desktop-details-wrapper,
-    #facilityListPage .facility-detail-pills {
-        position: static !important;
-        transform: none !important;
-        margin-top: 12px !important;
+    form.filter-panel-wrapper,
+    #filterPanelForm {
+        width: 100% !important;
+        position: relative !important;
+        top: 0 !important;
+    }
+
+    #listView .facility-item {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    #listView .facility-item .facility-image {
+        width: 100% !important;
+        height: 200px !important;
+    }
+
+    #listView .facility-item .desktop-details-wrapper {
+        margin-left: 0 !important;
+        margin-top: 16px !important;
+    }
+
+    #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
+    #listView .facility-item .desktop-details-wrapper .desktop-details {
+        width: 100% !important;
     }
 }
+
+@media (max-width: 768px) {
+    #facilityListPage {
+        padding: 16px !important;
+    }
+
+    #facilityListPage .results-header {
+        font-size: 24px !important;
+        padding: 20px !important;
+    }
+
+    form.filter-panel-wrapper,
+    #filterPanelForm {
+        padding: 20px !important;
+    }
+}
+</style>
