@@ -1,663 +1,115 @@
 /* =========================================================
-   ROOT VARIABLES
+   FACILITY LIST – FINAL PRODUCTION FIX
    ========================================================= */
-:root {
-    --g1: #0066ff;
-    --gradient-primary: linear-gradient(90deg, #5b4bdf 0%, #9c4dcc 50%, #e04b9a 100%);
-    --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.06), 0 24px 40px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.18);
-    --focus-ring: 0 0 0 3px rgba(156, 77, 204, 0.4);
-    --transition-smooth: 0.2s ease;
+
+/* Ensure Kendo list behaves */
+#facilityListPage #listView .k-listview-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
 }
 
-#facilityListPage {
-    width: 100%;
+/* Facility card */
+#facilityListPage #listView .facility-item {
+    display: grid !important;
+    grid-template-columns: 260px 1fr 160px;
+    grid-template-rows: auto auto;
+    gap: 20px 24px !important;
+
+    padding: 24px !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,0.06),
+        0 20px 40px rgba(0,0,0,0.08) !important;
+
+    align-items: center !important;
+}
+
+/* Image */
+#facilityListPage #listView .facility-image {
+    grid-row: 1 / span 2 !important;
+    width: 100% !important;
+    height: 170px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+}
+
+/* Details */
+#facilityListPage #listView .facility-details {
+    margin: 0 !important;
+}
+
+#facilityListPage #listView .facility-details h2 {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #111827 !important;
+    margin-bottom: 8px !important;
+}
+
+/* Remove empty description spacing */
+#facilityListPage #listView .facility-description:empty {
+    display: none !important;
+}
+
+/* Action column */
+#facilityListPage #listView .desktop-details-wrapper {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* Choose button */
+#facilityListPage #listView .desktop-details-wrapper .pm-confirm-button {
+    width: 140px !important;
+    padding: 12px 0 !important;
+    border-radius: 12px !important;
+}
+
+/* Pills */
+#facilityListPage #listView .facility-detail-pills {
+    grid-column: 3 !important;
+    grid-row: 2 !important;
+
+    position: static !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* Pill style */
+#facilityListPage #listView .detail-pill {
+    background: #f1f5f9 !important;
+    color: #374151 !important;
+    font-size: 13px !important;
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    border: 1px solid #e5e7eb !important;
 }
 
 /* =========================================================
-   SKIP LINK - ACCESSIBILITY
-   ========================================================= */
-#facilityListPage .skip-link {
-    position: absolute;
-    left: -9999px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    z-index: 9999;
-}
-
-#facilityListPage .skip-link:focus {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-    width: auto;
-    height: auto;
-    padding: 12px 20px;
-    background: var(--gradient-primary);
-    color: #ffffff;
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: var(--shadow-soft);
-}
-
-/* =========================================================
-   CONFIRM BUTTON
-   ========================================================= */
-#facilityListPage .pm-confirm-button,
-#facilityListPage button.pm-confirm-button {
-    background: var(--g1, #007bff);
-    border: none;
-    border-radius: 8px;
-    color: #ffffff;
-    font-weight: 600;
-    padding: 12px 20px;
-    cursor: pointer;
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    min-height: 44px; /* Accessibility: minimum touch target */
-}
-
-#facilityListPage .pm-confirm-button:hover,
-#facilityListPage button.pm-confirm-button:hover {
-    opacity: 0.9;
-}
-
-#facilityListPage .pm-confirm-button:active,
-#facilityListPage button.pm-confirm-button:active {
-    transform: scale(0.98);
-}
-
-#facilityListPage .pm-confirm-button:focus-visible,
-#facilityListPage button.pm-confirm-button:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-}
-
-/* =========================================================
-   RESULTS HEADER
-   ========================================================= */
-#facilityListPage .facility-list .results-header {
-    width: 100%;
-    display: block;
-    text-align: center;
-    background: var(--gradient-primary);
-    color: #ffffff;
-    font-size: clamp(20px, 4vw, 28px);
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: 0.4px;
-    padding: 18px 24px;
-    margin: 16px 0 28px 0;
-    border-radius: 14px;
-    word-wrap: break-word;
-}
-
-/* =========================================================
-   BACK URL BUTTON
-   ========================================================= */
-#facilityListPage a.back-url {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 10px 18px;
-    min-height: 44px;
-    border-radius: 10px;
-    background: var(--gradient-primary);
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-}
-
-#facilityListPage a.back-url:hover {
-    opacity: 0.9;
-}
-
-#facilityListPage a.back-url:active {
-    transform: scale(0.97);
-}
-
-#facilityListPage a.back-url:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-}
-
-/* =========================================================
-   SEARCH BUTTON
-   ========================================================= */
-#facilityListPage .availability-search .search-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: 600;
-    height: 44px;
-    width: 100%;
-    max-width: calc(100% - 30px);
-    margin: 24px 15px 30px 15px;
-    padding: 0 20px;
-    border-radius: 10px;
-    border: none;
-    background: var(--gradient-primary);
-    color: #ffffff;
-    cursor: pointer;
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-}
-
-#facilityListPage .availability-search .search-btn:hover {
-    opacity: 0.9;
-}
-
-#facilityListPage .availability-search .search-btn:active {
-    transform: scale(0.97);
-}
-
-#facilityListPage .availability-search .search-btn:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-}
-
-/* =========================================================
-   SEARCH BOX WRAPPER
-   ========================================================= */
-#facilityListPage .search-box-wrapper {
-    height: auto;
-    padding: 20px 20px 24px 20px;
-    background: #ffffff;
-    border-right: 1px solid #e5e7eb;
-    border-radius: 12px;
-    position: relative;
-    box-sizing: border-box;
-}
-
-/* =========================================================
-   SEARCH INPUT
-   ========================================================= */
-#facilityListPage .search-box-wrapper .search-box {
-    width: 100%;
-    height: 44px;
-    padding: 10px 44px 10px 14px;
-    font-size: 15px;
-    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    background-color: #ffffff;
-    color: #111827;
-    box-sizing: border-box;
-    transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth);
-}
-
-#facilityListPage .search-box-wrapper .search-box:focus {
-    outline: none;
-    border-color: #9c4dcc;
-    box-shadow: var(--focus-ring);
-}
-
-#facilityListPage .search-box-wrapper .search-box::placeholder {
-    font-size: 14px;
-    color: #6b7280;
-    opacity: 1;
-}
-
-/* =========================================================
-   SEARCH ICON
-   ========================================================= */
-#facilityListPage .search-box-wrapper .fa-search {
-    position: absolute;
-    right: 34px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #9c4dcc;
-    pointer-events: none;
-}
-
-/* =========================================================
-   FILTER PANEL
-   ========================================================= */
-#facilityListPage .filter-panel {
-    top: 50px;
-    bottom: 0;
-    width: 100%;
-    padding: 22px;
-    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-    box-sizing: border-box;
-    display: block;
-    position: relative;
-    border-radius: 18px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04), 0 18px 36px rgba(0, 0, 0, 0.10);
-    animation: filterFadeUp 0.5s ease-out both;
-}
-
-#facilityListPage .filter-panel:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06), 0 28px 50px rgba(0, 0, 0, 0.12);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-#facilityListPage .filter-panel-wrapper {
-    width: 20%;
-    min-width: 250px;
-    padding: 14px;
-    box-sizing: border-box;
-}
-
-/* =========================================================
-   FILTER SECTION HEADINGS
-   ========================================================= */
-#facilityListPage .filter-panel h2,
-#facilityListPage .filter-panel legend {
-    font-size: 14px;
-    font-weight: 600;
-    color: #111827;
-    padding: 10px 14px;
-    margin: 22px -14px 16px -14px;
-    background: linear-gradient(90deg, rgba(156, 77, 204, 0.12), rgba(91, 75, 223, 0.12));
-    border-left: 4px solid #9c4dcc;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-#facilityListPage .filter-panel h2::after,
-#facilityListPage .filter-panel legend::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: headingShimmer 3s infinite;
-}
-
-/* =========================================================
-   FILTER ITEMS
-   ========================================================= */
-#facilityListPage .filter-panel li {
-    font-size: 13px;
-    color: #374151;
-    margin-bottom: 10px;
-    line-height: 1.4;
-    animation: fadeInItem 0.4s ease both;
-}
-
-/* =========================================================
-   CHECKBOX - ACCESSIBILITY ENHANCED
-   ========================================================= */
-#facilityListPage .filter-panel .pm-checkbox-blue {
-    position: absolute;
-    opacity: 0;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-}
-
-#facilityListPage .filter-panel .pm-checkbox-blue + label {
-    padding-left: 34px;
-    line-height: 22px;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: color var(--transition-smooth);
-    min-height: 22px;
-}
-
-#facilityListPage .filter-panel .pm-checkbox-blue + label:hover {
-    color: #7c3aed;
-}
-
-#facilityListPage .filter-panel .pm-checkbox-blue + label::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border-radius: 6px;
-    border: 2px solid #cbd5e1;
-    background: #ffffff;
-    transition: border-color var(--transition-smooth), background-color var(--transition-smooth), transform 0.15s ease;
-}
-
-#facilityListPage .filter-panel .pm-checkbox-blue:checked + label::before {
-    background-color: #9c4dcc;
-    border-color: #9c4dcc;
-    transform: scale(1.05);
-}
-
-#facilityListPage .filter-panel .pm-checkbox-blue:checked + label::after {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 3px;
-    width: 6px;
-    height: 10px;
-    border: solid #ffffff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-#facilityListPage .filter-panel .pm-checkbox-blue:focus-visible + label::before {
-    box-shadow: var(--focus-ring);
-}
-
-/* =========================================================
-   FILTER GROUP SEPARATORS
-   ========================================================= */
-#facilityListPage .filter-panel fieldset {
-    padding-bottom: 18px;
-    margin-bottom: 20px;
-    border: none;
-    border-bottom: 1px dashed #e5e7eb;
-}
-
-#facilityListPage .filter-panel fieldset:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-/* =========================================================
-   ACTION LINKS
-   ========================================================= */
-#facilityListPage .filter-panel a.clear-filter-link,
-#facilityListPage .filter-panel a.show-more-toggle {
-    font-size: 13px;
-    font-weight: 500;
-    color: #7c3aed;
-    text-decoration: none;
-    border-bottom: 1px dotted rgba(124, 58, 237, 0.6);
-    transition: color var(--transition-smooth), border-color var(--transition-smooth);
-    padding: 4px 0;
-}
-
-#facilityListPage .filter-panel a.clear-filter-link:hover,
-#facilityListPage .filter-panel a.show-more-toggle:hover {
-    color: #5b4bdf;
-    border-color: #5b4bdf;
-}
-
-#facilityListPage .filter-panel a.clear-filter-link:focus-visible,
-#facilityListPage .filter-panel a.show-more-toggle:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-    border-radius: 4px;
-}
-
-/* =========================================================
-   DATEPICKER
-   ========================================================= */
-#facilityListPage .availability-search .k-datepicker {
-    width: 100%;
-    max-width: calc(100% - 30px);
-    height: 44px;
-    margin: 0 15px;
-}
-
-#facilityListPage .availability-search .k-datepicker .k-picker-wrap {
-    height: 44px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth);
-}
-
-#facilityListPage .availability-search .k-datepicker.k-state-focused .k-picker-wrap {
-    border-color: #9c4dcc;
-    box-shadow: var(--focus-ring);
-}
-
-#facilityListPage .availability-search .k-datepicker input.k-input {
-    height: 42px;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-family: "Open Sans", system-ui, -apple-system, sans-serif;
-    border: none;
-    background: transparent;
-    color: #111827;
-}
-
-#facilityListPage .availability-search .k-datepicker .k-select {
-    width: 42px;
-    height: 42px;
-    border-left: 1px solid #e5e7eb;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#facilityListPage .availability-search .k-icon.k-i-calendar {
-    font-size: 18px;
-    color: #9c4dcc;
-}
-
-/* =========================================================
-   FACILITY ITEM - FLEX CARD
-   ========================================================= */
-#facilityListPage .facility-list .facility-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 24px;
-    padding: 20px 24px;
-    border-radius: 16px;
-    background: #ffffff;
-    box-shadow: var(--shadow-soft);
-    border: none;
-    position: relative;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-#facilityListPage .facility-list .facility-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-}
-
-#facilityListPage .facility-list .facility-item:focus-within {
-    box-shadow: var(--focus-ring), var(--shadow-soft);
-}
-
-/* =========================================================
-   FACILITY IMAGE
-   ========================================================= */
-#facilityListPage .facility-list .facility-image {
-    position: static;
-    width: 260px;
-    height: 180px;
-    border-radius: 12px;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-/* =========================================================
-   FACILITY DETAILS
-   ========================================================= */
-#facilityListPage .facility-list .facility-details {
-    margin: 0;
-    flex: 1;
-    min-width: 200px;
-}
-
-/* =========================================================
-   DESKTOP DETAILS WRAPPER
-   ========================================================= */
-#facilityListPage .facility-list .desktop-details-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 12px;
-    margin-left: auto;
-}
-
-/* =========================================================
-   CHOOSE BUTTON
-   ========================================================= */
-#facilityListPage .facility-list .desktop-details-wrapper .desktop-details {
-    width: 140px;
-    padding: 12px 0;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 12px;
-    border: none;
-    background: var(--gradient-primary);
-    color: #ffffff;
-    text-align: center;
-    cursor: pointer;
-    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#facilityListPage .facility-list .desktop-details-wrapper .desktop-details:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-}
-
-#facilityListPage .facility-list .desktop-details-wrapper .desktop-details:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-}
-
-/* =========================================================
-   ROOM TYPE TAG
-   ========================================================= */
-#facilityListPage .facility-list .facility-detail-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
-}
-
-#facilityListPage .facility-list .facility-detail-pills .detail-pill {
-    background-color: #f1f5f9;
-    font-size: 13px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    color: #475569;
-    font-weight: 500;
-}
-
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-@keyframes filterFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInItem {
-    from {
-        opacity: 0;
-        transform: translateX(-6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes headingShimmer {
-    0% { left: -100%; }
-    50% { left: 120%; }
-    100% { left: 120%; }
-}
-
-/* =========================================================
-   RESPONSIVE - MOBILE
+   TABLET & MOBILE
    ========================================================= */
 @media (max-width: 1024px) {
-    #facilityListPage .filter-panel-wrapper {
-        width: 100%;
-        min-width: unset;
+    #facilityListPage #listView .facility-item {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
     }
 
-    #facilityListPage .filter-panel {
-        animation: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    #facilityListPage #listView .facility-image {
+        grid-row: auto !important;
+        height: 180px !important;
     }
 
-    #facilityListPage .filter-panel h2::after,
-    #facilityListPage .filter-panel legend::after {
-        animation: none;
-    }
-
-    #facilityListPage .facility-list .facility-item {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #facilityListPage .facility-list .facility-image {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
-    }
-
-    #facilityListPage .facility-list .desktop-details-wrapper {
-        width: 100%;
-        align-items: stretch;
-        margin-left: 0;
-        margin-top: 16px;
-    }
-
-    #facilityListPage .facility-list .desktop-details-wrapper .desktop-details {
-        width: 100%;
-    }
-}
-
-@media (max-width: 640px) {
-    #facilityListPage .facility-list .results-header {
-        font-size: 18px;
-        padding: 14px 16px;
-        margin: 12px 0 20px 0;
-    }
-
-    #facilityListPage .facility-list .facility-item {
-        padding: 16px;
-        border-radius: 12px;
-    }
-}
-
-/* =========================================================
-   REDUCED MOTION - ACCESSIBILITY
-   ========================================================= */
-@media (prefers-reduced-motion: reduce) {
-    #facilityListPage .filter-panel,
-    #facilityListPage .filter-panel li,
-    #facilityListPage .facility-list .facility-item,
-    #facilityListPage .pm-confirm-button,
-    #facilityListPage a.back-url,
-    #facilityListPage .availability-search .search-btn,
-    #facilityListPage .desktop-details-wrapper .desktop-details {
-        animation: none;
-        transition: none;
-    }
-
-    #facilityListPage .filter-panel h2::after,
-    #facilityListPage .filter-panel legend::after {
-        animation: none;
+    #facilityListPage #listView .desktop-details-wrapper,
+    #facilityListPage #listView .facility-detail-pills {
+        grid-column: auto !important;
+        justify-content: center !important;
+        margin-top: 12px !important;
     }
 }
