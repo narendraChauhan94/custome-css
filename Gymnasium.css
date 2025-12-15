@@ -1,563 +1,544 @@
-<style>
-
-:root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --accent-color: #3b82f6;
-    --success-color: #10b981;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --bg-light: #f9fafb;
-    --bg-white: #ffffff;
-    --border-color: #e5e7eb;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Body improvements */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--text-primary);
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
-
-/* Header Enhancements */
-#header-wrapper {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: var(--shadow-lg);
-    position: sticky !important;
-    top: 0;
-    z-index: 1000;
-}
-
-#headerTopRow {
-    background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(30,30,30,0.95) 100%);
-    backdrop-filter: blur(10px);
-}
-
-/* Logo styling */
-.Company-logo img, .default-logo-styles {
-    filter: brightness(1.1) contrast(1.05);
-    transition: transform 0.3s ease;
-}
-
-.Company-logo:hover img, .logo-header:hover img {
-    transform: scale(1.05);
-}
-
-/* Navigation Menu Improvements */
-#ApplicationMenu {
-    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 0.5rem 0;
-}
-
-#ApplicationMenu > li {
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-#ApplicationMenu > li::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    transform: translateX(-50%);
-    transition: width 0.3s ease;
-}
-
-#ApplicationMenu > li:hover::before {
-    width: 80%;
-}
-
-#ApplicationMenu > li:hover {
-    transform: translateY(-2px);
-}
-
-#ApplicationMenu .k-link {
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 0.75rem 1.25rem !important;
-}
-
-#ApplicationMenu > li:hover .k-link {
-    color: var(--primary-color) !important;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-/* Dropdown menus */
-#ApplicationMenu .k-menu-group {
-    background: var(--bg-white);
-    border: none;
-    box-shadow: var(--shadow-xl);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 0.5rem;
-}
-
-#ApplicationMenu .k-menu-group .k-item {
-    transition: all 0.2s ease;
-}
-
-#ApplicationMenu .k-menu-group .k-item:hover {
-    background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
-    transform: translateX(5px);
-}
-
-/* Main Content Area */
-#content-wrapper {
-    background: transparent;
-    min-height: calc(100vh - 200px);
-}
-
-#main-content {
-    background: var(--bg-white);
-    border-radius: 16px;
-    box-shadow: var(--shadow-xl);
-    margin: 2rem auto;
-    max-width: 1400px;
-    overflow: hidden;
-}
-
-/* Book Me 4 Content Enhancements */
-.book-me-4-content {
-    padding: 2rem;
-}
-
-.bm-content-wrapper {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border-radius: 12px;
-    padding: 2rem;
-}
-
-/* Facility Header */
-.facility-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 2.5rem;
-    border-radius: 12px;
-    color: white;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    overflow: hidden;
-}
-
-.facility-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.3;
-}
-
-.facility-header > * {
-    position: relative;
-    z-index: 1;
-}
-
-.facility-name {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0.5rem 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    letter-spacing: -0.5px;
-}
-
-.facility-location {
-    font-size: 1.125rem;
-    opacity: 0.95;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.facility-location::before {
-    content: '📍';
-    font-size: 1.25rem;
-}
-
-/* Back button enhancement */
-.back-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    margin-bottom: 1rem;
-}
-
-.back-action:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateX(-5px);
-    box-shadow: var(--shadow-md);
-}
-
-.back-url {
-    color: white !important;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.back-img {
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s ease;
-}
-
-.back-action:hover .back-img {
-    transform: translateX(-3px);
-}
-
-/* Image Carousel & Facility Image */
-.img-hours-container {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.facility-image-carousel,
-.facility-image {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.facility-image-carousel:hover,
-.facility-image:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-xl);
-}
-
-/* Working Hours Panel */
-.working-hours-info-wrapper {
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-}
-
-.panel-headers {
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 3px solid var(--primary-color);
-    position: relative;
-}
-
-.panel-headers::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-color), transparent);
-}
-
-.working-hours > div {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    background: white;
-    border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
-}
-
-.working-hours > div:hover {
-    transform: translateX(5px);
-    box-shadow: var(--shadow-md);
-    border-left-color: var(--accent-color);
-    background: linear-gradient(90deg, #f0f9ff 0%, #ffffff 100%);
-}
-
-.working-hours .item.day {
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 1rem;
-}
-
-.working-hours .item.hours {
-    color: var(--text-secondary);
-    font-weight: 500;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.875rem;
-}
-
-/* User Menu (Options) */
-#topNav {
-    backdrop-filter: blur(10px);
-}
-
-#OptionsSelector .k-link {
-    transition: all 0.3s ease;
-}
-
-#OptionsSelector .k-link:hover {
-    background: rgba(255,255,255,0.1);
-    color: #ffffff !important;
-}
-
-#OptionsSelector .k-menu-group {
-    background: white;
-    border-radius: 8px;
-    box-shadow: var(--shadow-xl);
-    border: none;
-    overflow: hidden;
-    margin-top: 0.5rem;
-}
-
-#OptionsSelector .k-menu-group .k-item {
-    transition: all 0.2s ease;
-}
-
-#OptionsSelector .k-menu-group .k-item:hover {
-    background: linear-gradient(90deg, #eff6ff 0%, #dbeafe 100%);
-}
-
-/* Buttons & Interactive Elements */
-.bm-button, .pm-button, button {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-md);
-    cursor: pointer;
-}
-
-.bm-button:hover, .pm-button:hover, button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
-}
-
-.bm-button:active, .pm-button:active, button:active {
-    transform: translateY(0);
-}
-
-/* Search Box */
-.search-box, .global-customer-search-input input {
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
-    transition: all 0.3s ease;
-    background: white;
-}
-
-.search-box:focus, .global-customer-search-input input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* Tables & Grids */
-.t-widget.t-grid {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    border: none;
-}
-
-.t-widget.t-grid .t-header {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.t-widget.t-grid tr:hover {
-    background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
-}
-
-/* Cards & Panels */
-.subsection-content, .objectPageLayoutSection {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-}
-
-.subsection-content:hover, .objectPageLayoutSection:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-}
-
-/* Left Panel Improvements */
-.layout-leftpanel-main .left-panel {
-    background: white;
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    padding: 1rem;
-}
-
-.layout-leftpanel-main .left-panel .tab {
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    margin-bottom: 0.25rem;
-}
-
-.layout-leftpanel-main .left-panel .tab:hover {
-    background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
-    transform: translateX(5px);
-}
-
-.layout-leftpanel-main .left-panel .tab-active {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    color: white !important;
-    box-shadow: var(--shadow-md);
-}
-
-/* Footer */
-#footer-wrapper {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-    color: white;
-    padding: 2rem;
-    margin-top: 3rem;
-    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.facility-header, .working-hours-info-wrapper, .facility-image-carousel {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.working-hours > div {
-    animation: fadeInUp 0.4s ease-out;
-    animation-fill-mode: both;
-}
-
-.working-hours > div:nth-child(1) { animation-delay: 0.05s; }
-.working-hours > div:nth-child(2) { animation-delay: 0.1s; }
-.working-hours > div:nth-child(3) { animation-delay: 0.15s; }
-.working-hours > div:nth-child(4) { animation-delay: 0.2s; }
-.working-hours > div:nth-child(5) { animation-delay: 0.25s; }
-.working-hours > div:nth-child(6) { animation-delay: 0.3s; }
-.working-hours > div:nth-child(7) { animation-delay: 0.35s; }
-
-/* Responsive Design Enhancements */
-@media (max-width: 768px) {
-    .facility-name {
-        font-size: 1.75rem;
-    }
+<style type="text/css">
+        .Company-logo {
+            table-layout: fixed; 
+            min-width: 220px; 
+            max-height: 140px; 
+            padding-right: 0; 
+            margin-left: 0; 
+            max-width: 300px;
+        }
+        #headerTopRow {
+            width: 100%; 
+            padding-top: 0; 
+            vertical-align: top; 
+            white-space: nowrap;
+        }
+        #Td2 {
+            min-width:750px; 
+            width:100%; 
+            padding-top: 0; 
+            vertical-align: top; 
+            white-space: nowrap;
+            background: black;
+        }
+        #Td6 {
+            padding-bottom: 0.5em; 
+            vertical-align: bottom;
+        }
+        #appSuiteCell {
+            min-width:520px; 
+            vertical-align:bottom; 
+            padding-bottom: 0; 
+        }
+        .k-link:link, .k-link:visited, .k-nav-current.k-hover .k-link {
+            color: #333 !important;
+        }
+       
+    </style>
     
-    .book-me-4-content {
-        padding: 1rem;
-    }
-    
-    .bm-content-wrapper {
-        padding: 1rem;
-    }
-    
-    .facility-header {
-        padding: 1.5rem;
-    }
-    
-    #main-content {
-        margin: 1rem;
-        border-radius: 12px;
-    }
-}
+    <style type="text/css">
 
-/* Accessibility improvements */
-*:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
+        /* App Suite Layout CSS */
+        #appNav li:not(.k-item) {
+            border-color: black;
+            border-left-width: 0;
+            border-right: 1px solid black;
+            display: block;
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: relative;
+            max-width: 100px;
+            white-space: nowrap;
+            text-overflow: ellipsis;   
+        }
 
-/* Loading states */
-.loading {
-    position: relative;
-    pointer-events: none;
-    opacity: 0.6;
-}
+        #appNav li {
+            position: relative;
+        }
 
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid var(--primary-color);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-}
+        #appNav li a, #appNav li:not(.k-item) a
+        {
+            /* padding: 0 0 0 0; */
+            min-width: 225px;
+            max-width: 225px;    
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background-color: transparent;    
+        }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
+        #appNavLdiv #appNav li a.tab, #appNavLdiv #appNav li a.tab-active {
+            display: inline-block;
+            max-width: 100px;
+            min-width: 0;
+            padding: 0;
+        }
 
-::-webkit-scrollbar-track {
-    background: var(--bg-light);
-}
+        #appNav #TopRightMenu {
+            padding-left: 0;
+            padding-right: 0;
+            width: 66px;
+        }
 
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    border-radius: 5px;
-}
+        #appNav #appSelector {
+            display: inline;
+            font-size: 100%;
+        }
 
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-}
+        #appNav .k-animation-container {
+            margin-top: 0;
+        }
 
-/* Selection styling */
-::selection {
-    background: var(--primary-color);
-    color: white;
-}
+        #appNav .k-animation-container .k-group {
+            /*width: 225px;*/
+            left: 11px;
+        }
 
-::-moz-selection {
-    background: var(--primary-color);
-    color: white;
-}
+        #appNav .k-link {
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 0;
+        }
 
-</style>
+        #appNav #appSelector .k-group .k-link, #appNav #appSelector .k-group .k-link:hover
+        {
+            color: #656565;
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0px 20px 10px 10px !important;
+            width: 190px;
+            height: 20px;
+        }
+
+        #appNav #appSelector .k-group .k-link:hover
+        {
+            color: #3f8ac4;
+            background-color:#EAEAEA; /*#f0f0f0;*/    
+        }
+
+        #appNav, #appNav .tab
+        { 
+            background-color: transparent;
+            color:#8c8c8c;                                                  /*@headerTopBar-textColor*/ 
+        }
+
+        #appNav .tab-active, #appNav .tab:hover
+        { 
+            background-color: transparent;
+            color:#ffffff;                                                  /*@headerTopBar-active-textColor*/
+            font-weight: normal;
+        }
+
+        #header-wrapper #appNav .tab-active + .arrow.bottom, #header-wrapper #appNav .tab:hover + .arrow.bottom
+        {
+            display: none;
+        }
+
+        #header-wrapper #appNav .arrow.bottom, #header-wrapper li.expanded > .arrow 
+        {
+            border-top-color: black;            /*@headerTopBar-bgColor*/
+            margin-top: 7px;
+            top: 26px;    
+        }
+
+        /* Top Right Menu Layout CSS */
+        #topNav, #topNav .tab
+        {
+            border-style:none;
+            background-color: transparent;      /*@topMenu-bgColor: transparent*/
+            color:#8c8c8c;                      /*@main-textColor: #ffffff*/
+        }
+
+        #topNav .k-menu .k-item {
+            display: block !important;
+        }
+
+        #OrgMenu 
+        {
+            margin: 0 5px; 
+        }
+
+        #OrgMenu .k-menu .k-arrow-down {
+            margin-right: 0;
+        }
+
+        #topNav .tab-active, #topNav .tab:hover:not(ul)
+        {
+            border-style:none;
+            background-color: transparent;      /*@topMenu-bgColor: transparent*/
+            color: #d1dce5;
+        } 
+
+        #topNav ul.tab:hover {
+            background:none;
+        }
+
+        #topNav #OrganizationSelector span, #topNav #OptionsSelector span {
+            color: #CCCCCC/*#b3b3b3*/;
+            font-size: 13px;
+        }
+
+        #topNav #OrganizationSelector span.k-hover, #topNav #OptionsSelector span.k-hover {
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        #topNav #OrganizationSelector a.k-hover, #topNav #OptionsSelector a.k-hover {
+            background-color: #EAEAEA;
+            color: #3f8ac4;
+        }
+
+        #topNav #OrganizationSelector a, #topNav #OptionsSelector a {
+            background-color: transparent;
+            color: #656565; /*#8c8c8c;*/
+            font-size: 13px;
+        }
+
+        #topNav #OptionsSelector a 
+        {
+            font-size: 11.7px;
+        }
+
+
+        #topNav #OrganizationSelector span, #topNav #LanguageOptionsSelector span {
+            color: #CCCCCC/*#b3b3b3*/;
+            font-size: 13px;
+        }
+
+        #topNav #OrganizationSelector span.k-hover, #topNav #LanguageOptionsSelector span.k-hover {
+            background-color: #EAEAEA;
+            color: #ffffff;
+        }
+
+        #topNav #OrganizationSelector a.k-hover, #topNav #LanguageOptionsSelector a.k-hover {
+            background-color: #EAEAEA;
+            color: #3f8ac4;
+        }
+
+        #topNav #OrganizationSelector a, #topNav #LanguageOptionsSelector a {
+            background-color: transparent;
+            color: #656565; /*#8c8c8c;*/
+            font-size: 13px;
+        }
+
+        #topNav #LanguageOptionsSelector a 
+        {
+            font-size: 11.7px;
+        }
+
+        /* App Suite Objects Layout CSS */
+        #appsuite-nav .tab, #appNav .tab
+        {
+            background-color: transparent;      /*@mainTabs-bgColor: #242c32 (black)*/
+            color: #8c8c8c;                     /*@mainTabs-textColor: #dbdbdb (lightgrey)*/
+        }
+
+        #headerTopRow #appsuite-nav .tab, #appNav .tab
+        {
+            background-color: transparent;      /*@mainTabs-bgColor: #242c32 (black)*/
+            color: #CCCCCC;                     /*@mainTabs-textColor: #dbdbdb (lightgrey)*/
+        }
+
+        #appsuite-nav .tab-active, #appsuite-nav .tab:hover
+        {    
+            background-color: transparent;      /*@main-color: #3678af (blue)*/    
+            color:#1d1d1d;                      /*@main-textColor: #ffffff*/
+            font-weight: normal; 
+        }
+
+
+        #header-wrapper #appsuite-nav .arrow.bottom
+        {    
+            bottom: 0px;
+            display: none;
+            position: absolute;    
+            left: 50%;
+            margin-left: -5px;
+        }
+
+        #header-wrapper #appsuite-nav .arrow.bottom, #header-wrapper li.expanded > .arrow {
+            border-top-color: transparent;
+        }
+
+        #header-wrapper #appsuite-nav .tab-active > .arrow.bottom, #header-wrapper #appsuite-nav .tab:hover > .arrow.bottom {
+            display: block;
+        }
+
+        #appsuite-nav li {
+            position: relative;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        #header-wrapper #appsuite-nav .arrow.bottom {
+            border-bottom-color: #8c8c8c; /*@headerTopBar-textColor:grey*/
+        }
+
+        #appsuite-nav #ObjectSelector > li > .k-hover {
+            color: #1d1d1d; /*@headerTopBar-bgColor: black*/
+        }
+
+        #appsuite-nav #ObjectSelector .k-group .k-link, #appsuite-nav #ObjectSelector .k-group .k-link:hover {
+            color: #656565;
+            background-color: #ffffff;
+            min-width: 130px;
+            max-width: 130px;
+            width: 120px !important; /*width: 100px;*/
+            border-color: #d3d3d3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-left: -10px;
+            padding-right: 15px;
+        }
+
+        #appsuite-nav #ObjectSelector .k-group .k-link:hover
+        {
+            color: #3f8ac4;
+            background-color: #EAEAEA;
+        }
+
+        #appsuite-nav #ObjectSelector .k-group /*, #appsuite-nav #ObjectSelector .t-group:hover*/ {
+            display: none;
+            width: 130px!important;
+            top: 6px;
+            left: 18px;
+            padding-right: 16px;
+        }
+
+        /* Header Layout */
+        #headerTopRow{/*background:url(//apps.perfectmind.com/content/images/Site/header-topnav-bg-rpt.jpg)  top left repeat-x !important;
+                      border-bottom:3px solid #9a9c9e; height:32px !important;*/ font-size:13px;font-weight:bold;background-color: black;}
+        /*#appsuite-nav .arrow.bottom{bottom:-15px !important;}*/
+        /*#appSuiteCell{width:995px !important;}*/
+        /*#header-table #appSuiteContainer{width: 995px !important;}*/
+        .Company-logo{padding:10px 0px;}
+        #header-wrapper, #headerTopRow{border-bottom:1px solid #b9b9b9;}
+        #appNav li{height:30px !important;line-height:30px !important;}
+        #headerTopRow #appNav #appSelector .k-link { font-size: 100% !important;}
+        #headerTopRow #appNav .k-link { font-weight:bold; color:#CCCCCC;}
+        #appNav .k-link { font-weight:bold; color: #8c8c8c;}
+        #appNav .tab-active, #appNav .tab:hover, #appNav .k-link:hover{font-weight:bold;color: #ffffff;}
+
+        /* Left Side Panel Layout CSS */
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects{}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem{font-size:12px;font-weight:bold;margin-right:10px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a{ background-color: #ebebeb;color:#8c8c8c;padding-right:12px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a:hover{background-color:#edf4fa/*#4e92c8*/;color:#333/*#fff*/;padding-right:12px;}
+
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem img{display:none;}
+
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a div{display:block !important;float:left;width:120px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a span{display:block;float:right;width:40px;text-align:right;font-weight:bold;font-size:15px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a:hover span{color:#333/*#fff*/ !important;}
+
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected{font-size:12px;font-weight:bold;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a{background-color:#edf4fa/*#4e92c8*/; color:#333/*#fff*/; background-image:url(//apps.perfectmind.com/content/images/Site/sidebar-arrow.gif); background-repeat:no-repeat; background-position:top right;padding-right:22px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a:hover{background-color: #edf4fa/*#4e92c8*/;color:#333/*#fff*/; background-image:url(//apps.perfectmind.com/content/images/Site/sidebar-arrow.gif); background-repeat:no-repeat; background-position:top right;padding-right:22px;}
+
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected img{display:none;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a div{display:block !important;float:left;width:120px;padding-left: 8px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a span{padding-right: 4px; color:#333/*#fff*/ !important;display:block;float:right;width:40px;text-align:right;font-weight:bold;font-size:15px;}
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a:hover span{color:#333/*#fff*/ !important;}
+
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a, #relatedObjects .relatedObjectListItemSelected a {border-radius: 3px 3px 3px 3px;}
+        .layout-leftpanel-main .left-panel table tbody #primaryObjectItem .box-tab-caption-active, #primaryObjectItem .box-tab-caption {border-radius: 3px 0 0 3px;}
+
+        .layout-leftpanel-main #currentViewPopup tr td div.tab-active { background-color: #edf4fa; color: #333;}
+        .layout-leftpanel-main #currentViewPopup tr td div.tab { background-color: #ebebeb; color: #8c8c8c;}
+
+        /* Layout changes */
+        .viewDropdownItem{padding-left:0px !important;}
+        #currentViewPopup .tab{padding-left:11px !important;border-radius:0px;}
+        #currentViewPopup .tab-active{padding-left:11px !important;border-radius:0px;}
+        .Company-logo{margin-left: 34px !important;}
+        #header-table td{padding:0px !important;}
+        #globalSearchCell{padding-right:0px !important;}
+        #globalSearchCell img{margin-right:26px;margin-bottom:10px;}
+        #headerTopRow > div{margin-left:34px !important;margin-right:24px !important;}
+        #system-buttons-container button, #system-buttons-container .pm-button{border:none !important;	background-color:#fff !important; }
+        #topNav {padding:0px !important;}
+        #topNav #Options-Setup{padding-right:0px !important;}
+
+        #appNav .first{padding-left:0px !important;}
+        #appNav .first a{padding-left:0px !important;}
+        #newObject.button, #multipleDeleteButton.button{border: none !important;width: 75px;}
+
+        #header-table #appSuiteContainer {
+            bottom: 0;
+            left: 0;
+            width: 605px;
+        }
+        /*#header-wrapper, #headerTopRow {border-bottom: 1px solid #8c8c8c !important;}*/
+        #appsuite-nav #object-tab-more{padding:0px !important;}
+        /*#headerTopRow {background-color: #000 !important;} makes the line under the header */
+        #headerTopRow {border:none;}
+        #appsuite-nav li{padding-bottom:5px;}
+        #button-view-find-container{margin-right:2px !important;position: relative;}
+        #appsuite-nav #ObjectSelector .k-group .k-link, #appsuite-nav #ObjectSelector .k-group .k-link:hover {min-width:128px !important;}
+        .hideShowGlobalSearchTable {right: 20px !important;}
+        .contact-subsection-header h3.box-splitter{background-color:#f5f5f5 !important;color:#050505;}
+
+        /* Left Panel changes */
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItemSelected a {
+            background-color: none !important;
+            background-image: none !important;
+            background-position: none !important;
+            background-repeat: no-repeat !important;
+            color: none !important;
+            /* padding-right: 22px !important; */
+        }
+
+        .clearme{height:0px !important;clear:both;font-size:0px;display:block;} 
+
+        /* -----  remove the gray from teh menu ----------  */
+        .layout-leftpanel-main .left-panel table tbody #relatedObjects .relatedObjectListItem a {
+            background-color: #FFFFFF;
+        }
+
+        /* -----  Menu left hand side office profile ------  */
+        .box-tab-caption-active{
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        .box-tab-caption{
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        #DetailPage_leftside_table li{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+        }
+        #DetailPage_leftside_table a{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        #DetailPage_leftside_table a span{
+            padding-right:10px !important;
+        }
+        #relatedObjects li{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+        }
+        #relatedObjects a{
+            padding-right:0px !important;
+            margin-right: 0px !important;
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        #relatedObjects .tab-active a{
+            padding-left:0px !important;
+        }
+        #relatedObjects .tab-active  div{
+            padding-left:0px !important;
+        }
+        #relatedObjects a span{
+            padding-right:10px !important;
+        }
+
+        /* ----- drop down menu fix ------  */
+        #tblCurrentViewPopup  .viewDropdownItemEdit {
+            width: 1px !important;
+        }
+        #tblCurrentViewPopup div{
+            padding-left:10px !important;  
+        }
+        #currentViewPopup table {
+            min-width:156px !important;
+            overflow:hidden;
+        }
+        .t-widget.t-grid .t-header{
+            border-bottom:1px solid #cccccc !important;
+            border-top:1px solid #cccccc !important;
+        }
+        .t-widget.t-grid .t-header:first-child {
+            border-radius: 0px 0px 0px 0px !important;
+        }
+
+        /* ---------------------------------------------Other css*/
+
+        .objectPageLayoutSection {
+            margin-top: 20px;
+        }
+        .box-tab-caption{background-color:#95b3cc;color:#242c32} 
+        .box-tab-caption-active{background-color:#3678af}
+        #primaryObjectItem .box-tab-caption-active {
+            background-color: #edf4fa;
+        }
+
+        /* View Left side and drop Down */
+        .viewDropdownItem .tab-active table  tbody tr td:first-child {
+            color: black;
+        }
+
+        /* Settings */
+        .tab-active a, .tab a{
+            color: black;
+        }
+        .tab a {
+            color: black /*!important*/;
+        }
+
+        /*Views Left Panel*/
+        .layout-leftpanel-main #currentViewPopup tr td div.tab {
+            background-color: #FFFFFF !important;
+        }
+        #frmCurrentRecord2  #currentViewPopup tr td div.tab {
+            background-color: #FFFFFF !important;
+        }	
+        .no-right-border-radius, .layout-leftpanel-main .tab-active, .left-panel .box-tab-caption, .left-panel .box-tab-caption-active, .left-side-label {
+            border-radius: 0px 0px 0px 0px;
+        }
+        .medium-border-radius, .tab, .tab-active, #topNav, #viewId, .search-box, .t-widget.t-grid .t-grid-header, .t-widget.t-grid .t-grid-footer, .t-widget.t-grid .t-grid-header th:first-child, .t-widget.t-grid .t-grid-bottom {
+            border-radius: 0px 0px 0px 0px;
+        }
+        .box-tab-caption:hover a {
+            color: black;
+        }
+        .box-tab-caption {
+            background-color: transparent;
+        }
+        .t-widget.t-grid th.t-header {
+            /*height: 25px;*/
+        }
+        .t-widget.t-grid .t-header span, .t-widget.t-grid .t-header a {
+            color: black;
+        }
+
+        /*Views Left Panel*/
+        #frmCurrentRecord2 #currentViewPopup {
+            font-size: 0.8em;
+        }
+
+        #setupView #setup-object .box-splitter { display: none; height: 25px;}
+        #setupView #setup-object .subsection-content {padding-top: 0px; margin-top: 10px;}
+
+        #divDocumentFolders .tab-active, .left-panel .tab-active, .left-panel .tab-active a {
+            color: #333333;
+            background-color: #EDF4FA; 
+        }
+
+        #divDocumentFolders .tab, .left-panel .tab, .left-panel .tab a {
+            color: #8C8C8C;
+            background-color: transparent;
+        }
+
+        #divDocumentFolders .tab:hover, .left-panel .tab:hover, .left-panel .tab a:hover {
+            opacity: 1.0 !important;
+        }
+
+        #header-wrapper {  width:100%; }
+        #footer-wrapper {  min-width:970px; position: relative; bottom: 0px;}
+
+        .header-for-member #topNav #Options-Setup {
+            margin-top: 0;
+        }
+        .header-top-row .header-for-member #topNav #Options-Setup {
+            margin-top: -10px;
+        }
+
+        .body:not(.newKendoMenu) #topNav {
+            min-height: 55px;
+        }
+
+    </style>
