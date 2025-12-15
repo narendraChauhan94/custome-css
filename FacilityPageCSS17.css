@@ -606,5 +606,19 @@
 :root {
     --g1: #0066ff;
 }
+.facility-items-header {
+    display: flex !important;
+    flex-wrap: wrap !important;      /* allow next line */
+}
 
+.facility-items-header h1 {
+    width: 100% !important;          /* first row */
+}
+
+.facility-items-header .back-action {
+    width: 100% !important;          /* second row */
+    display: flex !important;
+    align-items: center !important;
+    margin-top: 8px !important;      /* spacing between title & back */
+}
 </style>
