@@ -1,115 +1,393 @@
-/* =========================================================
-   FACILITY LIST – FINAL PRODUCTION FIX
-   ========================================================= */
+/* ===========================================
+   FACILITY LIST - CSS STYLES
+   Matches the provided HTML structure exactly
+   =========================================== */
 
-/* Ensure Kendo list behaves */
-#facilityListPage #listView .k-listview-content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
+/* CSS Variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #d946ef 100%);
+  --primary-color: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --text-dark: #1f2937;
+  --text-muted: #6b7280;
+  --bg-white: #ffffff;
+  --bg-light: #f9fafb;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
 }
 
-/* Facility card */
-#facilityListPage #listView .facility-item {
-    display: grid !important;
-    grid-template-columns: 260px 1fr 160px;
-    grid-template-rows: auto auto;
-    gap: 20px 24px !important;
-
-    padding: 24px !important;
-    background: #ffffff !important;
-    border-radius: 16px !important;
-
-    box-shadow:
-        0 6px 16px rgba(0,0,0,0.06),
-        0 20px 40px rgba(0,0,0,0.08) !important;
-
-    align-items: center !important;
+/* Base Container */
+.facility-list {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Image */
-#facilityListPage #listView .facility-image {
-    grid-row: 1 / span 2 !important;
-    width: 100% !important;
-    height: 170px !important;
-    object-fit: cover !important;
-    border-radius: 14px !important;
+/* Header Section with Gradient Banner */
+.facility-items-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-/* Details */
-#facilityListPage #listView .facility-details {
-    margin: 0 !important;
+.results-header {
+  background: var(--primary-gradient);
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 40px 50px;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  letter-spacing: -0.02em;
 }
 
-#facilityListPage #listView .facility-details h2 {
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    color: #111827 !important;
-    margin-bottom: 8px !important;
+/* Back Button */
+.back-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-gradient);
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: fit-content;
 }
 
-/* Remove empty description spacing */
-#facilityListPage #listView .facility-description:empty {
-    display: none !important;
+.back-action:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Action column */
-#facilityListPage #listView .desktop-details-wrapper {
-    grid-column: 3 !important;
-    grid-row: 1 !important;
-
-    position: static !important;
-    display: flex !important;
-    justify-content: center !important;
+.back-img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
 }
 
-/* Choose button */
-#facilityListPage #listView .desktop-details-wrapper .pm-confirm-button {
-    width: 140px !important;
-    padding: 12px 0 !important;
-    border-radius: 12px !important;
+.back-url {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Pills */
-#facilityListPage #listView .facility-detail-pills {
-    grid-column: 3 !important;
-    grid-row: 2 !important;
-
-    position: static !important;
-    margin: 0 !important;
-
-    display: flex !important;
-    justify-content: center !important;
+.back-url:focus {
+  outline: none;
 }
 
-/* Pill style */
-#facilityListPage #listView .detail-pill {
-    background: #f1f5f9 !important;
-    color: #374151 !important;
-    font-size: 13px !important;
-    padding: 6px 14px !important;
-    border-radius: 999px !important;
-    border: 1px solid #e5e7eb !important;
+/* Results Count */
+.results-count {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
-/* =========================================================
-   TABLET & MOBILE
-   ========================================================= */
-@media (max-width: 1024px) {
-    #facilityListPage #listView .facility-item {
-        grid-template-columns: 1fr !important;
-        text-align: center !important;
-    }
+/* ListView Container */
+.k-listview {
+  border: none !important;
+  background: transparent !important;
+}
 
-    #facilityListPage #listView .facility-image {
-        grid-row: auto !important;
-        height: 180px !important;
-    }
+.k-listview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
-    #facilityListPage #listView .desktop-details-wrapper,
-    #facilityListPage #listView .facility-detail-pills {
-        grid-column: auto !important;
-        justify-content: center !important;
-        margin-top: 12px !important;
-    }
+/* Facility Card */
+.facility-item {
+  display: grid;
+  grid-template-columns: 280px 1fr auto;
+  grid-template-areas: "image details button" "image pills button";
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 24px;
+}
+
+.facility-item:last-child {
+  border-bottom: none;
+}
+
+/* Facility Image */
+.facility-image {
+  grid-area: image;
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Facility Details */
+.facility-details {
+  grid-area: details;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: start;
+  padding-top: 20px;
+}
+
+.facility-details h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.facility-description {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.facility-location {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.read-more-toggle {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.read-more-toggle:hover {
+  text-decoration: underline;
+}
+
+/* Detail Pills */
+.facility-detail-pills {
+  grid-area: pills;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-self: start;
+}
+
+.detail-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-white);
+  color: var(--text-dark);
+}
+
+.detail-pill.grey {
+  background: var(--bg-white);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+}
+
+/* Choose Button - Desktop */
+.desktop-details-wrapper {
+  grid-area: button;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.pm-confirm-button.desktop-details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-gradient);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.pm-confirm-button.desktop-details:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.35);
+}
+
+.pm-confirm-button.desktop-details:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Hide tablet wrapper on desktop */
+.tablet-details-wrapper {
+  display: none;
+}
+
+/* Loading State */
+.bm-loading-container {
+  text-align: center;
+  padding: 40px;
+}
+
+/* Pager Styles */
+.k-pager-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 20px 0;
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+.k-pager-numbers {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.k-pager-numbers .k-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.k-pager-numbers .k-link:hover {
+  background: var(--bg-light);
+}
+
+.k-pager-numbers .k-link.k-selected {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.k-pager-sizes,
+.k-pager-info {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.k-pager-numbers-wrap select.k-dropdown {
+  display: none;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+  .facility-item {
+    grid-template-columns: 220px 1fr;
+    grid-template-areas: 
+      "image details"
+      "image pills"
+      "image button";
+  }
+
+  .facility-image {
+    width: 220px;
+    height: 160px;
+  }
+
+  .desktop-details-wrapper {
+    justify-content: flex-start;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 640px) {
+  .facility-list {
+    padding: 0 16px;
+  }
+
+  .results-header {
+    font-size: 1.5rem;
+    padding: 30px 24px;
+    border-radius: var(--radius-md);
+  }
+
+  .facility-item {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "image"
+      "details"
+      "pills"
+      "button";
+    gap: 16px;
+  }
+
+  .facility-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .facility-details {
+    padding-top: 0;
+  }
+
+  .desktop-details-wrapper {
+    display: none;
+  }
+
+  .tablet-details-wrapper {
+    display: block;
+  }
+
+  .pm-confirm-button.tablet-details {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-gradient);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .k-pager-wrap {
+    justify-content: center;
+  }
+}
+
+/* Focus States for Accessibility */
+.facility-item:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+}
+
+.back-action:focus-within {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
