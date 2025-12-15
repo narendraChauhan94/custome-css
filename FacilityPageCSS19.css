@@ -1,34 +1,216 @@
 /* =========================================================
-   FIX: CHOOSE BUTTON POSITION (MATCH FIRST UI)
+   ROOT & BRAND
    ========================================================= */
-
-/* Make card the positioning reference */
-#facilityListPage .facility-list .facility-item {
-    position: relative !important;
+:root {
+    --brand-gradient: linear-gradient(
+        90deg,
+        #5b4bdf 0%,
+        #9c4dcc 50%,
+        #e04b9a 100%
+    );
 }
 
-/* Right action column – stable & visible */
-#facilityListPage .facility-list .desktop-details-wrapper {
+#facilityListPage {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER – MULTI PURPOSE ROOM
+   ========================================================= */
+#facilityListPage .facility-list .results-header {
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+
+    padding: 18px 24px !important;
+    margin: 16px 0 28px !important;
+
+    border-radius: 18px !important;
+    background: var(--brand-gradient) !important;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+#facilityListPage .back-action {
+    margin: 12px 0 10px !important;
+}
+
+#facilityListPage a.back-url {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    padding: 10px 18px !important;
+    border-radius: 12px !important;
+
+    background: var(--brand-gradient) !important;
+    color: #fff !important;
+
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* =========================================================
+   SEARCH / FILTER PANEL (SAFE – NO LAYOUT CHANGE)
+   ========================================================= */
+#facilityListPage .search-box-wrapper {
+    padding: 20px !important;
+    background: #fff !important;
+    border-radius: 16px !important;
+}
+
+#facilityListPage .filter-panel-wrapper {
+    width: 20% !important;
+    padding: 14px !important;
+}
+
+#facilityListPage .filter-panel {
+    background: #fff !important;
+    border-radius: 18px !important;
+    padding: 22px !important;
+    box-shadow: 0 18px 36px rgba(0,0,0,.1) !important;
+}
+
+/* =========================================================
+   CHECK AVAILABILITY BUTTON
+   ========================================================= */
+#facilityListPage .availability-search .search-btn {
+    background: var(--brand-gradient) !important;
+    color: #fff !important;
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    height: 46px !important;
+}
+
+/* =========================================================
+   FACILITY CARD
+   ========================================================= */
+#facilityListPage .facility-list .facility-item {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    padding: 20px 24px !important;
+    margin-bottom: 16px !important;
+
+    border-radius: 16px !important;
+    background: #fff !important;
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,.06),
+        0 24px 40px rgba(0,0,0,.08) !important;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+#facilityListPage .facility-list .facility-image {
+    width: 260px !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    margin-right: 24px !important;
+}
+
+/* =========================================================
+   DETAILS
+   ========================================================= */
+#facilityListPage .facility-details {
+    flex: 1 !important;
+}
+
+#facilityListPage .facility-details h2 {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+}
+
+/* =========================================================
+   ✅ CHOOSE BUTTON – HARD FORCE (NO MORE BLUE)
+   ========================================================= */
+#facilityListPage .pm-confirm-button,
+#facilityListPage .pm-confirm-button.desktop-details,
+#facilityListPage .tablet-details {
+    background: var(--brand-gradient) !important;
+    color: #fff !important;
+    border-radius: 14px !important;
+
+    min-width: 120px !important;
+    padding: 12px 20px !important;
+
+    font-weight: 600 !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,.18) !important;
+}
+
+#facilityListPage .pm-confirm-button:hover {
+    opacity: .9 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Position Choose button */
+#facilityListPage .desktop-details-wrapper {
     position: absolute !important;
     right: 24px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-
-    display: flex !important;
-    align-items: center !important;
 }
 
-/* School Room pill BELOW the button */
-#facilityListPage .facility-list .facility-item .facility-detail-pills {
+/* =========================================================
+   SCHOOL ROOM TAG
+   ========================================================= */
+#facilityListPage .facility-detail-pills {
     position: absolute !important;
     right: 24px !important;
-    top: calc(50% + 36px) !important;
-
-    margin: 0 !important;
+    top: calc(50% + 42px) !important;
 }
 
-/* Ensure button never collapses */
-#facilityListPage .facility-list .desktop-details-wrapper .desktop-details {
-    width: 140px !important;
-    white-space: nowrap !important;
+#facilityListPage .detail-pill {
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+    border-radius: 999px !important;
+}
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+#facilityListPage .k-pager-wrap .k-link.k-selected {
+    background: var(--brand-gradient) !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+}
+
+/* =========================================================
+   KILL PERFECTMIND DEFAULT BLUE
+   ========================================================= */
+#facilityListPage .k-button,
+#facilityListPage .pm-confirm-button {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* =========================================================
+   MOBILE SAFE
+   ========================================================= */
+@media (max-width: 1024px) {
+    #facilityListPage .facility-list .facility-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    #facilityListPage .desktop-details-wrapper,
+    #facilityListPage .facility-detail-pills {
+        position: static !important;
+        transform: none !important;
+        margin-top: 12px !important;
+    }
 }
