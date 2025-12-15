@@ -1,9 +1,8 @@
 <style type="text/css">
 /* =========================================================
-   NUCLEAR OVERRIDE - MAXIMUM SPECIFICITY
+   PREMIUM FACILITY BOOKING UI - PURPLE GRADIENT THEME
    ========================================================= */
 
-/* CSS Variables */
 :root {
     --primary-gradient: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%);
     --primary-purple: #7c3aed;
@@ -13,371 +12,348 @@
     --border-color: #e5e7eb;
     --bg-light: #f5f5f7;
     --bg-white: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.15);
+    --shadow-lg: 0 8px 24px rgba(124, 58, 237, 0.2);
 }
 
-/* Force Override Any Existing Styles */
-html body * {
+* {
     box-sizing: border-box !important;
 }
 
-/* NUCLEAR OVERRIDE - Make header visible */
-html body div#facilityListPage .facility-items-header,
-html body #facilityListPage .facility-items-header,
-html body .facility-items-header,
-#facilityListPage .facility-items-header,
-.facility-items-header {
-    display: flex !important;
-    flex-direction: column !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    margin-bottom: 28px !important;
-}
-
-html body div#facilityListPage .results-header,
-html body #facilityListPage .results-header,
-html body .results-header,
-#facilityListPage .results-header,
-.results-header,
-h1.results-header {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 34px !important;
-    font-weight: 500 !important;
-    color: #ffffff !important;
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
-    padding: 26px 36px !important;
-    margin: 0 0 20px 0 !important;
-    border-radius: 16px !important;
-    text-align: center !important;
-    width: 100% !important;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2) !important;
-}
-
-html body div#facilityListPage .back-action,
-html body #facilityListPage .back-action,
-html body .back-action,
-#facilityListPage .back-action,
-.back-action {
-    display: inline-flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    align-items: center !important;
-    gap: 8px !important;
-    margin: 0 0 20px 0 !important;
-    padding: 11px 20px !important;
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
-    border-radius: 8px !important;
-    width: fit-content !important;
-}
-
-html body div#facilityListPage .results-count,
-html body #facilityListPage .results-count,
-html body .results-count,
-#facilityListPage .results-count,
-.results-count {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: #7c3aed !important;
-    font-size: 17px !important;
-    font-weight: 600 !important;
-}
-
 /* =========================================================
-   PAGE LAYOUT - NUCLEAR OVERRIDE
+   PAGE CONTAINER
    ========================================================= */
-html body div#facilityListPage,
-html body #facilityListPage,
-body #facilityListPage,
-div#facilityListPage {
+#facilityListPage {
     display: flex !important;
     flex-direction: row !important;
     gap: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
-    background: #f5f5f7 !important;
+    background: var(--bg-light) !important;
     width: 100% !important;
     min-height: 100vh !important;
 }
 
-html body div#facilityListPage > .filter-panel-background,
 #facilityListPage > .filter-panel-background {
     display: none !important;
 }
 
 /* =========================================================
-   SIDEBAR - NUCLEAR OVERRIDE
+   FILTER SIDEBAR
    ========================================================= */
-html body div#facilityListPage form.filter-panel-wrapper,
-html body #facilityListPage #filterPanelForm,
-html body #filterPanelForm,
-body #filterPanelForm,
 #facilityListPage form.filter-panel-wrapper,
 #facilityListPage #filterPanelForm {
     width: 320px !important;
     min-width: 320px !important;
     max-width: 320px !important;
     flex-shrink: 0 !important;
-    background: #ffffff !important;
-    border-right: 1px solid #e5e7eb !important;
+    background: var(--bg-white) !important;
+    border-right: 1px solid var(--border-color) !important;
     padding: 32px 28px 40px 28px !important;
     height: 100vh !important;
     position: sticky !important;
     top: 0 !important;
     display: block !important;
+    overflow-y: auto !important;
 }
 
-/* Search Box Wrapper */
-html body #facilityListPage #search-box-wrapper,
-html body #search-box-wrapper,
-body #search-box-wrapper,
-#facilityListPage #search-box-wrapper,
-#filterPanelForm #search-box-wrapper {
+/* Search Box */
+#facilityListPage #search-box-wrapper {
     display: block !important;
-    visibility: visible !important;
     margin-bottom: 24px !important;
+    position: relative !important;
 }
 
-/* Search Input */
-html body #facilityListPage #search-box-wrapper .search-box,
-html body #search-box-wrapper .search-box,
-#facilityListPage .search-box-wrapper .search-box {
+#facilityListPage #search-box-wrapper .search-box {
     width: 100% !important;
     padding: 13px 40px 13px 14px !important;
     border-radius: 8px !important;
-    border: 1px solid #e5e7eb !important;
+    border: 1px solid var(--border-color) !important;
     font-size: 14px !important;
     background: #fafafa !important;
+    transition: all 0.2s ease !important;
 }
 
-#facilityListPage #search-box-wrapper .search-box:focus,
-body #search-box-wrapper .search-box:focus {
-    border-color: #7c3aed !important;
+#facilityListPage #search-box-wrapper .search-box:focus {
+    border-color: var(--primary-purple) !important;
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
-    background: #ffffff !important;
+    background: var(--bg-white) !important;
+    outline: none !important;
 }
 
-#facilityListPage #search-box-wrapper .fa-search,
-body #search-box-wrapper .fa-search {
+#facilityListPage #search-box-wrapper .fa-search {
     position: absolute !important;
     right: 14px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    color: #7c3aed !important;
+    color: var(--primary-purple) !important;
+    cursor: pointer !important;
 }
 
-/* Date Picker */
-#facilityListPage .availability-search,
-body .availability-search {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+/* Date Picker & Nights */
+#facilityListPage .availability-search .base-block {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
 }
 
-#facilityListPage .availability-search .k-datepicker,
-body .availability-search .k-datepicker {
+#facilityListPage .availability-search input.datepicker-input,
+#facilityListPage .availability-search input[name="facilityFilter.NightsCount"] {
     width: 100% !important;
-}
-
-#facilityListPage .availability-search .k-picker-wrap,
-body .availability-search .k-picker-wrap {
+    padding: 12px !important;
     border-radius: 8px !important;
-    border: 1px solid #e5e7eb !important;
+    border: 1px solid var(--border-color) !important;
     background: #fafafa !important;
-    height: 46px !important;
+    font-size: 14px !important;
 }
 
 /* Check Availability Button */
-html body #facilityListPage .availability-search .search-btn,
-html body #facilityListPage #filterPanelForm .pm-confirm-button,
-html body .availability-search .search-btn,
-#facilityListPage .availability-search .search-btn,
-#facilityListPage #filterPanelForm .pm-confirm-button,
-body .availability-search .search-btn,
-body #filterPanelForm .pm-confirm-button {
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
+#facilityListPage .availability-search .pm-confirm-button.search-btn {
+    background: var(--primary-gradient) !important;
     border: 0 !important;
     border-radius: 8px !important;
-    color: #ffffff !important;
+    color: var(--bg-white) !important;
     font-weight: 600 !important;
     font-size: 15px !important;
     padding: 13px 20px !important;
     width: 100% !important;
-    margin-top: 20px !important;
+    margin-top: 8px !important;
     cursor: pointer !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
-    text-align: center !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.2s ease !important;
 }
 
-#facilityListPage .availability-search .search-btn:hover,
-#facilityListPage #filterPanelForm .pm-confirm-button:hover,
-body .availability-search .search-btn:hover {
-    opacity: 0.92 !important;
+#facilityListPage .availability-search .pm-confirm-button.search-btn:hover {
     transform: translateY(-1px) !important;
+    box-shadow: var(--shadow-md) !important;
 }
 
-/* Filter Panel Section */
-#facilityListPage .filter-panel,
-body .filter-panel {
-    border-top: 1px solid #e5e7eb !important;
+/* Filter Sections */
+#facilityListPage .filter-panel {
+    border-top: 1px solid var(--border-color) !important;
     padding-top: 24px !important;
     margin-top: 28px !important;
 }
 
-#facilityListPage .filter-panel fieldset,
-body .filter-panel fieldset {
+#facilityListPage .filter-panel fieldset {
     border: 0 !important;
     padding: 0 0 20px !important;
     margin: 0 0 20px 0 !important;
     border-bottom: 1px solid #f3f4f6 !important;
 }
 
-#facilityListPage .filter-panel legend,
-body .filter-panel legend {
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    color: #111827 !important;
-    margin-bottom: 16px !important;
-    padding-left: 12px !important;
-    position: relative !important;
+#facilityListPage .filter-panel legend {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--primary-purple) !important;
+    margin-bottom: 14px !important;
+    background: #faf5ff !important;
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+    border-left: 4px solid var(--primary-purple) !important;
+    width: 100% !important;
+    display: block !important;
 }
 
-#facilityListPage .filter-panel legend::before,
-body .filter-panel legend::before {
-    content: '' !important;
-    position: absolute !important;
-    left: -28px !important;
-    top: -2px !important;
-    height: 24px !important;
-    width: 4px !important;
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
-    border-radius: 0 2px 2px 0 !important;
+#facilityListPage .filter-panel .filter ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-#facilityListPage .filter-panel input[type="checkbox"],
-body .filter-panel input[type="checkbox"] {
+#facilityListPage .filter-panel .filter ul li {
+    margin: 10px 0 !important;
+}
+
+#facilityListPage .filter-panel .filter ul li label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    color: #374151 !important;
+    padding: 6px 0 !important;
+    transition: color 0.2s ease !important;
+}
+
+#facilityListPage .filter-panel .filter ul li label:hover {
+    color: var(--primary-purple) !important;
+}
+
+#facilityListPage .filter-panel input[type="checkbox"] {
     width: 18px !important;
     height: 18px !important;
-    accent-color: #7c3aed !important;
+    accent-color: var(--primary-purple) !important;
     cursor: pointer !important;
 }
 
 /* =========================================================
-   MAIN CONTENT - NUCLEAR OVERRIDE
+   MAIN CONTENT AREA
    ========================================================= */
-html body div#facilityListPage .facility-list,
-html body #facilityListPage .facility-list,
-body #facilityListPage .facility-list,
-#facilityListPage .facility-list,
-div#facilityListPage > .facility-list {
+#facilityListPage .facility-list {
     flex: 1 !important;
     min-width: 0 !important;
     padding: 32px 40px 40px 40px !important;
-    background: #f5f5f7 !important;
+    background: var(--bg-light) !important;
+}
+
+/* Header Section */
+.facility-items-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 28px !important;
+    width: 100% !important;
+}
+
+.results-header,
+h1.results-header {
+    display: block !important;
+    font-size: 34px !important;
+    font-weight: 600 !important;
+    color: var(--bg-white) !important;
+    background: var(--primary-gradient) !important;
+    padding: 26px 36px !important;
+    margin: 0 !important;
+    border-radius: 16px !important;
+    text-align: center !important;
+    box-shadow: var(--shadow-md) !important;
+    flex: 1 !important;
+    margin-right: 20px !important;
+}
+
+.back-action {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 12px 24px !important;
+    background: var(--primary-gradient) !important;
+    border-radius: 10px !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.back-action:hover {
+    transform: translateX(-3px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.back-action .back-img {
+    filter: brightness(0) invert(1) !important;
+    width: 18px !important;
+    height: 18px !important;
+    display: block !important;
+}
+
+.back-action .back-url {
+    color: var(--bg-white) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+
+/* Results Count */
+.results-count,
+#results-count {
+    display: block !important;
+    color: var(--primary-purple) !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
 }
 
 /* =========================================================
-   FACILITY CARDS - NUCLEAR OVERRIDE
+   FACILITY CARDS
    ========================================================= */
-html body div#facilityListPage #listView,
-html body #facilityListPage #listView,
-body #facilityListPage #listView,
-#facilityListPage #listView,
-div#listView,
-#listView {
-    background: transparent !important;
-    border: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
+#facilityListPage #listView {
     display: block !important;
-    visibility: visible !important;
-}
-
-html body div#facilityListPage #listView .k-listview-content,
-html body #listView .k-listview-content,
-body #listView .k-listview-content,
-#facilityListPage #listView .k-listview-content,
-.k-listview-content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 18px !important;
-    padding: 0 !important;
-    visibility: visible !important;
     width: 100% !important;
 }
 
-/* FACILITY CARD - MAXIMUM OVERRIDE */
-html body div#facilityListPage #listView .facility-item,
-html body #listView .facility-item,
-body #listView .facility-item,
-#facilityListPage #listView .facility-item,
-div#listView .facility-item,
-.facility-item[data-facilityid],
+/* Individual Card */
 .facility-item {
     display: grid !important;
-    grid-template-columns: 220px 1fr 160px !important;
+    grid-template-columns: 230px 1fr 170px !important;
     grid-template-rows: auto auto !important;
     grid-template-areas: 
-        "image title button"
-        "image tag button" !important;
-    align-items: start !important;
-    background: #ffffff !important;
-    border-radius: 14px !important;
-    border: 1px solid #e8e8ea !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    padding: 24px !important;
-    column-gap: 24px !important;
-    row-gap: 14px !important;
-    min-height: 180px !important;
+        "image details button"
+        "image details button" !important;
+    gap: 28px !important;
+    background: var(--bg-white) !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: var(--shadow-sm) !important;
+    padding: 28px !important;
+    margin-bottom: 18px !important;
+    transition: all 0.3s ease !important;
 }
 
-/* FACILITY IMAGE - PURPLE BORDER */
-html body div#listView .facility-item .facility-image,
-html body #listView .facility-item .facility-image,
-body #listView .facility-item .facility-image,
-#facilityListPage #listView .facility-item .facility-image,
-div.facility-item .facility-image,
-.facility-item[data-facilityid] .facility-image,
-.facility-item img.facility-image,
-.facility-image {
+.facility-item:hover {
+    box-shadow: var(--shadow-lg) !important;
+    border-color: #c4b5fd !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Facility Image with Purple Border */
+.facility-item .facility-image {
     grid-area: image !important;
-    width: 100% !important;
-    max-width: 220px !important;
-    height: 150px !important;
+    width: 230px !important;
+    height: 180px !important;
     object-fit: cover !important;
-    border-radius: 8px !important;
-    border: 4px solid #7c3aed !important;
+    border-radius: 12px !important;
+    border: 5px solid var(--primary-purple) !important;
+    box-shadow: var(--shadow-md) !important;
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
 }
 
-/* FACILITY TITLE */
-html body div.facility-item .facility-details h2,
-html body .facility-item .facility-details h2,
-#facilityListPage #listView .facility-item .facility-details h2,
-body #listView .facility-item .facility-details h2,
-div.facility-item .facility-details h2,
-.facility-item[data-facilityid] .facility-details h2,
-.facility-details h2 {
+/* Facility Details */
+.facility-item .facility-details {
+    grid-area: details !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.facility-item .facility-details h2 {
     font-size: 22px !important;
     font-weight: 700 !important;
-    color: #111827 !important;
-    margin: 0 0 8px 0 !important;
-    padding: 0 !important;
+    color: var(--text-dark) !important;
+    margin: 0 !important;
     line-height: 1.4 !important;
-    display: block !important;
 }
 
-/* SCHOOL ROOM TAG */
-html body div.facility-item .facility-detail-pills .detail-pill,
-html body .facility-item .facility-detail-pills .detail-pill,
-#facilityListPage #listView .facility-item .facility-detail-pills .detail-pill,
-body #listView .facility-item .facility-detail-pills .detail-pill,
-div.facility-item .facility-detail-pills .detail-pill,
-.facility-item[data-facilityid] .facility-detail-pills .detail-pill,
-.detail-pill {
+.facility-item .facility-description {
+    color: var(--text-gray) !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin: 8px 0 !important;
+}
+
+.facility-item .read-more-toggle {
+    color: var(--primary-purple) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.facility-item .facility-amenities {
+    color: var(--text-gray) !important;
+    font-size: 14px !important;
+}
+
+/* Facility Type Pills */
+.facility-item .facility-detail-pills {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    margin-top: 8px !important;
+}
+
+.facility-item .detail-pill {
     display: inline-block !important;
     background: #f3f4f6 !important;
     color: #4b5563 !important;
@@ -385,71 +361,56 @@ div.facility-item .facility-detail-pills .detail-pill,
     font-weight: 600 !important;
     padding: 8px 20px !important;
     border-radius: 8px !important;
-    margin: 0 8px 0 0 !important;
-    border: 1px solid #e5e7eb !important;
+    border: 1px solid var(--border-color) !important;
 }
 
-/* CHOOSE BUTTON - NUCLEAR OVERRIDE */
-html body div.facility-item .desktop-details-wrapper,
-html body .facility-item .desktop-details-wrapper,
-#facilityListPage #listView .facility-item .desktop-details-wrapper,
-body #listView .facility-item .desktop-details-wrapper,
-div.facility-item .desktop-details-wrapper,
-.facility-item[data-facilityid] .desktop-details-wrapper,
-.desktop-details-wrapper {
+/* =========================================================
+   CHOOSE BUTTON - CRITICAL
+   ========================================================= */
+.facility-item .desktop-details-wrapper {
     grid-area: button !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    grid-row: 1 / span 2 !important;
-    align-self: center !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    grid-row: 1 / -1 !important;
 }
 
-html body div.facility-item .desktop-details-wrapper .pm-confirm-button,
-html body div.facility-item .desktop-details-wrapper .desktop-details,
-html body .facility-item .desktop-details-wrapper .pm-confirm-button,
-html body .facility-item .desktop-details-wrapper .desktop-details,
-#facilityListPage #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
-#facilityListPage #listView .facility-item .desktop-details-wrapper .desktop-details,
-body #listView .facility-item .desktop-details-wrapper .pm-confirm-button,
-body #listView .facility-item .desktop-details-wrapper .desktop-details,
-div.facility-item .desktop-details-wrapper .pm-confirm-button,
-div.facility-item .desktop-details-wrapper .desktop-details,
-.facility-item[data-facilityid] .desktop-details-wrapper .pm-confirm-button,
-.facility-item[data-facilityid] .desktop-details-wrapper .desktop-details,
-.facility-item .desktop-details-wrapper a,
-.desktop-details-wrapper .desktop-details,
-.desktop-details-wrapper .pm-confirm-button,
-.desktop-details,
-.pm-confirm-button {
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
+.facility-item .desktop-details-wrapper .pm-confirm-button,
+.facility-item .desktop-details-wrapper .desktop-details,
+.facility-item .desktop-details-wrapper a {
+    background: var(--primary-gradient) !important;
     border: 0 !important;
-    border-radius: 10px !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    padding: 13px 28px !important;
+    border-radius: 12px !important;
+    color: var(--bg-white) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    padding: 14px 32px !important;
     cursor: pointer !important;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2) !important;
+    box-shadow: var(--shadow-md) !important;
     text-decoration: none !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-width: 100px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    min-width: 130px !important;
+    width: 100% !important;
+    max-width: 170px !important;
+    transition: all 0.2s ease !important;
+    text-align: center !important;
 }
 
-/* Hide unwanted */
-html body .facility-item .facility-location,
-html body .facility-item .tablet-details-wrapper,
-#facilityListPage #listView .facility-item .facility-location,
-#facilityListPage #listView .facility-item .tablet-details-wrapper,
-body #listView .facility-item .facility-location,
-body #listView .facility-item .tablet-details-wrapper,
-.facility-item .tablet-details-wrapper,
+.facility-item .desktop-details-wrapper .pm-confirm-button:hover,
+.facility-item .desktop-details-wrapper .desktop-details:hover,
+.facility-item .desktop-details-wrapper a:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
+}
+
+/* Hide tablet/mobile buttons on desktop */
+.facility-item .tablet-details-wrapper {
+    display: none !important;
+}
+
+/* Hide location text */
 .facility-item .facility-location {
     display: none !important;
 }
@@ -457,22 +418,19 @@ body #listView .facility-item .tablet-details-wrapper,
 /* =========================================================
    PAGINATION
    ========================================================= */
-#facilityListPage .k-pager-wrap,
-body #facilityListPage .k-pager-wrap {
+#facilityListPage .k-pager-wrap {
     background: transparent !important;
     border: 0 !important;
     padding: 24px 0 0 0 !important;
     margin-top: 32px !important;
     display: flex !important;
-    align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
 }
 
-#facilityListPage .k-pager-wrap .k-state-selected,
-body #facilityListPage .k-pager-wrap .k-state-selected {
-    background: linear-gradient(135deg, #7c5cdb 0%, #a855f7 50%, #ec4899 100%) !important;
-    color: #ffffff !important;
+#facilityListPage .k-pager-wrap .k-state-selected {
+    background: var(--primary-gradient) !important;
+    color: var(--bg-white) !important;
     border-radius: 50% !important;
     width: 38px !important;
     height: 38px !important;
@@ -481,45 +439,61 @@ body #facilityListPage .k-pager-wrap .k-state-selected {
     justify-content: center !important;
 }
 
-#facilityListPage .k-pager-wrap .k-link,
-body #facilityListPage .k-pager-wrap .k-link {
+#facilityListPage .k-pager-wrap .k-link {
     border-radius: 50% !important;
     width: 38px !important;
     height: 38px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border: 1px solid #e5e7eb !important;
-    background: #ffffff !important;
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-white) !important;
 }
 
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
 @media (max-width: 1024px) {
-    html body #facilityListPage,
-    body #facilityListPage,
-    div#facilityListPage {
+    #facilityListPage {
         flex-direction: column !important;
     }
 
-    html body #filterPanelForm,
     #facilityListPage form.filter-panel-wrapper,
-    #facilityListPage #filterPanelForm,
-    body #filterPanelForm {
+    #facilityListPage #filterPanelForm {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
         position: relative !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color) !important;
     }
 
-    html body #listView .facility-item,
-    #facilityListPage #listView .facility-item,
-    body #listView .facility-item {
+    .facility-items-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+    }
+
+    .results-header {
+        margin-right: 0 !important;
+    }
+
+    .facility-item {
         grid-template-columns: 1fr !important;
         grid-template-areas: 
             "image"
-            "title"
-            "tag"
+            "details"
             "button" !important;
-        gap: 16px !important;
+    }
+
+    .facility-item .facility-image {
+        width: 100% !important;
+        height: 250px !important;
+    }
+
+    .facility-item .desktop-details-wrapper .pm-confirm-button,
+    .facility-item .desktop-details-wrapper a {
+        max-width: 100% !important;
     }
 }
 </style>
