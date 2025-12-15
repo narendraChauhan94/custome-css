@@ -1,83 +1,67 @@
 /* =========================================================
-   FACILITY LIST – FINAL OVERRIDES (HIGH PRIORITY)
+   FACILITY CARD – EXACT MATCH TO ORIGINAL UI
    ========================================================= */
 
-/* Ensure list spacing */
-#facilityListPage #listView {
-    padding: 8px 0 !important;
+#facilityListPage #listView .k-listview-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
 }
 
-/* Card layout correction */
+/* Main card */
 #facilityListPage #listView .facility-item {
-    position: relative !important;
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: 220px 1fr 180px;
     align-items: center !important;
-    gap: 24px !important;
 
     padding: 24px !important;
-    margin-bottom: 20px !important;
-
     background: #ffffff !important;
-    border-radius: 18px !important;
+    border-radius: 16px !important;
 
-    box-shadow:
-        0 6px 16px rgba(0,0,0,0.06),
-        0 20px 40px rgba(0,0,0,0.08) !important;
-
-    border: none !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
 }
 
-/* Facility image consistency */
+/* IMAGE */
 #facilityListPage #listView .facility-image {
-    width: 240px !important;
-    height: 160px !important;
-    flex-shrink: 0 !important;
-
+    width: 200px !important;
+    height: 140px !important;
     object-fit: cover !important;
-    border-radius: 14px !important;
-    margin: 0 !important;
+    border-radius: 12px !important;
 }
 
-/* Text block */
+/* DETAILS */
 #facilityListPage #listView .facility-details {
-    flex: 1 !important;
-    margin: 0 !important;
+    padding-right: 24px !important;
 }
 
-/* Facility title */
 #facilityListPage #listView .facility-details h2 {
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: 600 !important;
     color: #111827 !important;
     margin-bottom: 8px !important;
 }
 
-/* Remove empty description gap */
-#facilityListPage #listView .facility-description:empty {
-    display: none !important;
-}
-
-/* Desktop action column */
+/* CTA COLUMN */
 #facilityListPage #listView .desktop-details-wrapper {
-    position: absolute !important;
-    right: 24px !important;
-    bottom: 90px !important;
-
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
 }
 
-/* Choose button – final authority */
+/* CHOOSE BUTTON (FORCED VISIBLE) */
 #facilityListPage #listView .desktop-details-wrapper .pm-confirm-button {
-    width: 150px !important;
-    padding: 12px 0 !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 140px !important;
+    height: 44px !important;
 
     font-size: 15px !important;
     font-weight: 600 !important;
 
-    border-radius: 14px !important;
-    text-align: center !important;
+    border-radius: 12px !important;
 
     background: linear-gradient(
         90deg,
@@ -86,24 +70,19 @@
         #e04b9a 100%
     ) !important;
 
-    box-shadow: 0 6px 18px rgba(109, 92, 231, 0.35) !important;
+    color: #ffffff !important;
 }
 
-/* Button hover */
-#facilityListPage #listView .desktop-details-wrapper .pm-confirm-button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 10px 26px rgba(109, 92, 231, 0.45) !important;
-}
-
-/* Pills positioning */
+/* PILL BELOW BUTTON */
 #facilityListPage #listView .facility-detail-pills {
-    position: absolute !important;
-    right: 24px !important;
-    bottom: 24px !important;
-    margin: 0 !important;
+    grid-column: 3 !important;
+    margin-top: 10px !important;
+
+    display: flex !important;
+    justify-content: center !important;
 }
 
-/* Pill style */
+/* PILL STYLE */
 #facilityListPage #listView .detail-pill {
     background: #f1f5f9 !important;
     color: #374151 !important;
@@ -111,15 +90,14 @@
 
     padding: 6px 14px !important;
     border-radius: 999px !important;
-    border: 1px solid #e5e7eb !important;
 }
 
 /* =========================================================
-   RESPONSIVE FIX
+   MOBILE (STACKED BUT CTA STILL VISIBLE)
    ========================================================= */
 @media (max-width: 1024px) {
     #facilityListPage #listView .facility-item {
-        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
         text-align: center !important;
     }
 
@@ -128,9 +106,11 @@
         height: 180px !important;
     }
 
-    #facilityListPage #listView .desktop-details-wrapper,
-    #facilityListPage #listView .facility-detail-pills {
-        position: static !important;
+    #facilityListPage #listView .desktop-details-wrapper {
         margin-top: 14px !important;
+    }
+
+    #facilityListPage #listView .facility-detail-pills {
+        margin-top: 8px !important;
     }
 }
