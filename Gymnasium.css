@@ -1,200 +1,645 @@
-/* ================================
-   GLOBAL WRAPPER
-================================ */
-#facilityLandingPageModelContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    color: #1f2937;
+/* ============================================
+   FACILITY LANDING PAGE - CSS IMPROVEMENTS
+   ============================================ */
+
+/* ---- CSS Variables ---- */
+:root {
+  --primary-color: #6b46c1;
+  --primary-dark: #553c9a;
+  --primary-light: #9f7aea;
+  --primary-gradient: linear-gradient(135deg, #6b46c1 0%, #9f7aea 100%);
+  --secondary-color: #4a5568;
+  --accent-color: #38b2ac;
+  --background-light: #f7fafc;
+  --background-white: #ffffff;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --text-light: #a0aec0;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
 }
 
-/* ================================
-   HEADER
-================================ */
+/* ---- Base Container ---- */
+.book-me-4-content {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--background-light);
+  min-height: 100vh;
+}
+
+.bm-content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bm-facility-landing-page-content {
+  display: grid;
+  gap: 24px;
+}
+
+/* ---- Facility Header ---- */
 .facility-header {
-    background: linear-gradient(135deg, #5b4bdf, #9c4dcc);
-    border-radius: 16px;
-    padding: 24px;
-    color: #fff;
-    margin-bottom: 24px;
-    position: relative;
+  background: var(--primary-gradient);
+  padding: 32px 40px;
+  border-radius: var(--radius-xl);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
-.facility-name {
-    font-size: 26px;
-    font-weight: 700;
-    margin: 8px 0 4px;
+.facility-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-.facility-location {
-    opacity: 0.9;
-    font-size: 14px;
-}
-
-/* Back button */
 .back-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.15);
-    padding: 8px 14px;
-    border-radius: 999px;
-    width: fit-content;
-}
-
-.back-action img {
-    width: 16px;
-    height: 16px;
-    filter: brightness(0) invert(1);
-}
-
-.back-action a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+  backdrop-filter: blur(4px);
 }
 
 .back-action:hover {
-    background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(-4px);
 }
 
-/* ================================
-   IMAGE + HOURS LAYOUT
-================================ */
+.back-img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.back-url {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.facility-name {
+  color: #ffffff;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.facility-location {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.facility-location::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  opacity: 0.9;
+}
+
+/* ---- Image & Hours Container ---- */
 .img-hours-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
-    margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
 }
 
-@media (max-width: 992px) {
-    .img-hours-container {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 768px) {
+  .img-hours-container {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ================================
-   IMAGE CAROUSEL
-================================ */
-.image-carousel-container,
+/* ---- Image Carousel ---- */
+.facility-image-carousel,
+.image-carousel-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.image-carousel-view {
+  border-radius: var(--radius-lg);
+}
+
+.image-carousel-view .image,
 .facility-image {
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
 }
 
-.image-carousel-container img,
-.facility-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.image-carousel-view:hover .image {
+  transform: scale(1.02);
 }
 
-/* ================================
-   CARD STYLE (REUSABLE)
-================================ */
-.working-hours-info-wrapper,
-.fees-container,
-.map-container {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    margin-bottom: 24px;
+.k-scrollview-nav {
+  bottom: 16px !important;
 }
 
-/* ================================
-   PANEL HEADERS
-================================ */
+.k-scrollview-nav li {
+  width: 10px !important;
+  height: 10px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 50% !important;
+  margin: 0 4px !important;
+  transition: var(--transition-fast) !important;
+}
+
+.k-scrollview-nav li.k-primary {
+  background: #ffffff !important;
+  transform: scale(1.2);
+}
+
+.k-scrollview-prev,
+.k-scrollview-next {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md) !important;
+  transition: var(--transition-fast) !important;
+}
+
+.k-scrollview-prev:hover,
+.k-scrollview-next:hover {
+  background: #ffffff !important;
+  transform: scale(1.1);
+}
+
+/* ---- Working Hours ---- */
+.working-hours-info-wrapper {
+  background: var(--background-white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
 .panel-headers {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #111827;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
 }
 
-/* ================================
-   WORKING HOURS
-================================ */
+.working-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .working-hours > div {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px dashed #e5e7eb;
-    font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--background-light);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
 }
 
-.working-hours > div:last-child {
-    border-bottom: none;
+.working-hours > div:hover {
+  background: #edf2f7;
+  transform: translateX(4px);
 }
 
-.working-hours .day {
-    font-weight: 600;
-    color: #374151;
+.working-hours .item.day {
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-.working-hours .hours {
-    color: #4f46e5;
-    font-weight: 600;
+.working-hours .item.hours {
+  color: var(--accent-color);
+  font-weight: 600;
+  background: rgba(56, 178, 172, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
 }
 
-/* ================================
-   FEES
-================================ */
+/* ---- Fees Section ---- */
+.fees-container {
+  background: var(--background-white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
 .fees-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .fee-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 8px;
-    padding: 14px;
-    border-radius: 12px;
-    background: #f9fafb;
-    margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  padding: 16px;
+  background: var(--background-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  align-items: center;
+  transition: var(--transition-fast);
+}
+
+.fee-item:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
 }
 
 .fee-item .name {
-    font-weight: 600;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .fee-item .amount {
-    font-weight: 700;
-    color: #16a34a;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 1.1rem;
 }
 
 .fee-item .tax-info {
-    grid-column: 1 / -1;
-    font-size: 12px;
-    color: #6b7280;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  background: #edf2f7;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
 }
 
-/* ================================
-   MAP
-================================ */
+/* ---- Map Section ---- */
+.map-container {
+  margin-bottom: 24px;
+}
+
+.location-header {
+  margin-bottom: 16px;
+}
+
 .bm-map-canvas {
-    border-radius: 16px;
-    overflow: hidden;
-    height: 320px;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  min-height: 300px;
 }
 
-/* ================================
-   GENERAL CLEANUP
-================================ */
-.col-panel-md {
-    margin-top: 24px;
+/* ---- Scheduler Section ---- */
+.scheduler-container {
+  background: var(--background-white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 }
 
-h1, h2 {
-    letter-spacing: -0.02em;
+.facility-scheduler-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-/* Prevent ugly focus outlines */
-.readable-non-focusable-content {
-    outline: none !important;
+/* ---- Service Dropdown ---- */
+.k-dropdown,
+.k-picker {
+  border-radius: var(--radius-md) !important;
+  border: 2px solid var(--border-color) !important;
+  min-height: 44px !important;
+  background: var(--background-white) !important;
+  transition: var(--transition-fast) !important;
 }
+
+.k-dropdown:hover,
+.k-picker:hover {
+  border-color: var(--primary-light) !important;
+}
+
+.k-dropdown:focus,
+.k-picker:focus,
+.k-dropdown.k-focus,
+.k-picker.k-focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.2) !important;
+}
+
+.k-dropdown .k-input,
+.k-picker .k-input {
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+}
+
+/* ---- Calendar/Scheduler ---- */
+.k-scheduler {
+  border: none !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.k-scheduler-header {
+  background: var(--background-light) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.k-scheduler-toolbar {
+  background: transparent !important;
+  padding: 16px !important;
+}
+
+.k-scheduler-navigation {
+  gap: 8px;
+}
+
+.k-scheduler-navigation .k-button {
+  border-radius: var(--radius-md) !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  transition: var(--transition-fast) !important;
+}
+
+.k-scheduler-navigation .k-button:hover {
+  background: var(--primary-light) !important;
+  color: #ffffff !important;
+}
+
+.k-scheduler-views .k-button {
+  border-radius: var(--radius-md) !important;
+}
+
+.k-scheduler-views .k-button.k-selected {
+  background: var(--primary-gradient) !important;
+  border-color: transparent !important;
+}
+
+/* ---- Scheduler Events (Booking Slots) ---- */
+.k-event {
+  border-radius: var(--radius-md) !important;
+  border: none !important;
+  transition: var(--transition-fast) !important;
+}
+
+.k-event:hover {
+  transform: scale(1.02);
+  z-index: 10 !important;
+}
+
+.facility-booking-slot {
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.placeholder-event {
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+.placeholder-event:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.booked-event {
+  background: linear-gradient(135deg, #718096 0%, #a0aec0 100%) !important;
+  color: #ffffff !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ---- Scheduler Time Slots ---- */
+.k-scheduler-times {
+  background: var(--background-light) !important;
+}
+
+.k-scheduler-times .k-scheduler-group-cell,
+.k-scheduler-times .k-scheduler-cell {
+  border-color: var(--border-color) !important;
+  font-size: 12px !important;
+  color: var(--text-secondary) !important;
+}
+
+.k-scheduler-content {
+  background: var(--background-white) !important;
+}
+
+.k-scheduler-cell {
+  border-color: #f0f4f8 !important;
+}
+
+.k-scheduler-cell:hover {
+  background: rgba(107, 70, 193, 0.05) !important;
+}
+
+/* ---- DatePicker ---- */
+.k-calendar {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-lg) !important;
+  overflow: hidden;
+}
+
+.k-calendar-header {
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  padding: 16px !important;
+}
+
+.k-calendar-header .k-button {
+  color: #ffffff !important;
+}
+
+.k-calendar-td.k-selected .k-calendar-cell-inner {
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+  border-radius: 50% !important;
+}
+
+.k-calendar-td:hover .k-calendar-cell-inner {
+  background: var(--primary-light) !important;
+  color: #ffffff !important;
+}
+
+.k-calendar-td.k-today .k-calendar-cell-inner {
+  border: 2px solid var(--primary-color) !important;
+  font-weight: 600 !important;
+}
+
+/* ---- Popup/Dialogs ---- */
+.popup-content-wrapper {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-xl) !important;
+  overflow: hidden;
+}
+
+.image-carousel-popup-container {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.close-icon {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+/* ---- Buttons ---- */
+.k-button {
+  border-radius: var(--radius-md) !important;
+  font-weight: 500 !important;
+  padding: 10px 20px !important;
+  transition: var(--transition-fast) !important;
+}
+
+.k-button-solid-primary {
+  background: var(--primary-gradient) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+.k-button-solid-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ---- Loading States ---- */
+.k-loading-mask {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.k-loading-image {
+  border-radius: 50%;
+}
+
+/* ---- Responsive Adjustments ---- */
+@media (max-width: 992px) {
+  .facility-header {
+    padding: 24px;
+  }
+  
+  .facility-name {
+    font-size: 1.75rem;
+  }
+  
+  .scheduler-container {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .bm-content-wrapper {
+    padding: 0 12px;
+  }
+  
+  .facility-header {
+    padding: 20px;
+    border-radius: var(--radius-md);
+  }
+  
+  .facility-name {
+    font-size: 1.5rem;
+  }
+  
+  .working-hours-info-wrapper,
+  .fees-container,
+  .scheduler-container {
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+  
+  .k-scheduler-toolbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ---- Accessibility Improvements ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px;
+}
+
+.k-button:focus-visible,
+.k-dropdown:focus-visible {
+  box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.3) !important;
+}
+
+/* ---- Animations ---- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bm-facility-landing-page-content > * {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.bm-facility-landing-page-content > *:nth-child(1) { animation-delay: 0s; }
+.bm-facility-landing-page-content > *:nth-child(2) { animation-delay: 0.1s; }
+.bm-facility-landing-page-content > *:nth-child(3) { animation-delay: 0.2s; }
+.bm-facility-landing-page-content > *:nth-child(4) { animation-delay: 0.3s; }
