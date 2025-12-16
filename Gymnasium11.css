@@ -1,0 +1,495 @@
+/* =========================================================
+   ROOT VARIABLES & BASE
+   ========================================================= */
+:root {
+    --primary-gradient: linear-gradient(135deg, #5b4bdf 0%, #9c4dcc 50%, #e04b9a 100%);
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --focus-ring: 0 0 0 3px rgba(156, 77, 204, 0.4);
+    --border-color: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --bg-muted: #f3f4f6;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --radius-full: 9999px;
+    --transition: 0.2s ease;
+}
+
+#facilityListPage {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   SKIP LINK (Accessibility)
+   ========================================================= */
+#facilityListPage .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--primary-gradient);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    z-index: 1000;
+    font-weight: 600;
+}
+
+#facilityListPage .skip-link:focus {
+    left: 24px;
+    top: 24px;
+}
+
+/* =========================================================
+   HEADER SECTION
+   ========================================================= */
+#facilityListPage .facility-items-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+#facilityListPage .results-header {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-size: clamp(22px, 4vw, 28px);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    padding: 20px 28px;
+    margin: 0;
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+#facilityListPage .results-header:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+#facilityListPage .back-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+}
+
+#facilityListPage .back-img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(37%) sepia(52%) saturate(1851%) hue-rotate(243deg) brightness(89%) contrast(91%);
+}
+
+#facilityListPage .back-url {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5b4bdf;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    background: rgba(91, 75, 223, 0.08);
+    transition: all var(--transition);
+}
+
+#facilityListPage .back-url:hover {
+    background: rgba(91, 75, 223, 0.15);
+}
+
+#facilityListPage .back-url:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* =========================================================
+   RESULTS COUNT
+   ========================================================= */
+#facilityListPage .results-count {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    padding: 8px 0;
+}
+
+#facilityListPage .results-count:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+}
+
+/* =========================================================
+   FACILITY LIST CONTAINER
+   ========================================================= */
+#facilityListPage .facility-list {
+    width: 100%;
+}
+
+#facilityListPage .k-listview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =========================================================
+   FACILITY CARD
+   ========================================================= */
+#facilityListPage .facility-item {
+    display: grid;
+    grid-template-columns: 240px 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "image details button"
+        "image pills pills";
+    gap: 20px 24px;
+    align-items: center;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--card-shadow);
+    transition: box-shadow var(--transition), transform var(--transition);
+    position: relative;
+}
+
+#facilityListPage .facility-item:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+}
+
+#facilityListPage .facility-item:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring), var(--card-shadow);
+}
+
+/* =========================================================
+   FACILITY IMAGE
+   ========================================================= */
+#facilityListPage .facility-image {
+    grid-area: image;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+/* =========================================================
+   FACILITY DETAILS
+   ========================================================= */
+#facilityListPage .facility-details {
+    grid-area: details;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+#facilityListPage .facility-details h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+#facilityListPage .facility-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+#facilityListPage .read-more-toggle {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5b4bdf;
+    text-decoration: none;
+    align-self: flex-start;
+}
+
+#facilityListPage .read-more-toggle:hover {
+    text-decoration: underline;
+}
+
+#facilityListPage .read-more-toggle:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: 4px;
+}
+
+#facilityListPage .facility-location {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* =========================================================
+   CHOOSE BUTTON (Desktop)
+   ========================================================= */
+#facilityListPage .desktop-details-wrapper {
+    grid-area: button;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#facilityListPage .pm-confirm-button.desktop-details {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+#facilityListPage .pm-confirm-button.desktop-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(156, 77, 204, 0.35);
+}
+
+#facilityListPage .pm-confirm-button.desktop-details:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring), 0 4px 12px rgba(156, 77, 204, 0.3);
+}
+
+#facilityListPage .pm-confirm-button.desktop-details:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   DETAIL PILLS
+   ========================================================= */
+#facilityListPage .facility-detail-pills {
+    grid-area: pills;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-self: start;
+}
+
+#facilityListPage .detail-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-muted);
+    border-radius: var(--radius-full);
+}
+
+#facilityListPage .detail-pill.grey {
+    background: var(--bg-muted);
+    color: var(--text-secondary);
+}
+
+/* =========================================================
+   TABLET DETAILS (Hidden on Desktop)
+   ========================================================= */
+#facilityListPage .tablet-details-wrapper {
+    display: none;
+}
+
+/* =========================================================
+   LOADING STATE
+   ========================================================= */
+#facilityListPage .bm-loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* =========================================================
+   PAGER
+   ========================================================= */
+#facilityListPage .k-pager-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 24px 16px;
+    margin-top: 24px;
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--card-shadow);
+}
+
+#facilityListPage .k-pager-numbers {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#facilityListPage .k-pager-numbers .k-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-muted);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+#facilityListPage .k-pager-numbers .k-link.k-selected {
+    background: var(--primary-gradient);
+    color: #ffffff;
+}
+
+#facilityListPage .k-pager-numbers .k-link:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+#facilityListPage .k-pager-sizes,
+#facilityListPage .k-pager-info {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+#facilityListPage .k-dropdown {
+    min-width: 70px;
+}
+
+#facilityListPage .k-dropdown .k-dropdown-wrap {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: var(--bg-muted);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+#facilityListPage .k-dropdown:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+#facilityListPage .k-pager-numbers-wrap select.k-dropdown {
+    display: none;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+@media (max-width: 900px) {
+    #facilityListPage .facility-item {
+        grid-template-columns: 200px 1fr;
+        grid-template-areas:
+            "image details"
+            "image button"
+            "pills pills";
+    }
+
+    #facilityListPage .desktop-details-wrapper {
+        justify-content: flex-start;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+@media (max-width: 640px) {
+    #facilityListPage {
+        padding: 16px;
+    }
+
+    #facilityListPage .results-header {
+        font-size: 20px;
+        padding: 16px 20px;
+    }
+
+    #facilityListPage .facility-item {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "details"
+            "pills"
+            "button";
+        gap: 16px;
+    }
+
+    #facilityListPage .facility-image {
+        height: 200px;
+    }
+
+    #facilityListPage .desktop-details-wrapper {
+        display: none;
+    }
+
+    #facilityListPage .tablet-details-wrapper {
+        display: flex;
+        width: 100%;
+    }
+
+    #facilityListPage .pm-confirm-button.tablet-details {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+    }
+
+    #facilityListPage .pm-confirm-button.tablet-details:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+    }
+
+    #facilityListPage .facility-detail-pills {
+        justify-self: stretch;
+    }
+
+    #facilityListPage .k-pager-wrap {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    #facilityListPage .facility-item,
+    #facilityListPage .pm-confirm-button,
+    #facilityListPage .back-url {
+        transition: none;
+    }
+
+    #facilityListPage .facility-item:hover,
+    #facilityListPage .pm-confirm-button:hover {
+        transform: none;
+    }
+}
